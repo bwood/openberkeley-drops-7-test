@@ -3,6 +3,8 @@ name = Pantheon
 description = Install with pre-configured integration for the Pantheon Platform
 version = VERSION
 core = 7.x
+hidden = TRUE
+
 dependencies[] = block
 dependencies[] = color
 dependencies[] = comment

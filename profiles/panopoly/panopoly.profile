@@ -38,14 +38,27 @@ function panopoly_install_tasks($install_state) {
     ),
   );
   $tasks = $tasks + apps_profile_install_tasks($install_state, $panopoly_server);
-
+  $tasks['apps_profile_apps_select_form_panopoly']['display_name'] = t('Install apps for Panopoly');
   // Rename one of the default apps tasks. In the case of a non-interactive
   // installation, apps_profile_install_tasks() never defines this task, so we
   // need to make sure we don't accidentally create it when it doesn't exist.
+/*
   if (isset($tasks['apps_profile_apps_select_form_panopoly'])) {
     $tasks['apps_profile_apps_select_form_panopoly']['display_name'] = t('Install apps for Panopoly');
   }
+*/
+    // Setup the UC Berkeley Apps install task
+  $ucberkeley_server = array(
+    'machine name' => 'ucberkeley',
+    'default apps' => array(
+      'ucb_cas',  
+      'ucb_envconf',
+    ),
+  );
+  $tasks = $tasks + apps_profile_install_tasks($install_state, $ucberkeley_server);
+  $tasks['apps_profile_apps_select_form_ucberkeley']['display_name'] = t('Install apps for UC Berkeley');
 
+  
   // Set up the theme selection and configuration tasks
   $tasks['panopoly_theme_form'] = array(
     'display_name' => t('Choose a theme'),
@@ -75,16 +88,11 @@ function panopoly_form_install_configure_form_alter(&$form, $form_state) {
   drupal_get_messages('warning');
 
   // Set reasonable defaults for site configuration form
-  $form['site_information']['site_name']['#default_value'] = 'Panopoly';
-  $form['admin_account']['account']['name']['#default_value'] = 'admin';
+  $form['site_information']['site_name']['#default_value'] = '';
+  $form['admin_account']['account']['name']['#default_value'] = 'ucbadmin';
   $form['server_settings']['site_default_country']['#default_value'] = 'US';
   $form['server_settings']['date_default_timezone']['#default_value'] = 'America/Los_Angeles'; // West coast, best coast
-  // Don't set the email address to "admin@localhost" as that will fail D7's
-  // email address validation.
-  if ($_SERVER['HTTP_HOST'] != 'localhost') {
-    $form['site_information']['site_mail']['#default_value'] = 'admin@'. $_SERVER['HTTP_HOST'];
-    $form['admin_account']['account']['mail']['#default_value'] = 'admin@'. $_SERVER['HTTP_HOST'];
-  }
+  
 }
 
 /**
@@ -144,6 +152,15 @@ function panopoly_apps_servers_info() {
       'manifest' => 'http://apps.getpantheon.com/panopoly',
       'profile' => $profile,
       'profile_version' => isset($info['version']) ? $info['version'] : '7.x-1.0-beta3',
+      'server_name' => $_SERVER['SERVER_NAME'],
+      'server_ip' => $_SERVER['SERVER_ADDR'],
+    ),
+    'ucberkeley' => array(
+      'title' => 'UC Berkeley',
+      'description' => 'Apps for UC Berkeley',
+      'manifest' => 'http://drupal-apps.berkeley.edu/ucberkeley',
+      'profile' => $profile,
+      'profile_version' => isset($info['version']) ? $info['version'] : '7.x-1.x',
       'server_name' => $_SERVER['SERVER_NAME'],
       'server_ip' => $_SERVER['SERVER_ADDR'],
     ),

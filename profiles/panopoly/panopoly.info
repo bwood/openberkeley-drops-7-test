@@ -1,4 +1,4 @@
-name = Panopoly
+name = UC Berkeley Panopoly
 description = A magical framework for building Drupal products based on the Panels module
 version = 7.x-1.0-beta3
 core = 7.x
