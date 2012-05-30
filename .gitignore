@@ -1,25 +1,43 @@
+# Replace EXAMPLE with your site name.
+
+# Drupal #
+##########
 # Ignore paths that contain user-generated content.
 /sites/*/files
 /sites/*/private
 /files/*
 /cache
+# Local stack development
+sites/*.localhost/*
+# Devel themer files 
+sites/all/modules/devel_themer
 
 # ** Only works in OSs that support newer versions of fnmatch (Bash 4+)
 /sites/default/**/files
 /sites/default/**/private
+
+# security review
+*/security_review/IGNOREME.txt
+/profiles/ucb_start/modules/contrib/security_review/IGNOREME.txt
+/profiles/ucb_start/modules/contrib/security_review/file_write_test*
+
+# UCB Drupal apps
+# Since these are installed and updated via Apps in the install profile,
+# we don't want to version control them here
+/sites/all/modules/ucb_cas
+/sites/all/modules/ucb_envconf
+
 
 # Packages #
 ############
 *.7z
 *.dmg
 *.gz
-*.bz2
 *.iso
 *.jar
 *.rar
 *.tar
 *.zip
-*.tgz
 
 # Logs and databases #
 ######################
@@ -34,6 +52,17 @@ Icon?
 Thumbs.db
 ._*
 
+# Eclipse files #
+#################
+.buildpath
+.project
+.settings/*
+dummy.php
+
+# Emacs files #
+###############
+*~
+\#*#
 # Vim generated files #
 ######################
 *.un~
@@ -41,3 +70,4 @@ Thumbs.db
 # SASS #
 ##########
 .sass-cache
+
