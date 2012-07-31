@@ -11,6 +11,11 @@
 sites/*.localhost/*
 # Devel themer files 
 sites/all/modules/devel_themer
+# panopoly apps
+sites/all/modules/panopoly_*
+#ucb apps 
+sites/all/modules/ucb_*
+
 
 # ** Only works in OSs that support newer versions of fnmatch (Bash 4+)
 /sites/default/**/files
