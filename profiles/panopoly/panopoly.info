@@ -1,6 +1,6 @@
-name = UC Berkeley Panopoly
-description = A magical framework for building Drupal products based on the Panels module
-version = 7.x-1.0-beta3
+name = Open Berkeley
+description = Panopoly customized for UC Berkeley
+version = 7.x-1.0-beta3_ucb_1.0-alpha1
 core = 7.x
 
 ; Core
@@ -99,6 +99,9 @@ dependencies[] = respondjs
 dependencies[] = fontyourface
 dependencies[] = fontyourface_ui
 dependencies[] = fontsquirrel
+
+; Contrib Mail
+dependencies[] = smtp
 
 ; CSS Stylesheets
 stylesheets[all][] = panopoly.css

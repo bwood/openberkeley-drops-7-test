@@ -11,11 +11,13 @@ function panopoly_install_tasks($install_state) {
   // Summon the power of the Apps module
   require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
 
-  // Set up a task to verify capability to run apps
-  $tasks['panopoly_apps_check'] = array(
+  if (is_writable('sites/all/modules') === FALSE) {
+    // Setup a task to verify capability to run apps
+    $tasks['openacademy_apps_check'] = array(
     'display_name' => t('Enable apps support'),
     'type' => 'form',
-  );
+    );
+  }
 
   // Set up the Panopoly Apps install task
   $panopoly_server = array(
@@ -23,42 +25,43 @@ function panopoly_install_tasks($install_state) {
     'default apps' => array(
       'panopoly_admin',
       'panopoly_core',
-      'panopoly_demo',
+  //'panopoly_demo',
       'panopoly_images',
       'panopoly_magic',
       'panopoly_pages',
-      'panopoly_search',
+  //'panopoly_search',
       'panopoly_theme',
       'panopoly_users',
       'panopoly_widgets',
       'panopoly_wysiwyg',
-    ),
+  ),
     'required apps' => array(
       'panopoly_core',
-    ),
+  ),
   );
   $tasks = $tasks + apps_profile_install_tasks($install_state, $panopoly_server);
   $tasks['apps_profile_apps_select_form_panopoly']['display_name'] = t('Install apps for Panopoly');
   // Rename one of the default apps tasks. In the case of a non-interactive
   // installation, apps_profile_install_tasks() never defines this task, so we
   // need to make sure we don't accidentally create it when it doesn't exist.
-/*
+  /*
   if (isset($tasks['apps_profile_apps_select_form_panopoly'])) {
-    $tasks['apps_profile_apps_select_form_panopoly']['display_name'] = t('Install apps for Panopoly');
+  $tasks['apps_profile_apps_select_form_panopoly']['display_name'] = t('Install apps for Panopoly');
   }
-*/
-    // Setup the UC Berkeley Apps install task
+  */
+  // Setup the UC Berkeley Apps install task
   $ucberkeley_server = array(
     'machine name' => 'ucberkeley',
     'default apps' => array(
       'ucb_cas',  
       'ucb_envconf',
-    ),
+      'ucb_smtp',
+  ),
   );
   $tasks = $tasks + apps_profile_install_tasks($install_state, $ucberkeley_server);
   $tasks['apps_profile_apps_select_form_ucberkeley']['display_name'] = t('Install apps for UC Berkeley');
 
-  
+
   // Set up the theme selection and configuration tasks
   $tasks['panopoly_theme_form'] = array(
     'display_name' => t('Choose a theme'),
@@ -67,6 +70,10 @@ function panopoly_install_tasks($install_state) {
   $tasks['panopoly_theme_configure_form'] = array(
     'display_name' => t('Configure theme settings'),
     'type' => 'form',
+  );
+  $tasks['panopoly_smtp_configure_form'] = array(
+    'display_name' => t('Site email settings'),
+    'type' => 'form',    
   );
 
   // Set up the prepare task to close it out
@@ -92,7 +99,7 @@ function panopoly_form_install_configure_form_alter(&$form, $form_state) {
   $form['admin_account']['account']['name']['#default_value'] = 'ucbadmin';
   $form['server_settings']['site_default_country']['#default_value'] = 'US';
   $form['server_settings']['date_default_timezone']['#default_value'] = 'America/Los_Angeles'; // West coast, best coast
-  
+
 }
 
 /**
@@ -154,7 +161,7 @@ function panopoly_apps_servers_info() {
       'profile_version' => isset($info['version']) ? $info['version'] : '7.x-1.0-beta3',
       'server_name' => $_SERVER['SERVER_NAME'],
       'server_ip' => $_SERVER['SERVER_ADDR'],
-    ),
+  ),
     'ucberkeley' => array(
       'title' => 'UC Berkeley',
       'description' => 'Apps for UC Berkeley',
@@ -163,7 +170,7 @@ function panopoly_apps_servers_info() {
       'profile_version' => isset($info['version']) ? $info['version'] : '7.x-1.x',
       'server_name' => $_SERVER['SERVER_NAME'],
       'server_ip' => $_SERVER['SERVER_ADDR'],
-    ),
+  ),
   );
 }
 
@@ -175,7 +182,7 @@ function panopoly_apps_servers_info() {
 function panopoly_default_content(&$modules) {
   $files = system_rebuild_module_data();
   foreach($modules as $module) {
-    // This assumes a pattern MYMODULE_democontent which is probably not always true. Might be 
+    // This assumes a pattern MYMODULE_democontent which is probably not always true. Might be
     // better to check $_SESSION['apps_manifest'] and check to see if this exists:
     // function_exists($_SESSION['module']['configure form'])
     if (isset($files[$module . '_democontent'])) {
@@ -229,7 +236,7 @@ function panopoly_apps_check($form, &$form_state) {
 
   return $form;
 }
-                
+
 /**
  * Form to choose the starting theme from list of available options
  */
@@ -262,12 +269,12 @@ function panopoly_theme_form($form, &$form_state) {
  * Form submit handler to select the theme
  */
 function panopoly_theme_form_submit($form, &$form_state) {
-  
+
   // Enable and set the theme of choice
   $theme = $form_state['input']['theme'];
   theme_enable(array($theme));
   variable_set('theme_default', $theme);
- 
+
   // Flush theme caches so things are right
   system_rebuild_theme_data();
   drupal_theme_rebuild();
@@ -279,7 +286,21 @@ function panopoly_theme_form_submit($form, &$form_state) {
 function panopoly_theme_configure_form($form, &$form_state) {
   $theme = variable_get('theme_default');
   ctools_include('system.admin', 'system', '');
-  $form = system_theme_settings($form, $form_state, $theme); 
+  $form = system_theme_settings($form, $form_state, $theme);
+  return $form;
+}
+
+/**
+ * Form to configure smtp
+ */
+function panopoly_smtp_configure_form($form, &$form_state) {
+
+  // Set the title
+  //drupal_set_title(t('Configure theme settings!'));
+
+  //$theme = variable_get('theme_default');
+  ctools_include('smtp.admin', 'smtp', '');
+  $form = smtp_admin_settings();
   return $form;
 }
 
@@ -319,10 +340,10 @@ function panopoly_prepare_submit($form, &$form_state) {
 
   // Install profiles are always loaded last
   db_update('system')
-    ->fields(array('weight' => 1000))
-    ->condition('type', 'module')
-    ->condition('name', drupal_get_profile())
-    ->execute();
+  ->fields(array('weight' => 1000))
+  ->condition('type', 'module')
+  ->condition('name', drupal_get_profile())
+  ->execute();
 
   // Cache a fully-built schema.
   drupal_get_schema(NULL, TRUE);
@@ -346,7 +367,7 @@ function panopoly_finished_yah($form, &$form_state) {
   $form['openingtext'] = array(
     '#markup' => '<h2>' . t('Congratulations, you just installed Panopoly!') . '</h2>',
   );
-  
+
   $form['panopoly_icon'] = array(
     '#markup' => theme('image', array('path' => drupal_get_path('profile', 'panopoly') . '/images/panopoly_icon.png')),
   );
