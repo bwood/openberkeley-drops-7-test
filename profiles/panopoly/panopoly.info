@@ -1,9 +1,9 @@
 name = Open Berkeley
 description = Panopoly customized for UC Berkeley
-version = 7.x-1.0-beta3_ucb_1.0-alpha1
+version = 7.x-1.0-beta4_ucb_1.0-alpha2
 core = 7.x
 
-; Core
+; Panopoly - Core
 dependencies[] = menu
 dependencies[] = image
 dependencies[] = list
@@ -18,7 +18,7 @@ dependencies[] = file
 dependencies[] = block
 dependencies[] = dblog
 
-; Contrib - Foundation 
+; Panopoly - Contrib - Foundation 
 dependencies[] = ctools
 dependencies[] = panels
 dependencies[] = panels_ipe
@@ -32,7 +32,7 @@ dependencies[] = views_content
 dependencies[] = views_ui
 dependencies[] = token
 
-; Contrib - Field UI and Content Types
+; Panopoly - Contrib - Field UI and Content Types
 dependencies[] = tablefield
 dependencies[] = link
 dependencies[] = date
@@ -45,21 +45,20 @@ dependencies[] = simple_gmap
 dependencies[] = field_group
 dependencies[] = file_entity
 
-; Contrib - Media
+; Panopoly - Contrib - Media
 dependencies[] = media
 dependencies[] = media_internet
 dependencies[] = mediafield
 dependencies[] = media_youtube
 dependencies[] = media_vimeo
 
-; Contrib - Menus and URLS
+; Panopoly - Contrib - Menus and URLS
 dependencies[] = pathauto
 dependencies[] = menu_block
 
-; Contrib - User Experience
+; Panopoly - Contrib - User Experience
 dependencies[] = wysiwyg
 dependencies[] = wysiwyg_filter
-dependencies[] = better_formats
 dependencies[] = caption_filter
 dependencies[] = image_resize_filter
 dependencies[] = date_popup_authored
@@ -70,14 +69,15 @@ dependencies[] = simplified_menu_admin
 dependencies[] = references_dialog 
 dependencies[] = backports
 
-; Contrib - Search 
+; Panopoly - Contrib - Search 
+dependencies[] = facetapi
 dependencies[] = search_api
 dependencies[] = search_api_solr
-dependencies[] = facetapi
 dependencies[] = search_api_facetapi
 dependencies[] = search_api_views
+dependencies[] = search_api_db
 
-; Contrib - Products
+; Panopoly - Contrib - Products
 dependencies[] = apps 
 dependencies[] = features
 dependencies[] = entity
@@ -86,19 +86,13 @@ dependencies[] = defaultcontent
 dependencies[] = strongarm
 dependencies[] = libraries
 
-; Contrib - Performance
-dependencies[] = redis
-
-; Contrib - Development
+; Panopoly - Contrib - Development
 dependencies[] = devel
 dependencies[] = devel_generate
 
-; Contrib - Theme
+; Panopoly - Contrib - Theme
 dependencies[] = conditional_styles
 dependencies[] = respondjs
-dependencies[] = fontyourface
-dependencies[] = fontyourface_ui
-dependencies[] = fontsquirrel
 
 ; Contrib Mail
 dependencies[] = smtp
@@ -106,5 +100,9 @@ dependencies[] = smtp
 ; CSS Stylesheets
 stylesheets[all][] = panopoly.css
 
-; Files
-files[] = panopoly.profile
+; Information added by drupal.org packaging script on 2012-06-21
+version = "7.x-1.0-beta4"
+core = "7.x"
+project = "panopoly"
+datestamp = "1340295716"
+
