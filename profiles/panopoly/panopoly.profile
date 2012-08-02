@@ -13,7 +13,7 @@ function panopoly_install_tasks($install_state) {
 
   if (is_writable('sites/all/modules') === FALSE) {
     // Setup a task to verify capability to run apps
-    $tasks['openacademy_apps_check'] = array(
+    $tasks['panopoly_apps_check'] = array(
     'display_name' => t('Enable apps support'),
     'type' => 'form',
     );
@@ -131,8 +131,6 @@ function panopoly_install_tasks_alter(&$tasks, $install_state) {
 
   // Since we only offer one language, define a callback to set this
   $tasks['install_select_locale']['function'] = 'panopoly_locale_selection';
-
-  // Create a more fun finished page with our Open Academy Saurus
   $tasks['install_finished']['function'] = 'panopoly_finished_yah';
   $tasks['install_finished']['display_name'] = t('Finished!');
   $tasks['install_finished']['type'] = 'form';
@@ -197,37 +195,53 @@ function panopoly_default_content(&$modules) {
 function panopoly_apps_check($form, &$form_state) {
   $form = array();
 
-  $form['opening'] = array(
-    '#markup' => '<h1>' . t('Enable Support for Apps') . '</h1>',
-  );
+  // Set the title
+  drupal_set_title('Enable Support for Apps');
 
   $form['openingtext'] = array(
     '#markup' => '<p>' . t('Apps uses the same mechanism for installing modules as the update module in core. This depends on certain php extensions to be installed on your server. Below is the documentation for the various methods of installing.') . '</p>',
   );
 
-  $form['pantheon'] = array(
+  if (isset($_SERVER['PANTHEON_ENVIRONMENT'])) {
+    $pantheon_help=<<<EOT
+<br /><br />
+At this point you need to enable "On Server Development" so that we can install some Apps:
+<br /><br />
+<ol>
+<li>You probably have your Pantheon dashboard
+open in another tab or window.  (If not, open a new tab or window and visit <a href="https://dashboard.getpantheon.com" target="_new">your dashboard</a>.)</li>
+<li>Click on the link for the site you are presently installing and click on the Development tab.</li>
+<li>Now click on the On Server Development button to enable that feature.</li>
+</ol>
+<br />
+Once you have done this, you can click the Continue button at the bottom of this page.<br /><br />
+(After you install your site, you will need to use the "Commit" button before you can move this code to your Test and Live environments.)
+EOT;
+    $form['pantheon'] = array(
     '#title' => t('Pantheon'),
     '#type' => 'fieldset',
-    '#description' => theme('image', array('path' => drupal_get_path('profile', 'panopoly') . '/images/enable-apps-pantheon.png')) . t('If you are installing Panopoly on Pantheon, you need to enable "On Server Development" to use apps.<br /><br />After you install your apps, you will need to use the "Commit" button to add them to the version control system.'),
-  );
-
-  $form['ftp'] = array(
+    '#description' => theme('image', array('path' => drupal_get_path('profile', 'panopoly') . '/images/enable-apps-pantheon.png')) . t($pantheon_help),
+    );
+  }
+  else {
+    $form['ftp'] = array(
     '#title' => t('FTP'),
     '#type' => 'fieldset',
     '#description' => 'In order to install via ftp, you must have the ftp php extension enabled. Most apache2/php installs have this by default which is by it probably shows up on most installs. <br /><br />You may run into a server that doesn\'t have ftp so then you will need to install it or use an alternative method. See <a href="http://us2.php.net/manual/en/book.ftp.php">http://us2.php.net/manual/en/book.ftp.php</a> for how to install the ftp php extension. You will also need an ftp username and password that has rights to write to your site directory on your server. Be aware that FTP is not an encrypted protocol and your credentials will be transmitted in the clear.',
-  );
+    );
 
-  $form['ssh'] = array(
+    $form['ssh'] = array(
     '#title' => t('SSH'),
     '#type' => 'fieldset',
     '#description' => 'In order to install via ssh, you must have the ssh2 php extension installed and enabled. This does not come by default with many apache2/php installs so it commonly needs to be added. <br /><br />See <a href="http://us2.php.net/manual/en/book.ssh2.php">http://us2.php.net/manual/en/book.ssh2.php</a> for how to install the ssh2 php extension. You will also need a username and password of a user that can ssh into the server and has write permissions to your site directory on your server.',
-  );
+    );
 
-  $form['webserver'] = array(
+    $form['webserver'] = array(
     '#title' => 'Webserver Direct Install',
     '#type' => 'fieldset',
     '#description' => 'In order to install directly to the sites/all/modules directory it needs to be writable. In order to do this go to the root of your drupal install and type <strong>sudo chmod -R 777 sites/all/modules</strong>. Be aware that there are security issues with leaving your site in this state.',
-  );
+    );
+  }
 
   $form['continue'] = array(
     '#type' => 'submit',
@@ -308,6 +322,22 @@ function panopoly_smtp_configure_form($form, &$form_state) {
  * Form to talk about preparing the site for prime time
  */
 function panopoly_prepare($form, &$form_state) {
+  //hide messages
+  drupal_get_messages('status');
+
+  // Send the smtp test message
+  // If an address was given, send a test e-mail message.
+  $test_address = variable_get('smtp_test_address', '');
+  if ($test_address != '') {
+    // Clear the variable so only one message is sent.
+    variable_del('smtp_test_address');
+    global $language;
+    $params['subject'] = t('SMTP test e-mail from Drupal site');
+    $params['body']    = array(t('If you receive this message it means your site is capable of using '. variable_get('smtp_host', '') .' to send e-mail.'));
+    drupal_mail('smtp', 'smtp-test', $test_address, $language, $params);
+    drupal_set_message(t('A test e-mail has been sent to @email. You may want to !check for any error messages once this installation is finished.', array('@email' => $test_address, '!check' => l(t('check the logs'), 'admin/reports/dblog'))));
+  }
+
   $form = array();
 
   $form['opening'] = array(
