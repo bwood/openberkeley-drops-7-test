@@ -151,7 +151,7 @@ function panopoly_install_tasks_alter(&$tasks, $install_state) {
 
   // Since we only offer one language, define a callback to set this
   $tasks['install_select_locale']['function'] = 'panopoly_locale_selection';
-  
+
   // Create a more fun finished page with our Panopoly square
   $tasks['install_finished']['function'] = 'panopoly_finished_yah';
   $tasks['install_finished']['display_name'] = t('Finish up');
@@ -257,7 +257,7 @@ function panopoly_theme_form($form, &$form_state) {
 
   // hide messages
   drupal_get_messages('status');
-  
+
   // Set the page title
   drupal_set_title(t('Choose a theme'));
 
@@ -372,6 +372,9 @@ function panopoly_finished_yah_submit($form, &$form_state) {
   // Allow anonymous and authenticated users to see content
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content'));
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content'));
+  
+  //make sure the administrative user role has all permissions
+  panopoly_adminrole();
 
   // Cache a fully-built schema.
   drupal_get_schema(NULL, TRUE);
@@ -423,4 +426,20 @@ function panopoly_smtp_test() {
     drupal_set_message(t('A test e-mail has been sent to @email. You may want to !check for any error messages once this installation is finished.', array('@email' => $test_address, '!check' => l(t('check the logs'), 'admin/reports/dblog'))));
   }
 
+}
+
+/**
+ * Assign "administrative user" role all permissions
+ */
+function panopoly_adminrole() {
+  if ($rid = variable_get('user_admin_role')) {
+    $permissions = drupal_map_assoc(array_keys(module_invoke_all('permission')));
+    $current = user_role_permissions(array($rid => $rid));
+    foreach ($current[$rid] as $permission => $status) {
+      if (!isset($permissions[$permission])) {
+        $permissions[$permission] = FALSE;
+      }
+    }
+    user_role_change_permissions($rid, $permissions);
+  }
 }
