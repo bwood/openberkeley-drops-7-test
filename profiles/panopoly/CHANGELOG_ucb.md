@@ -1,3 +1,7 @@
+next release
+============
+* Added admin_menu and disabled admin.module
+
 Panopoly 7.x-1.0-beta4_ucb_1.0-alpha2
 =====================================
 * Upgrade to Panopoly 7.x-1.0-beta4

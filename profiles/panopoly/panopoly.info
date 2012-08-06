@@ -62,7 +62,7 @@ dependencies[] = wysiwyg_filter
 dependencies[] = caption_filter
 dependencies[] = image_resize_filter
 dependencies[] = date_popup_authored
-dependencies[] = admin
+;dependencies[] = admin
 dependencies[] = module_filter
 dependencies[] = views_bulk_operations
 dependencies[] = simplified_menu_admin
@@ -94,8 +94,9 @@ dependencies[] = devel_generate
 dependencies[] = conditional_styles
 dependencies[] = respondjs
 
-; Contrib Mail
+; UCB
 dependencies[] = smtp
+dependencies[] = admin_menu
 
 ; CSS Stylesheets
 stylesheets[all][] = panopoly.css
