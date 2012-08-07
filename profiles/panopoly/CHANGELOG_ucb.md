@@ -2,6 +2,7 @@ next release
 ============
 * Grant the administrative user role all permissions.
 * Added admin_menu and disabled admin.module.
+* Added zen, nice_menus, backup_migrate
 
 Panopoly 7.x-1.0-beta4_ucb_1.0-alpha2
 =====================================

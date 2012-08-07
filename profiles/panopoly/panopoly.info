@@ -97,6 +97,9 @@ dependencies[] = respondjs
 ; UCB
 dependencies[] = smtp
 dependencies[] = admin_menu
+dependencies[] = zen
+dependencies[] = nice_menus
+
 
 ; CSS Stylesheets
 stylesheets[all][] = panopoly.css
