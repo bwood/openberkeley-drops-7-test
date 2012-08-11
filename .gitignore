@@ -11,9 +11,16 @@
 sites/*.localhost/*
 # Devel themer files 
 sites/all/modules/devel_themer
-# panopoly apps
-sites/all/modules/panopoly_*
-#ucb apps 
+
+# Panopoly Apps
+# if you are merging to upgrade your site you'd prefer to get the
+# new versions of the panopoly modules from git.  Otherwise you'd
+# have to upgrade them each manually.  Descision: do not ignore these.
+
+#sites/all/modules/panopoly_*
+
+# UCB Apps 
+# Ignore these.  You must get updates manually
 sites/all/modules/ucb_*
 
 
