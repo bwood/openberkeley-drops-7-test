@@ -97,7 +97,6 @@ dependencies[] = respondjs
 ; UCB
 dependencies[] = smtp
 dependencies[] = admin_menu
-;dependencies[] = zen
 dependencies[] = nice_menus
 
 
