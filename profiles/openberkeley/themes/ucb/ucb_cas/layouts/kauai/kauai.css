@@ -1,0 +1,47 @@
+/**
+ * @file
+ * Open Berkeley Kauai Panel Layout
+**/
+
+.kauai-container {
+}
+
+/**
+ * Media Query: 0px to 680px
+ */
+@media only screen and (max-width: 680px) {
+  .kauai-main
+  .kauai-sidebar {
+    width: 100%;
+    float: none;
+  }
+
+  .kauai-main-inner {
+    margin-right: 0;
+  }
+}
+
+/**
+ * Media Query: 681px and above
+ */
+@media only screen and (min-width: 681px) {
+  .kauai-sidebar {
+    width: 31.915%;
+    float: left;
+  }
+
+  .lt-ie9 .kauai-sidebar {
+    width: 30.915%;
+  }
+
+  .kauai-main {
+    width: 68.085%;
+    float: left;
+  }
+
+  .kauai-main-inner {
+    margin-right: 20px;
+  }
+}
+
+

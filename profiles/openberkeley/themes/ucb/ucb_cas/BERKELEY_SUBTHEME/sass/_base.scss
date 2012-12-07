@@ -1,0 +1,203 @@
+//
+// "base" partial
+//
+// To make it easier to use all variables and mixins in any Sass file in this
+// theme, each .scss file has a @import "base" declaration. And this _base.scss
+// file is in charge of importing all the other partials needed for the theme.
+//
+// This base partial is organized in this way:
+// - First we import Compass plug-ins (Sass mixin libraries) - include first if using in this file
+// - Next we set any shared Sass variables.
+// - Last we import a _custom.scss partial that includes our custom mixins.
+//
+
+//
+// Partials to be shared with all .scss files.
+//
+
+@import "compass/support";  // Add Compass' IE and vendor prefix support variables.
+@import "compass/utilities/general/clearfix"; // Better than Drupal's clearfix.
+@import "compass/utilities/sprites"; // See http://compass-style.org/help/tutorials/spriting/
+@import "compass/css3";     // Use one CSS3 mixin instead of multiple vendor prefixes.
+@import "compass/typography/vertical_rhythm"; // Helps set up a vertical rhythm.
+@import "zen";              // Add the Zen Grids responsive layout mixins.
+
+@import "custom";           // Import our custom mixins last.
+
+
+//
+// Custom Function Directives (prefix to avoid naming conflicts); see http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#function_directives
+//
+
+//Pixels to Ems - borrowed from http://viljamis.com/blog/2012/extending-css/
+@function -ucb-pem($pixels) {
+  @return #{$pixels/16.0}em
+}
+
+// Debug media queries - see _custom.scss and http://johanbrook.com/design/css/debugging-css-media-queries/
+// Uncomment line below to debug and put call to mixin in "@if($DEBUG == true){}"
+// $DEBUG: true;
+
+//
+// Legacy IE support
+//
+// These variables are used by many mixins to add additional CSS to support
+// specific versions of IE or specific vendor prefixes.
+//
+// To turn on support for IE6 or IE7, set those variables to true.
+//
+// Zen does not require special handling for IE8 or later. But Compass uses that
+// variable for a couple edge cases. We include it for completeness sake. See
+// the documentation at http://compass-style.org/reference/compass/support/
+$legacy-support-for-ie6: false;
+$legacy-support-for-ie7: false;
+$legacy-support-for-ie8: true;
+
+
+//
+// Font faces, stacks and sizes.
+//
+
+// Compass' vertical_rhythm extension is a powerful tool to set up a vertical
+// rhythm for your entire page. You can see some of its mixins and functions in
+// use in the normalize.scss file.
+// @see http://compass-style.org/reference/compass/typography/vertical_rhythm/
+
+$base-font-size:   16px; // The font size set on the root html element.
+$base-line-height: 24px; // This line-height determines the basic unit of vertical rhythm.
+
+$h1-font-size: 1.5  * $base-font-size;
+$h2-font-size: 1.3  * $base-font-size;
+$h3-font-size: 1.17 * $base-font-size;
+$h4-font-size: 1    * $base-font-size;
+$h5-font-size: 0.83 * $base-font-size;
+$h6-font-size: 0.75 * $base-font-size;
+
+// The following font family declarations are based on the Microsoft core web
+// fonts which are common fonts available on most computer systems. The DejaVu
+// and Nimbus Sans fonts are commonly available on Linux systems where the MS
+// fonts are less common. Tahoma and Helvetica are also widely available.
+//
+// A user's web browser will look at the comma-separated list and will
+// attempt to use each font in turn until it finds one that is available
+// on the user's computer. The final "generic" font (sans-serif, serif or
+// monospace) hints at what type of font to use if the web browser doesn't
+// find any of the fonts in the list.
+
+// First, let's create some font stacks.
+$times-new-roman: "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+$times:           Times, "Times New Roman", Georgia, "DejaVu Serif", serif;
+$georgia:         Georgia, "Times New Roman", "DejaVu Serif", serif;
+
+$verdana:         Verdana, Tahoma, "DejaVu Sans", sans-serif;
+$tahoma:          Tahoma, Verdana, "DejaVu Sans", sans-serif;
+$helvetica:       Helvetica, Arial, "Nimbus Sans L", sans-serif;
+$arial:           Arial, Helvetica, "Nimbus Sans L", sans-serif;
+$helvetica-neue:  "Helvetica Neue",Helvetica,Arial,FreeSans,"Liberation Sans",sans-serif;
+
+// For an explanation of why "sans-serif" is at the end of this list, see
+// http://meyerweb.com/eric/thoughts/2010/02/12/fixed-monospace-sizing/
+$courier:         "Courier New", "DejaVu Sans Mono", monospace, sans-serif;
+
+// Now create some variables for the font stacks we want to use on this site.
+$base-font-family: $helvetica-neue; // The font family set on the html element.
+$font-body:        $helvetica-neue;
+$font-monospace:   $courier;
+
+//Font-face families
+@include font-face("ucberkeleyos", font-files("ucberkeleyos.woff", "ucberkeleyos.eot", "ucberkeleyos.ttf", "ucberkeleyos.svg"));
+@include font-face("ucberkeleyosbold", font-files("ucberkeleyosbold.woff", "ucberkeleyosbold.eot", "ucberkeleyosbold.ttf", "ucberkeleyosbold.svg"));
+
+//Additional font stacks - see http://coding.smashingmagazine.com/2009/09/22/complete-guide-to-css-font-stacks/
+$palatino:        Palatino, “Palatino Linotype”, “Hoefler Text”, Times, “Times New Roman”, serif;
+
+//
+// Colors, etc.
+//
+$font-base-color: #333;
+$font-default-text-shadow: 0 1px 0 #FFF;
+$pane-content-link-color: #0066A0;
+$berkeley-light-blue: #6988AC;
+$berkeley-drop-blue: #23517B; //Used for drop-down menus; currently same as med-blue used in navigation
+$berkeley-deep-blue: #264b69;
+$berkeley-med-blue: #23517b;
+$berkeley-dark-blue: #003461;
+$berkeley-gold: #FFC82E;
+$berkeley-med-grey: #828282;
+$berkeley-light-grey: #D4D4D4;
+$berkeley-pale-grey: #eaeae8;
+$berkeley-block-grey1: #DADADA;
+$berkeley-block-grey2: #FEFEFE;
+$page-color: #e6e6e4;
+$topwrapper-color: #012545;
+$main-background-color: #f1f1ee;
+$navigation-link-color: #FFF;
+$block-menu-color: #F3F3F3;
+
+//
+// Images
+//
+$header-image: url("../header-images/header-sathergate-1.png"); //Header image can be switched by user in theme settings interface
+
+//
+// Text shadows (http://compass-style.org/examples/compass/css3/text_shadow/)
+//
+$default-text-shadow-color: rgba(black, 0.6);
+$default-text-shadow-blur: 3px;
+$default-text-shadow-v-offset: 1px;
+
+//
+// Font-weight
+//
+$font-weight-default: normal;
+
+//
+// Margin Defaults
+//
+$page-margin-left: 55px;
+$page-margin-right: 55px;
+$main-margin-top: -100px;
+$berkeley-margin-top: 70px;
+$divider-img-margin-lr: 20px;
+$logo-margin-top: 80px;
+$name-and-slogan-margin: 108px 0 0 10px;
+$block-menu-margin: 6px 0;
+$secondary-menu-pos-right: 110px; //228px when quick links enabled
+$secondary-menu-pos-top: 5px;
+$quicklinks-pos-right: 110px;
+$footer-margin-top: 53px;
+$copyright-margin-top: 15px;
+
+//
+// Padding Defaults
+//
+$bottomwrapper-padding-bottom: -ucb-pem(128);
+
+//
+// Indents.
+//
+$indent-amount: 30px;
+$submenu-indent: 15px;
+
+//
+// Borders
+//
+$border-solid-med-grey: 1px solid #ccc;
+$border-solid-darker-grey: 1px solid #aaa;
+$border-solid-thin-blue: 1px solid #557B9D;
+$border-solid-light-grey: 1px solid #D4D4D4;
+
+//
+// Standard Measurements
+//
+$page-max-width: 1280px;
+$header-height: 260px;
+$content-min-height: 300px;
+
+//
+// Media Queries - Breakpoints (requires Sass 3.2 for variables in queries)
+// Use em-based queries because of Webkit issue; see http://blog.55minutes.com/2012/04/media-queries-and-browser-zoom/
+// Abstracted media query systems: http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
+//
+
+$break-small: 100px;

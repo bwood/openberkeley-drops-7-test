@@ -1,0 +1,94 @@
+/**
+ * @file
+ * Print styling
+ *
+ * We provide some sane print styling for Drupal using Zen's layout method.
+ */
+
+@import "base";
+
+
+@media print {
+
+  a:link,
+  a:visited { /* underline all links */
+    text-decoration: underline !important;
+
+    #site-name & { /* Don't underline header */
+      text-decoration: none !important;
+    }
+  }
+
+  #content {
+    a[href]:after { /* Add visible URL after links. */
+      content: " (" attr(href) ")";
+      font-weight: normal;
+      font-size: .9em;
+    }
+
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after { /* Only display useful links. */
+      content: "";
+    }
+
+    abbr[title]:after { /* Add visible title after abbreviations. */
+      content: " (" attr(title) ")";
+    }
+  }
+
+  #content { /* Un-float the content */
+    float: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body,
+  #page,
+  #main,
+  #content { /* Set background to white, text to black; turn off any background images */
+    color: #000;
+    background-color: #FFF !important;
+    background-image: none !important;
+  }
+
+  #berkeley,
+  #divider,
+  #site-name-mobile,
+  #menu-and-search-mobile,
+  #search,
+  #skip-link,
+  #toolbar,
+  #navigation,
+  .region-sidebar-first,
+  .region-sidebar-second,
+  #footer,
+  .breadcrumb,
+  .tabs,
+  .action-links,
+  .links,
+  .book-navigation,
+  .forum-topic-navigation,
+  .pager,
+  .feed-icons { /* Hide sidebars and nav elements */
+    visibility: hidden;
+    display: none;
+  }
+
+  /* Override Chrome h1 styling */
+  h1 { /* Turn off any background colors or images */
+    color: #000;
+    background-color: #FFF !important;
+  }
+
+  #main {
+    border: $border-solid-med-grey;
+    width: 95%;
+    box-shadow: none;
+  }
+
+  #footerwrapper {
+    width: 95%;
+  }
+
+} /* End @media print */

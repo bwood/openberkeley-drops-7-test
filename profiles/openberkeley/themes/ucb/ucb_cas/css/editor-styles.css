@@ -1,0 +1,38 @@
+/**
+ * @file
+ * TinyMCE Editor Styling
+ *
+ * Add editor styles here
+ *
+ * 8/4/12 NOTE: This is pending. Define CSS styles not working properly
+ * with Media, Wysiwyg, TinyMCE (shows in preview but doesn't save)
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/social-link-icons\/\*\.png}line{font-family:\0000398}}
+.social-link-icons-sprite {
+  background: url('../images/social-link-icons-sa0e1f4b582.png') no-repeat;
+}
+
+/* 22px for page */
+/* 20px */
+/* 15.5px */
+/* 14px */
+/* 12px */
+/* 10.5px */
+/* Image positioning */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/editor-styles\.scss}line{font-family:\0000315}}
+.image-right {
+  float: right;
+  margin-left: 10px !important;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/editor-styles\.scss}line{font-family:\0000319}}
+.image-left {
+  float: left;
+  margin-right: 10px !important;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/editor-styles\.scss}line{font-family:\0000323}}
+.image-center {
+  display: block !important;
+  margin: auto !important;
+}

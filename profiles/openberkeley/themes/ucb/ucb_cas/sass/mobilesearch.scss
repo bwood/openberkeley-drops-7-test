@@ -1,0 +1,678 @@
+/**
+ * @file
+ * Mobile and Search Styling
+ *
+ * Style the mobile and search markup found in page.tpl.php.
+ * Adapted from Open Academy (http://chapterthree.com/openacademy/)
+ * See _base.scss for -ucb-pem function to convert pixels to ems.
+ */
+
+@import "base";
+
+/**
+ * Responsive defaults
+ */
+
+#header {
+  #site-name-mobile,
+  #menu-and-search-mobile,
+  #main-menu-mobile {
+    display: none;
+  }
+}
+
+#secondary-menu-mobile {
+  display: none;
+}
+
+.media-youtube-outer-wrapper {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/*
+ * Conditional classes for <IE9
+ *
+ * See http://drupal.org/project/zen and http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+ */
+
+.lt-ie9 {
+  #page,
+  #bottomwrapper {
+    border-left: $border-solid-med-grey;
+    border-right: $border-solid-med-grey;
+  }
+
+  #page {
+    border-bottom: 1px solid $page-color;
+  }
+
+  #bottomwrapper {
+    border-top: 1px solid $page-color;
+  }
+
+  #search {
+    clear: both;
+    display: block;
+    float: right;
+
+    #search-form {
+      input.form-text {
+       size: 10 !important;
+       width: 100px !important;
+      }
+    }
+  }
+
+  #name-and-slogan {
+    position: relative !important;
+    margin: 0px 0px 0px 10px;
+    top: 110px;
+
+    &.with-slogan {
+      top: 50px;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: none;
+    }
+
+    h2#site-slogan {
+      color: $berkeley-gold;
+    }
+  }
+
+  #site-name {
+    font-size: 2.3em;
+    line-height: 0;
+    margin: 0;
+
+    a:link,
+    a:visited {
+      color: #fff;
+    }
+  }
+
+  #quick-links-widget {
+  }
+
+  #secondary-menu {
+    right: 110px; //If no quicklinks, restore standard positioning
+  }
+
+  /* IE8 Fixes */
+
+  #header, #content,
+  #navigation, .region-sidebar-second,
+  #footer {
+    padding-left: 10px;
+    padding-right: 10px;
+    word-wrap: break-word;
+  }
+
+  #page-title {
+    padding-left: 10px;
+  }
+
+  #name-and-slogan {
+    position: relative !important;
+    display: inline;
+  }
+
+  #search {
+    margin: -100px 110px 0 0;
+  }
+
+  /* http://stackoverflow.com/questions/1771176/ie8-non-compatibility-mode-image-with-max-width-and-heightauto */
+  #berkeley img {
+    width: auto;
+    /* or could set max-width: none; */
+  }
+
+  #ucbseal-img {
+    width: auto
+  }
+
+  .kauai-sidebar {
+    float: right;
+    width: 31.915%;
+  }
+
+  .kauai-main {
+    float: left;
+    width: 68.085%;
+  }
+
+}
+
+/*
+ * Conditional classes for IE7
+ */
+.lt-ie8 {
+  #footer h2.block-title {
+    display: none;
+  }
+
+  #name-and-slogan {
+    float: none;
+    position: absolute;
+    line-height: 1;
+    bottom: -25px;
+  }
+
+  #search {
+    position: relative !important;
+    left: 750px !important;
+    float: left !important  ;
+  }
+
+  #navigation ul.nice-menu {
+    z-index: 100;
+  }
+
+  .region-sidebar-first {
+    z-index: -10;
+  }
+
+  .boxton-container {
+    width: 95%;
+  }
+}
+
+/**
+ * Media Query: 0px to 680px
+ */
+
+@media only screen and (max-width: 680px) {
+//@media only screen and (max-width: -ucb-pem(580)) {
+
+  #topwrapper,
+  #search-mobile,
+  #search,
+  #divider,
+  #logowrapper,
+  #name-and-slogan {
+    display: none;
+  }
+
+  #page {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  #header {
+
+    .mobile-show-menu,
+    .mobile-show-search {
+      display: block !important;
+      background: $berkeley-light-blue;
+    }
+
+    height: auto;
+    padding: 0;
+
+    background: $berkeley-deep-blue;
+
+    #site-name-mobile {
+      display: block;
+      border-bottom: $border-solid-darker-grey;
+      text-align: center;
+      text-transform: uppercase;
+      a {
+        font-size: 1em;
+        padding: 5px 0;
+        width: 100%;
+        display: block;
+        color: #FFF;
+
+        &:hover {
+          text-decoration: none;
+          color: $berkeley-gold;
+        }
+      }
+    }
+
+    #menu-and-search-mobile {
+      position: relative;
+      height: auto;
+
+      display: block;
+      color: #FFF;
+
+      #menu-mobile-controller {
+        background: $berkeley-light-blue;
+        border-bottom: $border-solid-darker-grey;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        font: normal 18px/50px 'Lucida Grande', verdana sans-serif;
+      }
+
+      #menu-mobile-controller-inner {
+        padding: 0 10px;
+        cursor: pointer;
+      }
+
+      #main-menu-mobile {
+        position: relative;
+        top: 50px;
+        width: 100%;
+
+        #primary {
+            padding: 0;
+            margin: 0;
+
+            li {
+              border-top: $border-solid-darker-grey;
+
+              a {
+                color: #fff;
+                display: block;
+                padding: 0 20px;
+                font: normal 18px/57px 'Lucida Grande', verdana sans-serif;
+
+                &:hover,
+                &:active {
+                  color: white;
+                  background: #3E3E3E;
+                  text-decoration: none;
+                }
+              }
+            }
+
+            li.last {
+                border-bottom: $border-solid-darker-grey;
+            }
+          }
+      }
+
+      #search-mobile-controller {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 3;
+        text-indent: -9999em;
+        width: 50px;
+        height: 50px;
+        border-left: 1px solid #999;
+        cursor: pointer;
+        @include background (image-url("icon-search-mobile.png") no-repeat center center, linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%));
+      }
+
+      #search-mobile-controller.active {
+        @include background (image-url("icon-mobile-search-expanded.png") no-repeat center center, linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%));
+      }
+
+    }
+
+  }
+
+  #search-mobile {
+    position: relative;
+    top: 50px;
+    width: 100%;
+    border: 1px solid #000;
+    border-width: 1px 0;
+
+    form {
+      position: relative;
+    }
+
+    div.form-item {
+      margin-right: 51px;
+      display: block;
+    }
+
+    input.form-text {
+      width: 100%;
+      border: 0;
+      font: normal 18px/18px 'Lucida Grande', verdana sans-serif;
+      height: 50px;
+      max-height: 50px;
+      padding: 2px 20px 0 20px;
+
+      // See http://stackoverflow.com/questions/628500/can-i-stop-100-width-text-boxes-from-extending-beyond-their-containers/628912#628912
+      @include box-sizing(border-box);
+
+      @include background (linear-gradient(bottom, #DADADA 0%, #FEFEFE 100%));
+    }
+
+    .form-submit {
+      display: block !important;
+      position: absolute;
+      right: 0;
+      top: 0;
+      border: 0;
+      z-index: 3;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      text-indent: -9999em;
+      overflow: hidden;
+      width: 51px;
+      max-width: 51px;
+      height: 51px;
+      @include background (image-url("icon-search-mobile.png") no-repeat center center, linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%));
+    }
+
+  }
+
+  #berkeley {
+  }
+
+  #quick-links-widget {
+    position: absolute;
+    right: 50px;
+    top: 49px;
+    z-index: 50;
+    border: none;
+
+    a#quick-links {
+      padding: 0 20px 0 0;
+    }
+  }
+
+  #main {
+    margin: 0 auto;
+    padding: 0; //Override responsive-sidebars.scss
+
+    #content {
+      min-height: none;
+      input.form-text {
+        width: 80%;
+      }
+    }
+    #navigation {
+      height: auto; //override responsive-sidebars.scss
+    }
+    .sidebars {
+      border-top: 1px solid #ccc;
+    }
+  }
+
+  #main-menu {
+    display: none;
+  }
+
+  #footer-menus {
+    .footer-first,
+    .footer-next {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+
+  /* Images */
+  .pane-content img,
+  .node img {
+    float: none !important;
+    margin: 0;
+  }
+
+  img {
+  &[style="float:left"] {
+    margin-right: 0;
+  }
+  &[style="float:right"] {
+    margin-left: 0;
+  }
+}
+
+  ul.quicktabs-tabs.quicktabs-style-zen li a {
+    padding: 4px 10px 0 10px;
+  }
+
+} //End Media Query: 0px to 680px
+
+
+/**
+ * Media Query: 0px to 959px
+ */
+
+@media only screen and (max-width: 959px) {
+//@media only screen and (max-width: -ucb-pem(959)) {
+
+ #secondary-menu {
+    display: none;
+  }
+
+  #secondary-menu-mobile {
+    display: block;
+    border-top: 1px dotted #aaa;
+    clear: both;
+    margin-top: 10px;
+
+   .block {
+     margin-bottom: 0;
+   }
+
+   .block-menu .block-title,
+   .block-menu-block .block-title {
+     @include element-invisible();
+   }
+
+   ul.links, /* Footer menu links */
+   ul.menu { /* Menu block links */
+     margin: 0;
+     padding: 0;
+     text-align: left; /* LTR */
+
+     li { /* A simple method to get navigation links to appear in one line. */
+       float: left; /* LTR */
+       padding: 0 10px 0 0; /* LTR */
+       list-style-type: none;
+       list-style-image: none;
+     }
+   }
+
+   a {
+     color: $berkeley-med-grey;
+     text-decoration: none;
+     padding: 0 1em 0 0;
+     @include adjust-font-size-to(14px);
+   }
+
+ }
+
+  #footer-social #social-links {
+    float: left;
+    clear: both;
+  }
+
+  #ucbseal,
+  #secondary-menu-mobile,
+  #footer {
+    float: left;
+  }
+
+  #copyright,
+  #secondary-menu-mobile,
+  #footer {
+    padding: 0;
+  }
+
+  #copyright {
+  }
+
+  /* Tables */
+  table {
+    margin-top: 0;
+  }
+
+  th {
+    display: block;
+    font: {
+      weight: normal;
+      style: italic;
+      size: .8em;
+    }
+    line-height: 1.2em;
+    padding: 0 0 0 8px;
+  }
+
+  td {
+    display: block;
+    padding-right: 0;
+    img {
+      margin: 0 !important;
+    }
+  }
+
+
+} //End Media Query: 0px to 959px
+
+/**
+ * Media Query: 0px to 319px
+ */
+
+@media only screen and (max-width: 319px) {
+//@media only screen and (max-width: -ucb-pem(319)) {
+
+  #header {
+    #menu-and-search-mobile {
+      #site-name-mobile {
+        a {
+          font-size: .9em;
+          }
+        }
+      }
+  }
+
+} //End Media Query: 0px to 319px
+
+
+/**
+ * Media Query: 481px to 630px
+ */
+
+@media only screen and (min-width: 481px) and (max-width: 630px) {
+//@media only screen and (min-width: -ucb-pem(481)) and (max-width: -ucb-pem(630)) {
+
+  #logo {
+    display: none;
+  }
+
+} //End Media Query: 481px to 630px
+
+
+/**
+ * Media Query: 481px to 680px
+ */
+
+@media only screen and (min-width: 481px) and (max-width: 680px) {
+  #copyright {
+    float: left;
+    clear: both;
+  }
+} //End Media Query: 481px to 680px
+
+
+/**
+ * Media Query: 681px to 800px
+ */
+
+@media only screen and (min-width: 681px) and (max-width: 800px) {
+  #navigation li a {
+    font-size: .82em; //was 0.9375em, set by adjust-font-size
+    line-height: 1.9em; //was 1.6em, set by adjust-font-size
+    padding: 10px 7px 8px; //was 10px 10px 8px;
+  }
+
+} //End Media Query: 681px to 800px
+
+/**
+ * Media Query: 481px to 959px
+ */
+
+@media only screen and (min-width: 481px) and (max-width: 959px) {
+//@media only screen and (min-width: -ucb-pem(481)) and (max-width: -ucb-pem(959)) {
+
+  #name-and-slogan {
+    position: absolute !important;
+    margin: 0 !important;
+    font-size: .8em;
+    top: 20px;
+    left: 20px;
+
+    #site-slogan {
+      display: none;
+    }
+
+    #site-name {
+      font-size: 1.5em;
+    }
+  }
+
+  #search {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    margin: 0 !important;
+  }
+
+  #quick-links-widget {
+    position: absolute;
+    top: 5px;
+    right: 35px;
+    border: none;
+  }
+
+} //End Media Query: 481px to 959px
+
+/**
+ * Media Query: 481px and above
+ */
+
+@media only screen and (min-width: 481px) {
+//@media only screen and (min-width: -ucb-pem(481)) {
+  #name-and-slogan {
+    position: relative;
+  }
+
+  #search {
+    display: block;
+    float: right;
+    margin: -100px 110px 0 0;
+    clear: both;
+  }
+
+  #search #search-form {
+    margin-bottom: 0;
+  }
+
+  #search .form-item-keys {
+    margin: 0;
+  }
+
+  #search input.form-text {
+    width: 100px;
+    background-color: #fff;
+    margin-right: 0;
+  }
+
+  #search input.form-submit {
+    background: url("../images/search-icon.png") no-repeat scroll left top transparent;
+    border: 0 none;
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 25px;
+    height: 25px;
+  }
+
+  /*
+   * A bug in FireFox causes submit buttons to be 2px taller than an input
+   * text field with the same properities. Sadly, there is no good solution to
+   * this issue, but this is a hacky fix that solves the problem
+   * @see http://christophzillgens.com/en/articles/equal-height-input-and-button-elements-in-firefox-and-safari
+   */
+
+  @-moz-document url-prefix() {
+    #search .form-submit {
+      border: 0px;
+    }
+  }
+} //End Media Query: 481px and above
+

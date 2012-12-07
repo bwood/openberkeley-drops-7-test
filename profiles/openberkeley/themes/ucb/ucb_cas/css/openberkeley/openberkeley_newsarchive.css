@@ -1,0 +1,40 @@
+/**
+ * @file
+ * Open Berkeley: News Archive styles;
+ *
+ * Used only if Open Berkeley - News Archive is checked in Berkeley theme settings (admin/appearance/settings/berkeley)
+ *
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/social-link-icons\/\*\.png}line{font-family:\0000398}}
+.social-link-icons-sprite {
+  background: url('../../images/social-link-icons-sa0e1f4b582.png') no-repeat;
+}
+
+/* 22px for page */
+/* 20px */
+/* 15.5px */
+/* 14px */
+/* 12px */
+/* 10.5px */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/openberkeley\/openberkeley_newsarchive\.scss}line{font-family:\0000312}}
+.view-news-archive .views-row {
+  padding: 5px 0;
+  border-bottom: 1px dotted #cccccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/openberkeley\/openberkeley_newsarchive\.scss}line{font-family:\0000317}}
+.view-news-archive .views-field-field-publication-date,
+.view-news-archive .views-field-field-source {
+  color: #003461;
+  font-size: 0.8em;
+  font-style: italic;
+  float: right;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/openberkeley\/openberkeley_newsarchive\.scss}line{font-family:\0000323}}
+.view-news-archive .views-field-title {
+  padding-top: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/openberkeley\/openberkeley_newsarchive\.scss}line{font-family:\0000326}}
+.view-news-archive .more-link {
+  font-size: .85em;
+  padding-top: 5px;
+}

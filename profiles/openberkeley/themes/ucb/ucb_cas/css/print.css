@@ -1,0 +1,116 @@
+/**
+ * @file
+ * Print styling
+ *
+ * We provide some sane print styling for Drupal using Zen's layout method.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/social-link-icons\/\*\.png}line{font-family:\0000398}}
+.social-link-icons-sprite {
+  background: url('../images/social-link-icons-sa0e1f4b582.png') no-repeat;
+}
+
+/* 22px for page */
+/* 20px */
+/* 15.5px */
+/* 14px */
+/* 12px */
+/* 10.5px */
+@media print {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/print\.scss}line{font-family:\0000314}}
+  a:link,
+  a:visited {
+    /* underline all links */
+    text-decoration: underline !important;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/print\.scss}line{font-family:\0000317}}
+  #site-name a:link, #site-name
+  a:visited {
+    /* Don't underline header */
+    text-decoration: none !important;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/print\.scss}line{font-family:\0000323}}
+  #content a[href]:after {
+    /* Add visible URL after links. */
+    content: " (" attr(href) ")";
+    font-weight: normal;
+    font-size: .9em;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/print\.scss}line{font-family:\0000330}}
+  #content a[href^="javascript:"]:after,
+  #content a[href^="#"]:after {
+    /* Only display useful links. */
+    content: "";
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/print\.scss}line{font-family:\0000334}}
+  #content abbr[title]:after {
+    /* Add visible title after abbreviations. */
+    content: " (" attr(title) ")";
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/print\.scss}line{font-family:\0000339}}
+  #content {
+    /* Un-float the content */
+    float: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/print\.scss}line{font-family:\0000349}}
+  body,
+  #page,
+  #main,
+  #content {
+    /* Set background to white, text to black; turn off any background images */
+    color: #000;
+    background-color: #FFF !important;
+    background-image: none !important;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/print\.scss}line{font-family:\0000373}}
+  #berkeley,
+  #divider,
+  #site-name-mobile,
+  #menu-and-search-mobile,
+  #search,
+  #skip-link,
+  #toolbar,
+  #navigation,
+  .region-sidebar-first,
+  .region-sidebar-second,
+  #footer,
+  .breadcrumb,
+  .tabs,
+  .action-links,
+  .links,
+  .book-navigation,
+  .forum-topic-navigation,
+  .pager,
+  .feed-icons {
+    /* Hide sidebars and nav elements */
+    visibility: hidden;
+    display: none;
+  }
+
+  /* Override Chrome h1 styling */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/print\.scss}line{font-family:\0000379}}
+  h1 {
+    /* Turn off any background colors or images */
+    color: #000;
+    background-color: #FFF !important;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/print\.scss}line{font-family:\0000384}}
+  #main {
+    border: 1px solid #cccccc;
+    width: 95%;
+    box-shadow: none;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/print\.scss}line{font-family:\0000390}}
+  #footerwrapper {
+    width: 95%;
+  }
+}
+/* End @media print */

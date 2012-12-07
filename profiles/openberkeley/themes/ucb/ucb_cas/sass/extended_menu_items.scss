@@ -1,0 +1,353 @@
+/**
+ * @file
+ * Optional Styling for Extended Menu Items
+ *
+ * Used only if Extended Main Menu is checked in Berkeley theme settings (admin/appearance/settings/berkeley)
+ *
+ */
+
+@import "base";
+
+/* Note: At widths greater than 1260px, use standard styling. */
+
+/*
+ * Conditional classes for IE7
+ */
+.lt-ie8 {
+  #navigation {
+    font-size: .8em !important;
+  }
+}
+
+/**
+ * Media Query: 1024px to 1259px
+ */
+
+@media only screen and (min-width: 1024px) and (max-width: 1259px) {
+  /* Navigation bar -- override styles in navigation.scss */
+
+  #navigation li a {
+    font-size: .82em; //was 0.9375em, set by adjust-font-size
+    line-height: 1.9em; //was 1.6em, set by adjust-font-size
+    padding: 10px 7px 8px; //was 10px 10px 8px;
+  }
+}
+
+/**
+ * Media Query: 581px to 1023px
+ * If extended menu items used, will have to switch to mobile nav at widths less than 1024px
+ * At widths less than 580px, see mobilesearch.scss
+ */
+
+@media only screen and (min-width: 581px) and (max-width: 1023px) {
+
+  #topwrapper,
+  #search-mobile,
+  #search,
+  #divider,
+  #logowrapper,
+  #name-and-slogan {
+    display: none;
+  }
+
+  #page {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  #header {
+
+    .mobile-show-menu,
+    .mobile-show-search {
+      display: block !important;
+      background: $berkeley-light-blue;
+    }
+
+    height: auto;
+    padding: 0;
+
+    background: $berkeley-deep-blue;
+
+    #site-name-mobile {
+      display: block;
+      border-bottom: $border-solid-darker-grey;
+      text-align: center;
+      text-transform: uppercase;
+      a {
+        font-size: 1em;
+        padding: 5px 0;
+        width: 100%;
+        display: block;
+        color: #FFF;
+
+        &:hover {
+          text-decoration: none;
+          color: $berkeley-gold;
+        }
+      }
+    }
+
+    #menu-and-search-mobile {
+      position: relative;
+      height: auto;
+
+      display: block;
+      color: #FFF;
+
+      #menu-mobile-controller {
+        background: $berkeley-light-blue;
+        border-bottom: $border-solid-darker-grey;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        font: normal 18px/50px 'Lucida Grande', verdana sans-serif;
+      }
+
+      #menu-mobile-controller-inner {
+        padding: 0 10px;
+        cursor: pointer;
+      }
+
+      #main-menu-mobile {
+        position: relative;
+        top: 50px;
+        width: 100%;
+
+        #primary {
+            padding: 0;
+            margin: 0;
+
+            li {
+              border-top: $border-solid-darker-grey;
+
+              a {
+                color: #fff;
+                display: block;
+                padding: 0 20px;
+                font: normal 18px/57px 'Lucida Grande', verdana sans-serif;
+
+                &:hover,
+                &:active {
+                  color: white;
+                  background: #3E3E3E;
+                  text-decoration: none;
+                }
+              }
+            }
+
+            li.last {
+                border-bottom: $border-solid-darker-grey;
+            }
+          }
+      }
+
+      #search-mobile-controller {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 3;
+        text-indent: -9999em;
+        width: 50px;
+        height: 50px;
+        border-left: 1px solid #999;
+        cursor: pointer;
+        @include background (image-url("icon-search-mobile.png") no-repeat center center, linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%));
+      }
+
+      #search-mobile-controller.active {
+        @include background (image-url("icon-mobile-search-expanded.png") no-repeat center center, linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%));
+      }
+
+    }
+
+  }
+
+  #search-mobile {
+    position: relative;
+    top: 50px;
+    width: 100%;
+    border: 1px solid #000;
+    border-width: 1px 0;
+
+    form {
+      position: relative;
+    }
+
+    div.form-item {
+      margin-right: 51px;
+      display: block;
+    }
+
+    input.form-text {
+      width: 100%;
+      border: 0;
+      font: normal 18px/18px 'Lucida Grande', verdana sans-serif;
+      height: 50px;
+      max-height: 50px;
+      padding: 2px 20px 0 20px;
+
+      // See http://stackoverflow.com/questions/628500/can-i-stop-100-width-text-boxes-from-extending-beyond-their-containers/628912#628912
+      @include box-sizing(border-box);
+
+      @include background (linear-gradient(bottom, #DADADA 0%, #FEFEFE 100%));
+    }
+
+    .form-submit {
+      display: block !important;
+      position: absolute;
+      right: 0;
+      top: 0;
+      border: 0;
+      z-index: 3;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      text-indent: -9999em;
+      overflow: hidden;
+      width: 51px;
+      max-width: 51px;
+      height: 51px;
+      @include background (image-url("icon-search-mobile.png") no-repeat center center, linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%));
+    }
+
+  }
+
+  #berkeley {
+  }
+
+  #quick-links-widget {
+    position: absolute;
+    right: 50px;
+    top: 49px;
+    z-index: 50;
+    border: none;
+
+    a#quick-links {
+      padding: 0 20px 0 0;
+    }
+  }
+
+  #main {
+    margin: 0 auto;
+    padding: 0; //Override responsive-sidebars.scss
+
+    #content {
+      min-height: none;
+      input.form-text {
+        width: 80%;
+      }
+    }
+    #navigation {
+      height: auto; //override responsive-sidebars.scss
+    }
+    .sidebars {
+      border-top: 1px solid #ccc;
+    }
+  }
+
+  #main-menu {
+    display: none;
+  }
+
+  /* Panels */
+  .pane-content img,
+  .node img {
+    max-width: 80%;
+    float: none;
+  }
+
+  ul.quicktabs-tabs.quicktabs-style-zen li a {
+    padding: 4px 10px 0 10px;
+  }
+
+  #secondary-menu {
+    display: none;
+  }
+
+  #secondary-menu-mobile {
+    display: block;
+    border-top: 1px dotted #aaa;
+    clear: both;
+
+   .block {
+     margin-bottom: 0;
+   }
+
+   .block-menu .block-title,
+   .block-menu-block .block-title {
+     @include element-invisible();
+   }
+
+   ul.links, /* Footer menu links */
+   ul.menu { /* Menu block links */
+     margin: 0;
+     padding: 0;
+     text-align: left; /* LTR */
+
+     li { /* A simple method to get navigation links to appear in one line. */
+       float: left; /* LTR */
+       padding: 0 10px 0 0; /* LTR */
+       list-style-type: none;
+       list-style-image: none;
+     }
+   }
+
+   a {
+     color: $berkeley-med-grey;
+     text-decoration: none;
+     padding: 0 1em 0 0;
+     @include adjust-font-size-to(14px);
+   }
+
+ }
+
+  #footer-social #social-links {
+    float: left;
+    clear: both;
+  }
+
+  #ucbseal,
+  #secondary-menu-mobile,
+  #footer {
+    float: left;
+  }
+
+  #copyright,
+  #secondary-menu-mobile,
+  #footer {
+    padding: 0;
+  }
+
+  #copyright {
+  }
+
+  /* Tables */
+  table {
+    margin-top: 0;
+  }
+
+  th {
+    display: block;
+    font: {
+      weight: normal;
+      style: italic;
+      size: .8em;
+    }
+    line-height: 1.2em;
+    padding: 0 0 0 8px;
+  }
+
+  td {
+    display: block;
+    padding-right: 0;
+    img {
+      margin: 0 !important;
+    }
+  }
+
+} //End Media Query: 581px to 1023px
+
+
+

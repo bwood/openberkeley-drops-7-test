@@ -1,0 +1,8 @@
+name = UCB Environments Configurations
+description = Set appropriate configuration for dev/test/live sites.
+machine_name = ucb_envconf
+version = 7.x-1.1-beta1 
+downloadable = ucb_envconf 7.x-1.1-beta1 
+author = IST Drupal, Brian Wood 
+author_url = http://drupal-apps.berkeley.edu/
+downloadables[ucb_envconf 7.x-1.1-beta1] = http://drupal-apps.berkeley.edu/sites/default/files/ucb_envconf-7.x-1.1-beta1.tar.gz

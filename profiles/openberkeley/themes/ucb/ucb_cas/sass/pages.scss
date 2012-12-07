@@ -1,0 +1,588 @@
+/**
+ * @file
+ * Page Styling
+ *
+ * Style the markup found in page.tpl.php. Also includes some styling of
+ * miscellaneous Drupal elements that appear in the $content variable, such as
+ * ul.links, .pager, .more-link, etc.
+ */
+
+@import "base";
+
+
+/*
+ * Body
+ */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: $page-color;
+  color: $font-base-color;
+
+}
+
+#page {
+  font-size: .875em; /* 14px */
+  line-height: 1.5em;
+  margin-top: -$header-height;
+}
+
+/*
+ * The skip-link link will be completely hidden until a user tabs to the link.
+ * See the element-focusable rule in system.base.css.
+ */
+
+#skip-link {
+  margin: 0;
+
+  a,
+  a:visited {
+    display: block;
+    width: 100%;
+    padding: 2px 0 3px 0;
+    text-align: center;
+    background-color: #666;
+    color: #fff;
+  }
+}
+
+/*
+ * Top Wrapper - Note: Background image can be selected via theme settings
+ * Load initial background image only if width is greater than 580px
+ */
+
+@media only screen and (min-width: 580px) {
+  #topwrapper {
+    background: $topwrapper-color $header-image no-repeat center top;
+    @include background-size(cover); //use Compass mixin for supported vendor prefixes
+    height: $header-height;
+  }
+}
+
+/*
+ * Header
+ */
+
+#header {
+  height: $header-height;
+  position: relative;
+}
+
+#berkeley {
+  margin-left: 10%;
+  margin-top: $berkeley-margin-top;
+  float: left;
+  img {
+    border: none;
+  }
+}
+
+#divider {
+  float: left;
+}
+
+#divider-img {
+  margin: 0 $divider-img-margin-lr 0;
+}
+
+#logowrapper {
+  float: left;
+  width: 80px;
+  height: 80px;
+}
+
+a#logo { /* Wrapping link for logo */
+  float: left; /* LTR */
+  margin: $logo-margin-top 0 0 0;
+  width: 100%;
+  img {
+    vertical-align: bottom;
+  }
+}
+
+#name-and-slogan { /* Wrapper for website name and slogan (parent organization) */
+
+  @include adjust-font-size-to(14px); //Wrapper computed font-size: 12.25px;
+
+  float: left;
+  margin: $name-and-slogan-margin;
+
+  /* Keep Site Name and Site Slogan as typed by User - Not overridden by theme settings */
+  h1#site-name, h2#site-slogan {
+    text-transform: none !important;
+
+    //see _base.scss and fonts directory for font-face fonts
+    font-family: $helvetica-neue !important;
+  }
+
+  h2#site-slogan {
+    margin-bottom: 1.15em;
+    margin-top: 1.15em;
+    min-width: 30em; //Fix for scrunched text if Parent Org is longer than Site Name; allow for long names
+  }
+}
+
+
+// See mobilesearch.css for 480 version
+@media all and (min-width: 481px) {
+  #site-name { /* The name of the website */
+    margin: 0;
+    font-size: 2.3em;
+    line-height: 0px; //Remove line-height for precise positioning
+
+    a:link,
+    a:visited {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: none;
+    }
+  }
+
+  #site-slogan { /* The slogan (or tagline) of a website */
+    font-size: 1.5em;
+    line-height: 0px; //Remove line-height for precise positioning
+    color: $berkeley-gold;
+    position: absolute;
+    bottom: 10px;
+  }
+}
+
+.region-header { /* Wrapper for any blocks placed in the header region */
+  clear: both; /* Clear the logo */
+}
+
+/*
+ * Main (container for everything else)
+ */
+
+#main {
+  background: $main-background-color;
+  margin: $main-margin-top auto 0;
+  z-index: 5;
+  width: 80%;
+  @include box-shadow(rgba(black, 0.4) 0px 1px 2px);
+  @include border-radius(4px);
+
+  #add-this {
+    clear: both;
+    float: right;
+    padding: 0 10px 10px 0;
+  }
+}
+
+/*
+ * Content
+ */
+
+#content {
+  min-height: $content-min-height;
+  padding-bottom: 10px;
+}
+
+.region-highlighted {
+}
+
+.breadcrumb { /* The path to the current page in the form of a list of links */
+  font-size: .85em;
+
+  ol {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a:link,
+  a:visited {
+    color: $berkeley-light-blue;
+    text-decoration: none;
+  }
+}
+
+h1.title, /* The title of the page */
+h2.node-title, /* Title of a piece of content when it is given in a list of content */
+h2.block-title, /* Block title */
+h2.title, /* Comment section heading */
+h2.comment-form, /* Comment form heading */
+h3.title { /* Comment title */
+  margin: 0;
+}
+
+h1#page-title {
+  font-size: 1.57em;
+  line-height: 1em;
+  margin: .5em 0 .5em 0;
+  padding: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+h2.node-title, /* Title of a piece of content when it is given in a list of content */
+h2.block-title, /* Block title */
+h2.title, /* Comment section heading */
+h2.pane-title,
+h2.comment-form { /* Comment form heading */
+  padding-top: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.pane-content img, .node img {
+  background-color: #FFF;
+  border: 1px solid #CCCCCC;
+  padding: 4px;
+  margin: 0;
+}
+
+/* Image positioning */
+.image-right {float: right; margin-left: 10px !important;}
+.image-left {float: left; margin-right: 10px !important;}
+.image-center {display: block !important; margin: auto !important;}
+
+img {
+  &[style="float:left"] {
+    margin-right: 10px;
+  }
+  &[style="float:right"] {
+    margin-left: 10px;
+  }
+}
+
+/* Wysiwyg editing */
+body#tinymce img {
+  padding: 0 10px !important;
+}
+
+/* Text tweaking */
+.text-center {
+  text-align: center;
+}
+
+.caption {
+  font-size: .85em;
+}
+
+p, pre {
+}
+
+/* Tables */
+th {
+  background-color: $berkeley-med-grey;
+  color: #FFFFFF;
+  font-size: .8em;
+  font-weight: normal;
+  letter-spacing: 1px;
+  padding: 5px 20px;
+  text-align: left;
+  text-transform: uppercase;
+  vertical-align: top;
+
+  a:link,
+  a:visited {
+    color: #FFF;
+  }
+}
+
+td {
+  border-bottom: 1px solid $berkeley-light-grey;
+  padding: 10px 20px;
+  vertical-align: top;
+}
+
+table#blocks,
+table.tabledrag-processed,
+table.tableheader-processed {
+  th {
+    padding: 5px 10px;
+  }
+  td {
+    padding: 0 10px;
+  }
+}
+
+tr.even { /* Some tables have rows marked even or odd. */
+  /* background-color: #eee; */ /* Drupal core uses a #eee background */
+}
+
+tr.odd {
+  /* background-color: #eee; */ /* Drupal core uses a #eee background */
+}
+
+.update {
+  padding-bottom: 10px;
+  td {
+    padding: 0;
+  }
+}
+
+div.messages { /* Important messages (status, warning, and error) for the user. See also the declarations in messages.css. */
+
+  // TODO: remove this if used as temp hide messages for demo purposes
+  // display: none;
+
+  margin: 1.5em 0; /* Drupal core uses "6px 0" margin */
+
+  ul {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+div.status { /* Normal priority messages */
+}
+
+div.warning,
+tr.warning { /* Medium priority messages */
+  /* border: 1px solid #f0c020; */ /* Drupal core uses: 1px solid #f0c020 */
+}
+
+div.error,
+tr.error { /* High priority messages. See also the .error declaration below. */
+}
+
+.error { /* Errors that are separate from div.messages status messages. */
+  /* color: #e55; */ /* Drupal core uses a #e55 background */
+}
+
+.warning { /* Warnings that are separate from div.messages status messages. */
+  /* color: #e09010; */ /* Drupal core uses a #e09010 background */
+}
+
+.tabs { /* See also the tabs.css file. */
+}
+
+.region-help { /* Help text on a page */
+}
+
+.more-help-link { /* Link to more help */
+}
+
+.region-content { /* Wrapper for the actual page content */
+}
+
+ul.action-links { //Borrowed from seven
+  list-style-type: none;
+  margin: 1em 0;
+  overflow: hidden;
+  padding: 0 20px;
+
+  li {
+    float: left;
+    margin: 0 1em 0 0;
+  }
+
+  a {
+    background: url("../images/add.png") no-repeat scroll 0 center transparent;
+    line-height: 30px;
+    padding-left: 15px;
+
+    &:link,
+    &:visited {
+      color: $berkeley-dark-blue;
+      font-weight: bold;
+    }
+
+  }
+
+}
+
+ul.inline { /* List of links generated by theme_links() */
+  display: inline;
+  padding: 0;
+
+  li {
+    display: inline;
+    list-style-type: none;
+    padding: 0 1em 0 0; /* LTR */
+  }
+}
+span.field-label { /* The inline field label used by the Fences module */
+  padding: 0 1em 0 0; /* LTR */
+}
+
+.item-list .pager { /* A list of page numbers when more than 1 page of content is available */
+  padding: 0;
+
+  li { /* Each page number in the pager list */
+    padding: 0 0.5em;
+  }
+}
+
+.feed-icon { /* The link to the RSS or Atom feed for the current list of content */
+}
+
+.more-link { /* Aggregator, blog, and forum more link */
+}
+
+/*
+ * First sidebar (on left in LTR languages, on right in RTL)
+ *
+ * Remember to NOT add padding or margin to your .region-sidebar-first
+ * (see the layout.css file.)
+ */
+
+.region-sidebar-first {
+}
+
+/*
+ * Second sidebar (on right in LTR languages, on left in RTL)
+ *
+ * Remember to NOT add padding or margin to your .region-sidebar-second
+ * (see the layout.css file.)
+ */
+
+.region-sidebar-second {
+}
+
+/*
+ * Bottom Wrapper
+ */
+#bottomwrapper {
+  margin: 0 auto;
+  padding-bottom: $bottomwrapper-padding-bottom;
+  max-width: 1280px;
+}
+
+#footerwrapper {
+  margin: 40px auto 0;
+  width: 80%;
+  border: 1px solid $berkeley-light-grey;
+}
+
+#footer-menus { /* See navigation.scss for navigation */
+  padding: 20px 0 15px 12px;
+  border-bottom: 1px solid #ccc;
+  font-size: .8em;
+  color: $berkeley-med-grey;
+
+  .footer-first {
+    float: left;
+    width: 23%;
+  }
+  .footer-next {
+    float: left;
+    width: 23%;
+    margin-left: 1em;
+  }
+
+}
+
+#footer-social {
+  #footer {
+    float: left;
+    padding: 20px 0 15px 12px;
+    text-transform: none;
+  }
+
+  #social-links {
+    float: right;
+    padding: 10px 10px 10px 12px;
+    text-transform: uppercase;
+    font-size: .8em;
+    color: $berkeley-med-grey;
+
+    h3.follow-us {
+      color: $berkeley-med-grey;
+      font-size: 1em;
+      line-height: 1em;
+      font-weight: normal;
+      margin: 1em 0;
+      float: left;
+    }
+    .social-link-icons {
+      float: left;
+    }
+    .item-list {
+      ul {
+        margin: 0 0 0.75em;
+        padding: 0 0 0 10px;
+        li { /* A simple method to get navigation links to appear in one line. */
+          float: left; /* LTR */
+          padding: 0 5px 0 0; /* LTR */
+          list-style-type: none;
+          list-style-image: none;
+          a {
+            display: block;
+            width: 24px;
+            height: 24px;
+            text-indent: -9999px;
+            &.facebook-link {
+              @include social-link-sprite(facebook24x24);
+            }
+            &.twitter-link {
+              @include social-link-sprite(twitter24x24);
+            }
+            &.linkedin-link {
+              @include social-link-sprite(linkedin24x24);
+            }
+            &.foursquare-link {
+              @include social-link-sprite(foursquare24x24);
+            }
+            &.youtube-link {
+              @include social-link-sprite(youtube24x24);
+            }
+            &.googleplus-link {
+              @include social-link-sprite(googleplus24x24);
+            }
+            &.flickr-link {
+              @include social-link-sprite(flickr24x24);
+            }
+            &.rss-link {
+              @include social-link-sprite(rss24x24);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#seal-copyright {
+  width: 80%;
+  margin: $seal-margin-top auto;
+}
+
+/*
+ * UCB Seal
+ */
+#ucbseal {
+  float: left;
+}
+
+/*
+ * Copyright
+ */
+
+#copyright {
+  margin: $copyright-margin-top 0;
+  float: right;
+  color: $berkeley-med-grey;
+  text-decoration: none;
+  @include adjust-font-size-to(12px);
+}
+
+/*
+ * Page bottom
+ */
+
+.region-bottom { /* Wrapper for any blocks placed in the page bottom region */
+}
+
+/** jquery - collapse/expand **/
+.jquery-intro {font-size: .8em; color: #003461; font-style: italic; text-align: left; border-bottom: 1px dotted #CCC;}
+.jquery-group {border-bottom: 1px dotted #CCC;}
+.jquery-subgroup {border-bottom: 1px dotted #CCC; /*padding-left: 40px;*/}
+.jquery-title {cursor:pointer;}
+.jquery-title:hover {cursor:pointer; text-decoration: underline;}
+.jquery-title h3 {color: #333; font-weight: normal; text-transform: none; font-size: 1.17em; line-height: 1.282em; margin-bottom: .641em; margin-top: .641em;}
+.jquery-body {padding: 0 0 10px 20px;}
+.jquery-colexp {text-align: right;}
+.jquery-collapse, .jquery-expand {color:#347A9E; text-decoration: underline;}
+.jquery-collapse:hover,.jquery-expand:hover {color:#000; cursor:pointer;}

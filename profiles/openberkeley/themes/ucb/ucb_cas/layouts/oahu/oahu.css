@@ -1,0 +1,46 @@
+/**
+ * @file
+ * Open Berkeley Oahu Panel Layout
+**/
+
+.oahu-container {
+}
+
+.oahu-column {
+  width: 32%;
+  float: left;
+}
+
+.oahu-column .fieldable-panels-pane {
+  padding: 10px !important;
+}
+
+.oahu-column-inner {
+  margin-right: 20px;
+}
+
+.oahu-column3,
+.oahu-second-column3,
+.oahu-third-column3,
+.oahu-fourth-column3 {
+  width: 32%;
+  margin-right: 0;
+}
+
+/**
+ * Media Query: 0px to 960px
+ */
+@media only screen and (max-width: 960px) {
+  .oahu-column,
+  .oahu-column3,
+  .oahu-second-column3,
+  .oahu-third-column3,
+  .oahu-fourth-column3 {
+    width: 100%;
+    float: none;
+  }
+
+  .oahu-column-inner  {
+    margin-right: 0;
+  }
+}

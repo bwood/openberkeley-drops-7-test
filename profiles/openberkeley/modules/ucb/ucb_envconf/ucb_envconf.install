@@ -1,0 +1,7 @@
+<?php 
+/**
+ * Implements hook_install().
+ */
+function ucb_envconf_install() {
+  db_query("UPDATE {system} SET weight = -100 WHERE name = 'ucb_envconf'");
+}

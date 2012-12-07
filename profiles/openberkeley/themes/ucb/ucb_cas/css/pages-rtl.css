@@ -1,0 +1,40 @@
+/**
+ * @file
+ * RTL companion for the pages.css file.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/social-link-icons\/\*\.png}line{font-family:\0000398}}
+.social-link-icons-sprite {
+  background: url('../images/social-link-icons-sa0e1f4b582.png') no-repeat;
+}
+
+/* 22px for page */
+/* 20px */
+/* 15.5px */
+/* 14px */
+/* 12px */
+/* 10.5px */
+/*
+ * Header
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/pages-rtl\.scss}line{font-family:\0000313}}
+#logo {
+  /* Wrapping link for logo */
+  float: right;
+}
+
+/*
+ * Content
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/pages-rtl\.scss}line{font-family:\0000321}}
+ul.inline li {
+  /* List of links */
+  display: inline-block;
+  /* Bug in Safari causes display: inline to fail. */
+  padding: 0 0 0 1em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/pages-rtl\.scss}line{font-family:\0000325}}
+span.field-label {
+  /* The inline field label used by the Fences.module */
+  padding: 0 0 0 1em;
+}

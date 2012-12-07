@@ -1,0 +1,387 @@
+/**
+ * @file
+ * Optional Styling for Extended Menu Items
+ *
+ * Used only if Extended Main Menu is checked in Berkeley theme settings (admin/appearance/settings/berkeley)
+ *
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/social-link-icons\/\*\.png}line{font-family:\0000398}}
+.social-link-icons-sprite {
+  background: url('../images/social-link-icons-sa0e1f4b582.png') no-repeat;
+}
+
+/* 22px for page */
+/* 20px */
+/* 15.5px */
+/* 14px */
+/* 12px */
+/* 10.5px */
+/* Note: At widths greater than 1260px, use standard styling. */
+/*
+ * Conditional classes for IE7
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\0000317}}
+.lt-ie8 #navigation {
+  font-size: .8em !important;
+}
+
+/**
+ * Media Query: 1024px to 1259px
+ */
+@media only screen and (min-width: 1024px) and (max-width: 1259px) {
+  /* Navigation bar -- override styles in navigation.scss */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\0000329}}
+  #navigation li a {
+    font-size: .82em;
+    line-height: 1.9em;
+    padding: 10px 7px 8px;
+  }
+}
+/**
+ * Media Query: 581px to 1023px
+ * If extended menu items used, will have to switch to mobile nav at widths less than 1024px
+ * At widths less than 580px, see mobilesearch.scss
+ */
+@media only screen and (min-width: 581px) and (max-width: 1023px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\0000349}}
+  #topwrapper,
+  #search-mobile,
+  #search,
+  #divider,
+  #logowrapper,
+  #name-and-slogan {
+    display: none;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\0000353}}
+  #page {
+    margin: 0;
+    max-width: 100%;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\0000358}}
+  #header {
+    height: auto;
+    padding: 0;
+    background: #264b69;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\0000361}}
+  #header .mobile-show-menu,
+  #header .mobile-show-search {
+    display: block !important;
+    background: #6988ac;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\0000371}}
+  #header #site-name-mobile {
+    display: block;
+    border-bottom: 1px solid #aaaaaa;
+    text-align: center;
+    text-transform: uppercase;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\0000376}}
+  #header #site-name-mobile a {
+    font-size: 1em;
+    padding: 5px 0;
+    width: 100%;
+    display: block;
+    color: #FFF;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\0000383}}
+  #header #site-name-mobile a:hover {
+    text-decoration: none;
+    color: #ffc82e;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\0000390}}
+  #header #menu-and-search-mobile {
+    position: relative;
+    height: auto;
+    display: block;
+    color: #FFF;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\0000397}}
+  #header #menu-and-search-mobile #menu-mobile-controller {
+    background: #6988ac;
+    border-bottom: 1px solid #aaaaaa;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    font: normal 18px/50px "Lucida Grande", verdana sans-serif;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003108}}
+  #header #menu-and-search-mobile #menu-mobile-controller-inner {
+    padding: 0 10px;
+    cursor: pointer;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003113}}
+  #header #menu-and-search-mobile #main-menu-mobile {
+    position: relative;
+    top: 50px;
+    width: 100%;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003118}}
+  #header #menu-and-search-mobile #main-menu-mobile #primary {
+    padding: 0;
+    margin: 0;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003122}}
+  #header #menu-and-search-mobile #main-menu-mobile #primary li {
+    border-top: 1px solid #aaaaaa;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003125}}
+  #header #menu-and-search-mobile #main-menu-mobile #primary li a {
+    color: #fff;
+    display: block;
+    padding: 0 20px;
+    font: normal 18px/57px "Lucida Grande", verdana sans-serif;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003132}}
+  #header #menu-and-search-mobile #main-menu-mobile #primary li a:hover, #header #menu-and-search-mobile #main-menu-mobile #primary li a:active {
+    color: white;
+    background: #3E3E3E;
+    text-decoration: none;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003140}}
+  #header #menu-and-search-mobile #main-menu-mobile #primary li.last {
+    border-bottom: 1px solid #aaaaaa;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003146}}
+  #header #menu-and-search-mobile #search-mobile-controller {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    text-indent: -9999em;
+    width: 50px;
+    height: 50px;
+    border-left: 1px solid #999;
+    cursor: pointer;
+    background: url('../images/icon-search-mobile.png?1343759378') no-repeat center center, -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #5a5a5a), color-stop(100%, #808080));
+    background: url('../images/icon-search-mobile.png?1343759378') no-repeat center center, -webkit-linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+    background: url('../images/icon-search-mobile.png?1343759378') no-repeat center center, -moz-linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+    background: url('../images/icon-search-mobile.png?1343759378') no-repeat center center, -o-linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+    background: url('../images/icon-search-mobile.png?1343759378') no-repeat center center, -ms-linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+    background: url('../images/icon-search-mobile.png?1343759378') no-repeat center center, linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003159}}
+  #header #menu-and-search-mobile #search-mobile-controller.active {
+    background: url('../images/icon-mobile-search-expanded.png?1343759378') no-repeat center center, -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #5a5a5a), color-stop(100%, #808080));
+    background: url('../images/icon-mobile-search-expanded.png?1343759378') no-repeat center center, -webkit-linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+    background: url('../images/icon-mobile-search-expanded.png?1343759378') no-repeat center center, -moz-linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+    background: url('../images/icon-mobile-search-expanded.png?1343759378') no-repeat center center, -o-linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+    background: url('../images/icon-mobile-search-expanded.png?1343759378') no-repeat center center, -ms-linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+    background: url('../images/icon-mobile-search-expanded.png?1343759378') no-repeat center center, linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003167}}
+  #search-mobile {
+    position: relative;
+    top: 50px;
+    width: 100%;
+    border: 1px solid #000;
+    border-width: 1px 0;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003174}}
+  #search-mobile form {
+    position: relative;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003178}}
+  #search-mobile div.form-item {
+    margin-right: 51px;
+    display: block;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003183}}
+  #search-mobile input.form-text {
+    width: 100%;
+    border: 0;
+    font: normal 18px/18px "Lucida Grande", verdana sans-serif;
+    height: 50px;
+    max-height: 50px;
+    padding: 2px 20px 0 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #dadada), color-stop(100%, #fefefe));
+    background: -webkit-linear-gradient(bottom, #dadada 0%, #fefefe 100%);
+    background: -moz-linear-gradient(bottom, #dadada 0%, #fefefe 100%);
+    background: -o-linear-gradient(bottom, #dadada 0%, #fefefe 100%);
+    background: -ms-linear-gradient(bottom, #dadada 0%, #fefefe 100%);
+    background: linear-gradient(bottom, #dadada 0%, #fefefe 100%);
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003197}}
+  #search-mobile .form-submit {
+    display: block !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 0;
+    z-index: 3;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    text-indent: -9999em;
+    overflow: hidden;
+    width: 51px;
+    max-width: 51px;
+    height: 51px;
+    background: url('../images/icon-search-mobile.png?1343759378') no-repeat center center, -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #5a5a5a), color-stop(100%, #808080));
+    background: url('../images/icon-search-mobile.png?1343759378') no-repeat center center, -webkit-linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+    background: url('../images/icon-search-mobile.png?1343759378') no-repeat center center, -moz-linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+    background: url('../images/icon-search-mobile.png?1343759378') no-repeat center center, -o-linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+    background: url('../images/icon-search-mobile.png?1343759378') no-repeat center center, -ms-linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+    background: url('../images/icon-search-mobile.png?1343759378') no-repeat center center, linear-gradient(bottom, #5a5a5a 0%, #808080 100%);
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003220}}
+  #quick-links-widget {
+    position: absolute;
+    right: 50px;
+    top: 49px;
+    z-index: 50;
+    border: none;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003227}}
+  #quick-links-widget a#quick-links {
+    padding: 0 20px 0 0;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003232}}
+  #main {
+    margin: 0 auto;
+    padding: 0;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003236}}
+  #main #content {
+    min-height: none;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003238}}
+  #main #content input.form-text {
+    width: 80%;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003242}}
+  #main #navigation {
+    height: auto;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003245}}
+  #main .sidebars {
+    border-top: 1px solid #ccc;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003250}}
+  #main-menu {
+    display: none;
+  }
+
+  /* Panels */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003256}}
+  .pane-content img,
+  .node img {
+    max-width: 80%;
+    float: none;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003261}}
+  ul.quicktabs-tabs.quicktabs-style-zen li a {
+    padding: 4px 10px 0 10px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003265}}
+  #secondary-menu {
+    display: none;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003269}}
+  #secondary-menu-mobile {
+    display: block;
+    border-top: 1px dotted #aaa;
+    clear: both;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003274}}
+  #secondary-menu-mobile .block {
+    margin-bottom: 0;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003279}}
+  #secondary-menu-mobile .block-menu .block-title,
+  #secondary-menu-mobile .block-menu-block .block-title {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003284}}
+  #secondary-menu-mobile ul.links,
+  #secondary-menu-mobile ul.menu {
+    /* Menu block links */
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    /* LTR */
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003289}}
+  #secondary-menu-mobile ul.links li,
+  #secondary-menu-mobile ul.menu li {
+    /* A simple method to get navigation links to appear in one line. */
+    float: left;
+    /* LTR */
+    padding: 0 10px 0 0;
+    /* LTR */
+    list-style-type: none;
+    list-style-image: none;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003297}}
+  #secondary-menu-mobile a {
+    color: #828282;
+    text-decoration: none;
+    padding: 0 1em 0 0;
+    font-size: 0.875em;
+    line-height: 1.71429em;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003306}}
+  #footer-social #social-links {
+    float: left;
+    clear: both;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003313}}
+  #ucbseal,
+  #secondary-menu-mobile,
+  #footer {
+    float: left;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003319}}
+  #copyright,
+  #secondary-menu-mobile,
+  #footer {
+    padding: 0;
+  }
+
+  /* Tables */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003327}}
+  table {
+    margin-top: 0;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003331}}
+  th {
+    display: block;
+    font-weight: normal;
+    font-style: italic;
+    font-size: .8em;
+    line-height: 1.2em;
+    padding: 0 0 0 8px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003342}}
+  td {
+    display: block;
+    padding-right: 0;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/extended_menu_items\.scss}line{font-family:\00003345}}
+  td img {
+    margin: 0 !important;
+  }
+}

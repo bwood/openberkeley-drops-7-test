@@ -1,0 +1,25 @@
+/**
+ * @file
+ * RTL companion for the tabs.css file.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/social-link-icons\/\*\.png}line{font-family:\0000398}}
+.social-link-icons-sprite {
+  background: url('../images/social-link-icons-sa0e1f4b582.png') no-repeat;
+}
+
+/* 22px for page */
+/* 20px */
+/* 15.5px */
+/* 14px */
+/* 12px */
+/* 10.5px */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/tabs-rtl\.scss}line{font-family:\0000311}}
+ul.primary li,
+ul.secondary li {
+  float: right;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/klu\/github\/berkeley-7\.x\/sass\/tabs-rtl\.scss}line{font-family:\0000317}}
+ul.primary li {
+  margin: 0.5em 3px 0 0;
+}

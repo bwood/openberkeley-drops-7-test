@@ -1,0 +1,31 @@
+/**
+ * @file
+ * Open Berkeley: News Archive styles;
+ *
+ * Used only if Open Berkeley - News Archive is checked in Berkeley theme settings (admin/appearance/settings/berkeley)
+ *
+ */
+
+@import "base";
+
+.view-news-archive {
+  .views-row {
+    padding: 5px 0;
+    border-bottom: $border-dotted-med-grey;
+  }
+  .views-field-field-publication-date,
+  .views-field-field-source {
+    color: $berkeley-dark-blue;
+    font-size: 0.8em;
+    font-style: italic;
+    float: right;
+  }
+  .views-field-title {
+    padding-top: 0px;
+  }
+  .more-link {
+    font-size: .85em;
+    padding-top: 5px;
+  }
+}
+

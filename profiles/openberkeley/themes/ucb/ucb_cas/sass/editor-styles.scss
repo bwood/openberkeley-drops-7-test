@@ -1,0 +1,26 @@
+/**
+ * @file
+ * TinyMCE Editor Styling
+ *
+ * Add editor styles here
+ *
+ * 8/4/12 NOTE: This is pending. Define CSS styles not working properly
+ * with Media, Wysiwyg, TinyMCE (shows in preview but doesn't save)
+ */
+
+
+@import "base";
+
+/* Image positioning */
+.image-right {
+  float: right;
+  margin-left: 10px !important;
+}
+.image-left {
+  float: left;
+  margin-right: 10px !important;
+}
+.image-center {
+  display: block !important;
+  margin: auto !important;
+}
