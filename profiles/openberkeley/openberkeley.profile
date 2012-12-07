@@ -12,6 +12,7 @@ function openberkeley_install_tasks(&$install_state) {
   drupal_add_css(drupal_get_path('profile', 'openberkeley') . '/openberkeley.css');
 
   // Add the Panopoly app selection to the installation process
+  require_once('profiles/openberkeley/modules/contrib/apps/apps.module');
   require_once('profiles/openberkeley/modules/contrib/apps/apps.profile.inc');
   $tasks = $tasks + apps_profile_install_tasks($install_state, array('machine name' => 'panopoly', 'default apps' => array('panopoly_demo')));
 

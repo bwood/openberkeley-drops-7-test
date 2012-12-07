@@ -46,8 +46,8 @@ dependencies[] = devel
 dependencies[] = uuid
 
 ; UCB - Contrib
-; dependencies[] = smtp
+dependencies[] = smtp
 ; dependencies[] = admin_menu
-; dependencies[] = nice_menus
-; dependencies[] = ucb_envconf
-; dependencies[] = ucb_cas
+dependencies[] = nice_menus
+dependencies[] = ucb_envconf
+dependencies[] = ucb_cas
