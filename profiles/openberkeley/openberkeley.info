@@ -1,5 +1,5 @@
 name = Open Berkeley
-description = Panopoly customized for UC Berkeley
+description = A general purpose distribution for UC Berkeley based on Panopoly
 version = 7.x-1.x-dev_ucb_1.x-dev
 core = 7.x
 
@@ -47,7 +47,6 @@ dependencies[] = uuid
 
 ; UCB - Contrib
 dependencies[] = smtp
-; dependencies[] = admin_menu
 dependencies[] = nice_menus
 dependencies[] = ucb_envconf
 dependencies[] = ucb_cas

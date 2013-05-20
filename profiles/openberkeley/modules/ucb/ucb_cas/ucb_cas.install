@@ -6,7 +6,7 @@ function ucb_cas_requirements($phase) {
   $t = get_t();
   $sub_modules = explode(',', SUBMODULES);
 
-  if ($phase == 'install' && variable_get('install_task', 'done') != 'done') {
+  if ($phase == 'install') {
     $paths = array();
     $enabled = array();
 

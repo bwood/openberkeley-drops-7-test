@@ -1,0 +1,29 @@
+/**
+ * @file
+ * Optional Styling for Long Site Name
+ *
+ * Used only if Long Site Name is checked in Berkeley theme settings (admin/appearance/settings/berkeley)
+ *
+ */
+
+@import "base";
+
+/* Note: At widths greater than 1260px, use standard styling. */
+
+/*
+ * Conditional classes for IE7
+ */
+.lt-ie8 {
+}
+
+/**
+ * Media Query: 960px and above
+ */
+
+@media only screen and (min-width: 960px) {
+//@media only screen and (min-width: -ucb-pem(960)) {
+  #site-name {
+  font-size: 1.9em;
+  }
+}
+

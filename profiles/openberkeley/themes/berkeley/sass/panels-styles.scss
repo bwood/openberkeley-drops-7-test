@@ -1,0 +1,303 @@
+/**
+ * @file
+ * Panels Styling
+ */
+
+@import "base";
+
+/* Fieldable Panel Panes */
+.fieldable-panels-pane{
+  overflow: hidden; //Hide overflow or will spill out of panels
+  padding: 2px 10px 0px 8px;
+  ul {
+    margin: 0 0 1.5em;
+    padding: 0 0 0 2em;
+  }
+}
+
+/* Pane Content */
+.pane-content {
+  a:link,
+  a:visited {
+    color: $pane-content-link-color;
+    text-decoration: underline;
+  }
+
+  .field-type-text-with-summary
+    ul:first-child {
+      padding: 0 0 0 2em;
+      li {
+        &.markItUpButton {
+          list-style: none;
+        }
+      }
+    }
+
+  .media-widget .preview {
+    display: block;
+  }
+
+  .media-thumbnail{
+    img {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  #edit-field-featured-image {
+    padding-bottom: 20px;
+
+    .media-item {
+      width: auto;
+
+      img {
+        padding: 0;
+      }
+    }
+  }
+}
+
+/*
+ * Panopoly Overrides
+ */
+
+/* #menu-block-settings in panopoly_magic.css messes up admin/structure/block/add-menu-block
+ * Restore default and set for #modal-content only *
+ */
+#menu-block-settings {
+  float: none;
+  width: 100%;
+}
+
+#modal-content #menu-block-settings {
+  float: left;
+  width: 48%;
+}
+
+#modal-content .widget-preview-single {
+  width: 45%;
+}
+
+.pane-content {
+  .panopoly-image-half {
+    float:left;
+    margin-right: 2em;
+  }
+}
+
+.pane-theme .admin-theme-image,
+.pane-apps .admin-apps-image {
+  padding-right: 1em;
+}
+
+/* Edit for displaying videos in reusable content modal window */
+.panels-add-content-modal {
+  .pane-bundle-video {
+    width: 50%;
+  }
+}
+
+/* Panel Styles - General */
+.panel-pane {
+  h2 {
+    a:link,
+    a:visited {
+      text-decoration: none;
+      color: $berkeley-dark-blue;
+    }
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+  }
+    p,
+    pre {
+    /* Reset p and pre margins if under a heading */
+    margin: 0 0 1.5em;
+    }
+
+
+}
+.pane-content {
+  .view {
+    a:link,
+    a:visited {
+      text-decoration: none;
+      font-size: 1em;
+    }
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+  }
+  .view-header {
+    h2 {
+      margin: 0;
+    }
+  }
+}
+
+/* Panel Styles - Panopoly Layout Overrides - Extend media queries */
+
+/* Bryant Flipped Layout */
+.bryant-flipped-sidebar {
+  .panel-pane h2 {
+    font-size: 1.2em;
+  }
+  h2.node-title,
+  h2.block-title,
+  h2.title,
+  h2.pane-title,
+  h2.comment-form {
+    padding: 5px 0px;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {  //Media Query: 0px to 768px
+
+  /* Bryant Flipped Layout */
+  .bryant-flipped-sidebar,
+  .bryant-flipped-content {
+    width: 100%;
+    float: none;
+  }
+
+  .bryant-flipped-content-inner {
+    margin-right: 0;
+  }
+
+  .brenham-flipped-content,
+  .brenham-flipped-sidebar {
+    width: 100%;
+    float: none;
+  }
+
+  /* Brenham Flipped Layout */
+  .brenham-flipped-content-inner {
+    margin-right: 0;
+  }
+
+  /* Hewston Layout */
+  .hewston-slider,
+  .hewston-slider-gutter,
+  .hewston-middle-region,
+  .hewston-column3 {
+    width: 100%;
+    float: none;
+  }
+
+  .hewston-slider-inner,
+  .hewston-middle-region-inner {
+    margin-right: 0;
+  }
+
+  /* Sutro Layout */
+  .sutro-column,
+  .sutro-column2 {
+    width: 100%;
+    float: none;
+  }
+
+  .sutro-column-inner {
+    margin-right: 0;
+  }
+
+} //End Media Query: 0px to 768px
+
+@media only screen and (max-width: 960px) {  //Media Query: 0px to 960px
+
+ /* Moscone Flipped Layout */
+  .moscone-flipped-sidebar,
+  .moscone-flipped-content {
+    width: 100%;
+    float: none;
+  }
+
+  .moscone-flipped-content-inner {
+    margin-right: 0;
+  }
+
+ /* Geary layout */
+  .geary-column-content-region,
+  .geary-column3 {
+    width: 100%;
+    float: none;
+  }
+
+  .geary-column-content-region-inner {
+    margin-right: 0;
+  }
+
+ /* Selby layout */
+  .selby-column,
+  .selby-content-container,
+  .selby-content-container .selby-column,
+  .selby-content-container .selby-content-column2 {
+    width: 100%;
+    float: none;
+  }
+
+  .selby-column-inner {
+    margin-right: 0;
+  }
+
+/* Burr Flipped Layout */
+  .burr-flipped-content,
+  .burr-flipped-sidebar {
+    width: 100%;
+    float: none;
+  }
+
+  .burr-flipped-content-inner {
+    margin-right: 0;
+  }
+
+} //End Media Query: 0px to 960px
+
+
+
+/* Additional Panel Styles */ //Consider as panel style
+.panels-dashboard,
+.page-admin-build-panels,
+.page-admin-build-panels-dashboard #content-area {
+  min-height: 50em;
+}
+.panel-pane {
+  border: $border-solid-light-grey;
+  margin: 20px 0px 0px 0px;
+  padding: 8px 14px 10px;
+  background: #FFF url('../images/ltgrey_gradient_1x300.png') repeat-x left top;
+}
+.pane-quicktabs-2 {
+  margin: 0;
+  padding: 0;
+  border: none !important;
+  background: none !important;
+}
+.panels-flexible-row {
+  margin: 0;
+  padding: 0;
+}
+
+/* Panels and Quick Tabs */
+ul.quicktabs-tabs.quicktabs-style-zen li {
+  margin: 0;
+  a {
+    color: $berkeley-dark-blue !important;
+    font-weight: normal;
+  }
+}
+
+/* Pane Content - Image without border */
+
+.pane-content img, .node img {
+  &.img-no-border {
+    border: none;
+    background-color: transparent;
+  }
+}
+
+
+
+
