@@ -1,4 +1,6 @@
 # Replace EXAMPLE with your site name.
+.gitignore
+sites/default/settings.php
 
 # Drupal #
 ##########
