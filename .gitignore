@@ -1,39 +1,17 @@
 # Replace EXAMPLE with your site name.
-.gitignore
-sites/default/settings.php
 
 # Drupal #
 ##########
 # Ignore paths that contain user-generated content.
-/sites/*/files
-/sites/*/private
-/files/*
+sites/*/files
+sites/*/private
 /cache
 # Local stack development
 sites/*.localhost/*
-# Devel themer files 
-sites/all/modules/devel_themer
-
-# Panopoly Apps
-# if you are merging to upgrade your site you'd prefer to get the
-# new versions of the panopoly modules from git.  Otherwise you'd
-# have to upgrade them each manually.  Descision: do not ignore these.
-
-#sites/all/modules/panopoly_*
-
-# UCB Apps 
-# Ignore these.  You must get updates manually
-sites/all/modules/ucb_*
-
-
-# ** Only works in OSs that support newer versions of fnmatch (Bash 4+)
-/sites/default/**/files
-/sites/default/**/private
 
 # security review
-*/security_review/IGNOREME.txt
-/profiles/ucb_start/modules/contrib/security_review/IGNOREME.txt
-/profiles/ucb_start/modules/contrib/security_review/file_write_test*
+security_review/IGNOREME.txt
+security_review/file_write_test*
 
 # UCB Drupal apps
 # Since these are installed and updated via Apps in the install profile,
@@ -66,6 +44,10 @@ Icon?
 Thumbs.db
 ._*
 
+# IntelliJIDEA phpStorm #
+#########################
+.idea
+
 # Eclipse files #
 #################
 .buildpath
@@ -93,8 +75,17 @@ dummy.php
 # you will not have some D7 core files under version control
 
 # Make sure the things like modules/file/icons are not ignored by 'Icon?' above
-!modules/**/icons
+!modules/*/icons
 # .sql and .gz that are part of D7 core
 !modules/update/tests/*.gz
-!modules/simpletest/tests/**/*.gz
+!modules/simpletest/tests/*/*.gz
 !modules/simpletest/files/*.sql
+
+#parking symlink for files
+!sites/pt.berkeley.edu/files
+
+# Be very carful about adding code the contains .git/ from other projects
+# this will be see as a submodule by Pantheon and you will end up with an
+# empty folder.  -BW
+# composer
+# sites/all/libraries/composer/kriswallsmith/buzz/.git
