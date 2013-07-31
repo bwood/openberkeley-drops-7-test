@@ -50,6 +50,7 @@ projects[bundle_copy][subdir] = contrib
 
 projects[config_perms][version] = 2.0
 projects[config_perms][subdir] = contrib
+projects[config_perms][patch][1217478] = https://drupal.org/files/issues/0001-Fixed-undefined-index-notice-issue-number-1217478.patch
 
 projects[diff][version] = 3.2
 projects[diff][subdir] = contrib
@@ -65,6 +66,9 @@ projects[extlink][subdir] = contrib
 
 projects[faq][version] = 1.0-rc2
 projects[faq][subdir] = contrib
+projects[faq][patch][1828758] = https://drupal.org/files/1828758-1-category-descriptions-dont-respect-text-formats.patch
+; 1572414: later patch available
+projects[faq][patch][1572414] = https://drupal.org/files/faq-view_question-1572414-2.patch
 
 projects[google_analytics][version] = 1.3
 projects[google_analytics][subdir] = contrib
@@ -92,4 +96,10 @@ projects[smtp][subdir] = contrib
 
 projects[total_control][version] = 2.4
 projects[total_control][subdir] = contrib
+
+; TODO: Upgrade to latest zen and remove patch: https://jira.berkeley.edu/browse/OPENUCB-116
+projects[zen][version] = 5.1
+projects[zen][type] = theme
+projects[zen][patch][1601000] = https://drupal.org/files/zen-1601000-5.patch
+
 
