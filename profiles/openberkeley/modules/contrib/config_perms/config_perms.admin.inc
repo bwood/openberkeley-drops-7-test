@@ -69,7 +69,7 @@ function config_perms_admin_form($form, &$form_state, $type = '') {
   }
 
   if (empty($form_state['num_new'])) {
-    $form_state['num_new'] = 1;
+    $form_state['num_new'] = 0;
   }
 
   for ($i = 0; $i < $form_state['num_new']; $i++) {
@@ -77,6 +77,10 @@ function config_perms_admin_form($form, &$form_state, $type = '') {
       '#type' => 'checkbox',
       '#default_value' => check_plain($perm->status),
       //'#attributes' => $attributes,
+    );
+    $form['perms']['local'][$key + $i]['remove'] = array(
+      '#type' => 'checkbox',
+      '#default_value' => 0,
     );
     $form['perms']['local'][$key + $i]['name'] = array(
       '#type' => 'textfield',

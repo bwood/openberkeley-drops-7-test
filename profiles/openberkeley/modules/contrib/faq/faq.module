@@ -237,6 +237,7 @@ function faq_form($node, $form_state) {
     field_attach_form('node', $node, $form, $form_state, $node->language);
   }
 
+//  dpm($form);
   return $form;
 }
 
@@ -362,17 +363,29 @@ function faq_node_revision_delete($node) {
  * Implements hook_view().
  */
 function faq_view($node, $view_mode) {
+
   drupal_add_css(drupal_get_path('module', 'faq') . '/faq.css');
 
-  // @todo: why is this not used?
-  /*
-  $node->detailed_question = check_markup($node->detailed_question, $node->format);
-  $content = $node->content['body']['#value'];
-
-  if (!empty($node->detailed_question) && variable_get('faq_question_length', 'short') == 'both' && (variable_get('faq_display', 'questions_top') == 'hide_answer' || drupal_match_path($_GET['q'], 'node/' . $node->nid))) {
-    $node->content['body']['#value'] = '<div class="faq-detailed-question">' . $node->detailed_question . '</div>' . $content;
+  $language = $node->language;
+  if (isset($node->body[$language]) && $node->body[$language]) {
+    $node->detailed_question = check_markup($node->detailed_question, $node->body[$language][0]['format'], $language);
+    if (!isset($node->body[$language][0])) drupal_set_message('<pre>'.print_r($node->body, TRUE).'</pre>');
   }
-   */
+  else {
+    $node->detailed_question = check_markup($node->detailed_question, NULL, $language);
+  }
+
+  if (   !empty($node->detailed_question)
+      && variable_get('faq_question_length', 'short') == 'both'
+      && (   variable_get('faq_display', 'questions_top') == 'hide_answer'
+          || drupal_match_path($_GET['q'], 'node/' . $node->nid)
+         )
+     ) {
+    $node->content['detailed_question'] = array(
+      '#markup' => '<div class="faq-detailed-question">' . $node->detailed_question . '</div>',
+      '#weight' => '-1',
+    );
+  }
 
   return $node;
 }
@@ -1104,9 +1117,9 @@ function faq_view_answer(&$data, $node, $back_to_top, $teaser, $links) {
   unset($node->content);
 
   $build += array(
-    '#theme' => 'node', 
-    '#node' => $node, 
-    '#view_mode' => $view_mode, 
+    '#theme' => 'node',
+    '#node' => $node,
+    '#view_mode' => $view_mode,
     '#language' => $langcode,
   );
 

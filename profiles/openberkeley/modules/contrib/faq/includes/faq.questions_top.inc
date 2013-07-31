@@ -76,7 +76,7 @@ function template_preprocess_faq_category_questions_top(&$variables) {
   $show_term_page_children = variable_get('faq_show_term_page_children', FALSE);
   $group_questions_top = variable_get('faq_group_questions_top', FALSE);
   $default_sorting = variable_get('faq_default_sorting', 'DESC');
-  
+
   // Configure labels.
   $variables['question_label'] = '';
   $variables['answer_label'] = '';
@@ -133,7 +133,7 @@ function template_preprocess_faq_category_questions_top(&$variables) {
   }
 
   // Configure category description.
-  $variables['description'] = check_markup(faq_tt("taxonomy:term:$term->tid:description", $term->description));
+  $variables['description'] = check_markup(faq_tt("taxonomy:term:$term->tid:description", $term->description), $term->format);
 
   // Get list of sub-categories if necessary.
   $child_categories = array();

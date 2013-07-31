@@ -91,7 +91,7 @@ function template_preprocess_faq_category_new_page(&$variables) {
   }
 
   // Configure category description.
-  $variables['description'] = check_markup(faq_tt("taxonomy:term:$term->tid:description", $term->description));
+  $variables['description'] = check_markup(faq_tt("taxonomy:term:$term->tid:description", $term->description), $term->format);
 
   // Get list of sub-categories if necessary.
   $child_categories = array();
