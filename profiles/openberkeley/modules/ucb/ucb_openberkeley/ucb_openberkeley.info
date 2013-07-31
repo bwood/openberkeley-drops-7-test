@@ -1,0 +1,14 @@
+name = UCB Open Berkeley
+description = General purpose module for Open Berkeley customizations
+core = 7.x
+project = ucb_openberkeley
+dependencies[] = caption_filter
+dependencies[] = features
+dependencies[] = image_resize_filter
+dependencies[] = media
+dependencies[] = page_manager
+dependencies[] = wysiwyg
+dependencies[] = wysiwyg_filter
+dependencies[] = panopoly_wysiwyg
+version = 7.x-1.0-alpha2
+package = "UC Berkeley"
