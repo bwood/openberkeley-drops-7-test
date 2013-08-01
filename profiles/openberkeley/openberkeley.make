@@ -35,8 +35,9 @@ projects[ucb_openberkeley][download][url] = git://github.com/ucbdrupal/ucb_openb
 projects[berkeley][type] = theme
 projects[berkeley][download][type] = git
 projects[berkeley][download][url] = git://github.com/ucbdrupal/berkeley.git
-projects[berkeley][download][tag] = 7.x-1.0-alpha7
+;projects[berkeley][download][tag] = 7.x-1.0-alpha7
 projects[berkeley][download][branch] = 7.x-1.x
+projects[berkeley][download][revision] = ba15b44c35
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; UCB-Selected Contrib ;;;
@@ -51,6 +52,7 @@ projects[bundle_copy][subdir] = contrib
 projects[config_perms][version] = 2.0
 projects[config_perms][subdir] = contrib
 projects[config_perms][patch][1217478] = https://drupal.org/files/issues/0001-Fixed-undefined-index-notice-issue-number-1217478.patch
+projects[config_perms][patch][1441692] = https://drupal.org/files/non-property-fix_1441692.patch
 
 projects[diff][version] = 3.2
 projects[diff][subdir] = contrib
