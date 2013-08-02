@@ -32,6 +32,7 @@ ul.nice-menu {
 
   li {
     float: left; /* LTR */
+    border: none; /* Override nice_menus_default.css in module */
   }
 }
 
@@ -55,6 +56,7 @@ ul.nice-menu-down {
 
   li {
     background: $berkeley-drop-blue;
+    border-top: none;
 
     &.menuparent {
       background: $berkeley-drop-blue; /* LTR */
@@ -65,7 +67,7 @@ ul.nice-menu-down {
     }
 
     li {
-      border-top: $border-solid-thin-blue;
+      border-top: none;
       border-left: $border-solid-thin-blue;
 
       &.menuparent {
@@ -222,8 +224,3 @@ ul.nice-menu-left {
 #navigation ul.nice-menu-left li.menuparent>a:hover {
   background: $berkeley-dark-blue url(../images/bullet-arrow-left.png) left center no-repeat; /* LTR */
 }
-
-
-
-
-

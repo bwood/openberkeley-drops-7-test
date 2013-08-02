@@ -130,6 +130,9 @@ function config_perms_menu_alter(&$items) {
  * Access callback
  */
 function config_perms_access_callback($perm) {
+  if(is_string($perm)) {
+  return user_access(check_plain($perm));
+  }
   return user_access(check_plain($perm->name));
 }
 
