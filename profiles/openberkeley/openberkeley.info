@@ -3,6 +3,7 @@ distribution_name = Open Berkeley
 description = A general purpose distribution for UC Berkeley based on Panopoly
 version = 7.x-1.x
 core = 7.x
+exclusive = 1
 
 ; Drupal Core
 dependencies[] = menu
@@ -34,27 +35,36 @@ dependencies[] = panopoly_pages
 dependencies[] = panopoly_search
 dependencies[] = panopoly_wysiwyg
 
-; Panopoly Recommended - Admin
+; Panopoly Recommended - Admin & UI
 dependencies[] = navbar
+dependencies[] = breakpoints
 dependencies[] = backports
 dependencies[] = simplified_menu_admin
 dependencies[] = save_draft
 dependencies[] = module_filter
 dependencies[] = date_popup_authored
+dependencies[] = views_ui
 
 ; Panopoly Recommended - Other
 dependencies[] = devel
 dependencies[] = uuid
+dependencies[] = defaultcontent
+dependencies[] = apps
+
+;;;;;;;;;;;
+;;; UCB ;;;
+;;;;;;;;;;;
 
 ; UCB Custom
+; enabling ucb_cas breaks install, but if you let ucb_envconf enable it (dependency), it works.
+;dependencies[] = ucb_cas
 dependencies[] = ucb_envconf
-; dependencies[] = ucb_cas
 dependencies[] = ucb_openberkeley
 
 ; UCB - Contrib
 dependencies[] = better_formats
 dependencies[] = bundle_copy
-dependencies[] = config_perms
+;dependencies[] = config_perms
 dependencies[] = diff
 dependencies[] = email
 dependencies[] = entity_view_mode
@@ -67,7 +77,8 @@ dependencies[] = navigation404
 dependencies[] = nice_menus
 dependencies[] = pathologic
 dependencies[] = redirect
-dependencies[] = security_review
 dependencies[] = smtp
 dependencies[] = total_control
 
+; UCB Recommended (not enabled by default)
+; dependencies[] = security_review
