@@ -12,13 +12,13 @@ projects[ucb_envconf][download][url] = git://github.com/ucbdrupal/ucb_envconf.gi
 projects[ucb_envconf][download][tag] = 7.x-1.1-beta2
 projects[ucb_envconf][download][branch] = 7.x-1.x
 
-projects[ucb_cas][type] = module
-projects[ucb_cas][subdir] = ucb
-projects[ucb_cas][download][type] = git
-projects[ucb_cas][download][url] = git://github.com/ucbdrupal/ucb_cas.git
-projects[ucb_cas][download][tag] = 7.x-1.3-beta2
-projects[ucb_cas][download][branch] = 7.x-1.x
-; TODO - Update CAS to prevent hook_requirements from firing during install
+; projects[ucb_cas][type] = module
+; projects[ucb_cas][subdir] = ucb
+; projects[ucb_cas][download][type] = git
+; projects[ucb_cas][download][url] = git://github.com/ucbdrupal/ucb_cas.git
+; projects[ucb_cas][download][tag] = 7.x-1.3-beta2
+; projects[ucb_cas][download][branch] = 7.x-1.x
+;; TODO - Update CAS to prevent hook_requirements from firing during install
 
 projects[ucb_openberkeley][type] = module
 projects[ucb_openberkeley][subdir] = ucb

@@ -1,6 +1,7 @@
 name = Open Berkeley
+distribution_name = Open Berkeley
 description = A general purpose distribution for UC Berkeley based on Panopoly
-version = 7.x-1.x-dev_ucb_1.x-dev
+version = 7.x-1.x
 core = 7.x
 
 ; Drupal Core
@@ -45,8 +46,28 @@ dependencies[] = date_popup_authored
 dependencies[] = devel
 dependencies[] = uuid
 
-; UCB - Contrib
-; dependencies[] = smtp
-; dependencies[] = nice_menus
-; dependencies[] = ucb_envconf
+; UCB Custom
+dependencies[] = ucb_envconf
 ; dependencies[] = ucb_cas
+dependencies[] = ucb_openberkeley
+
+; UCB - Contrib
+dependencies[] = better_formats
+dependencies[] = bundle_copy
+dependencies[] = config_perms
+dependencies[] = diff
+dependencies[] = email
+dependencies[] = entity_view_mode
+dependencies[] = extlink
+dependencies[] = faq
+; dependencies[] = google_analytics
+;linkchecker need patch for CB fix
+;dependencies[] = linkchecker
+dependencies[] = navigation404
+dependencies[] = nice_menus
+dependencies[] = pathologic
+dependencies[] = redirect
+dependencies[] = security_review
+dependencies[] = smtp
+dependencies[] = total_control
+
