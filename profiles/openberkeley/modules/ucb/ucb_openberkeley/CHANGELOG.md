@@ -1,3 +1,8 @@
+ucb_openberkeley-7.x-1.0-alpha4
+=======================
+* OPENUCB-152: Prevent a site builder from assigning the administrator role.
+** if total_control is not present the form_alter will never fire, so no dependency is added on total_control.
+
 ucb_openberkeley-7.x-1.0-alpha3
 =======================
 * update hook_wysiwyg_editor_settings_alter() to fix issues with panopoly_wysiwyg rc5 and allow overrides (OPENUCB-131)

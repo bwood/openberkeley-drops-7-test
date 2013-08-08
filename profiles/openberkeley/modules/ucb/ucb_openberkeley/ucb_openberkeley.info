@@ -10,5 +10,5 @@ dependencies[] = page_manager
 dependencies[] = wysiwyg
 dependencies[] = wysiwyg_filter
 dependencies[] = panopoly_wysiwyg
-version = 7.x-1.0-alpha3
+version = 7.x-1.0-alpha4
 package = "UC Berkeley"

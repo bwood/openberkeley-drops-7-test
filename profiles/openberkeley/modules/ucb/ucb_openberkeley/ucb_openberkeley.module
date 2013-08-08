@@ -6,6 +6,28 @@
 //TODO: Revisit this as an OB Feature (or Panopoly/feature override)
 
 /**
+ * Implementation of hook_form_alter
+ *
+ */
+function ucb_openberkeley_form_alter(&$form, &$form_state, $form_id) {
+  $x=1;
+  switch ($form_id) {
+    case "views_form_control_users_page_1":
+      while (list($k, $v)  = each($form['add_roles']['#options'])) {
+        if ($v == 'administrator') {
+          unset($form['add_roles']['#options'][$k]);
+        }
+      }
+      while (list($k, $v)  = each($form['remove_roles']['#options'])) {
+        if ($v == 'administrator') {
+          unset($form['remove_roles']['#options'][$k]);
+        }
+      }
+      break;
+  }
+}
+
+/**
  * Implementation of hook_module_implements_alter()
  * Change order of hook execution without needing to alter module weight
  * See http://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_module_implements_alter/7
