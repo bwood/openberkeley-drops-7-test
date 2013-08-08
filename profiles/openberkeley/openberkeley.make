@@ -48,9 +48,6 @@ projects[berkeley][download][revision] = ba15b44c35
 projects[backup_migrate][version] = 2.7
 projects[backup_migrate][subdir] = contrib
 
-projects[better_formats][version] = 1.0-beta1
-projects[better_formats][subdir] = contrib
-
 projects[bundle_copy][version] = 1.1
 projects[bundle_copy][subdir] = contrib
 
