@@ -1,3 +1,7 @@
+ucb_openberkeley-7.x-1.0-alpha3
+=======================
+* update hook_wysiwyg_editor_settings_alter() to fix issues with panopoly_wysiwyg rc5 and allow overrides (OPENUCB-131)
+
 ucb_openberkeley-7.x-1.0-alpha2
 =======================
 * update hook_wysiwyg_editor_settings_alter() to fix issue with panopoly_wysiwyg rc4
