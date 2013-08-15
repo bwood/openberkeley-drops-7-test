@@ -62,7 +62,6 @@ dependencies[] = ucb_envconf
 dependencies[] = ucb_openberkeley
 
 ; UCB - Contrib
-dependencies[] = better_formats
 dependencies[] = bundle_copy
 ;dependencies[] = config_perms
 dependencies[] = diff
