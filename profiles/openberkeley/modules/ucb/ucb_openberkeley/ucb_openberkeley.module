@@ -10,9 +10,11 @@
  *
  */
 function ucb_openberkeley_form_alter(&$form, &$form_state, $form_id) {
-  $x=1;
   switch ($form_id) {
     case "views_form_control_users_page_1":
+      if (!isset($form['add_roles']) || (!isset($form['remove_roles']))) {
+        break;
+      }
       while (list($k, $v)  = each($form['add_roles']['#options'])) {
         if ($v == 'administrator') {
           unset($form['add_roles']['#options'][$k]);
