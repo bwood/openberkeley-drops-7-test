@@ -16,6 +16,8 @@ In template.php and theme-settings.php: Replace ALL occurrences of "BERKELEY_SUB
 
 Set the default theme at admin/appearance.
 
+On the settings page for your sub-theme (admin/appearance/settings/YOUR_SUBTHEME_NAME), under "Accessibility and support settings," uncheck "Add Respond.js JavaScript to add basic CSS3 media query support to IE 6-8." Leaving this checked may cause issues with IE8 and under. The Berkeley theme does not try to add media query support for <IE8; instead, it uses a fixed width for older IE versions.
+
 
 *** NOTES ***
 *

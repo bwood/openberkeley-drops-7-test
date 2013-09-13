@@ -155,7 +155,7 @@
     <div id="navigation">
 
       <?php if (theme_get_setting('main_menu_nice_menus') && module_exists('nice_menus')): ?>
-      <nav id="main-menu" role="navigation">
+      <nav id="main-menu" role="navigation" tabindex="-1">
         <?php
           print theme('nice_menus_main_menu', array(
             'direction' => 'down',
@@ -164,7 +164,7 @@
       </nav>
 
       <?php elseif ($main_menu): ?>
-        <nav id="main-menu" role="navigation">
+        <nav id="main-menu" role="navigation" tabindex="-1">
           <?php
           print theme('links__system_main_menu', array(
             'links' => $main_menu,

@@ -59,7 +59,7 @@
         '#title'          => t('Use Drop-Down Menus for Main Menu'),
         '#default_value'  => theme_get_setting('main_menu_nice_menus'),
         '#description'    => t('Check this box if you want to use drop-down menus for your main menu.
-                            This requires the Nice Menus module (http://drupal.org/project/nice_menus).
+                            This requires the Nice Menus module (http://drupal.org/project/nice_menus): nice_menus-7.x-2.3 or later.
                             Set Menu Depth below.
                             Note: Typically, drop-down menus work best if you keep them simple (e.g., avoid many levels).
                             See <a href="@href"> Drop-Down Menus: Use Sparingly</a>.',

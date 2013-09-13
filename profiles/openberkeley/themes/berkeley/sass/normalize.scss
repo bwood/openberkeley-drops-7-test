@@ -169,6 +169,14 @@ a {
   }
 }
 
+/*
+ * Address tabindex focus outline in WebKit (Chrome) after Zen 7.x-5.4 update
+ * See https://drupal.org/node/2052729 and https://drupal.org/node/1529814
+ */
+nav:focus {
+  outline: 0;
+}
+
 
 /*
  * Addresses outline displayed oddly in Chrome

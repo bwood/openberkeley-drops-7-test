@@ -1,5 +1,16 @@
 Berkeley Theme - CHANGELOG.md
 
+Berkeley 7.x-1.0-alpha8, 2013-08-23
+------------------------------------
+- Zen 5.4 update: Fix skiplink behavior for Opera and Webkit browsers: https://drupal.org/node/2052729
+- Zen 5.4 update: Upgrade to Zen Grids 1.4 (https://drupal.org/node/2052731)
+- Zen 5.4 update: Address IE8 images in mobilesearch <IE9 rules: https://drupal.org/node/2052713
+- Adjust mobilesearch main widths - 380px and 680px
+- Fix nice_menus theming for RC4 (nice_menus-7.x-2.3 or later)
+- Tweak styling for fieldable panel panes
+- Nice menu initial theme settings
+- Panel Styles - Bartlett Flipped (DUPCODE-57)
+
 Berkeley 7.x-1.0-alpha7, 2013-04-27
 ------------------------------------
 - Adjustments to panel layouts - use iPad 768px breakpoint
