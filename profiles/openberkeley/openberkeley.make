@@ -71,6 +71,9 @@ projects[entity_view_mode][subdir] = contrib
 projects[extlink][version] = 1.13
 projects[extlink][subdir] = contrib
 
+projects[file_entity][version] = 2.0-alpha2
+projects[file_entity][subdir] = contrib
+
 projects[faq][version] = 1.0-rc2
 projects[faq][subdir] = contrib
 projects[faq][patch][1828758] = https://drupal.org/files/1828758-1-category-descriptions-dont-respect-text-formats.patch
