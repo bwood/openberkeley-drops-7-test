@@ -73,6 +73,7 @@ projects[extlink][subdir] = contrib
 
 projects[file_entity][version] = 2.0-alpha2
 projects[file_entity][subdir] = contrib
+projects[file_entity][patch][2073001] = https://drupal.org/files/2073001-11-file-displays-weight.patch
 
 projects[faq][version] = 1.0-rc2
 projects[faq][subdir] = contrib
@@ -85,6 +86,9 @@ projects[google_analytics][subdir] = contrib
 
 projects[linkchecker][version] = 1.1
 projects[linkchecker][subdir] = contrib
+
+projects[media][version] = 2.0-alpha2
+projects[media][subdir] = contrib
 
 projects[navigation404][version] = 1.0
 projects[navigation404][subdir] = contrib
