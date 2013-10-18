@@ -45,6 +45,10 @@
 
   #page {
     border-bottom: 1px solid $page-color;
+    img {
+      /* Zen 5.4 Update - Correct IE 8 not scaling image height when resized. Do here instead of normalize.scss */
+      width: auto;
+    }
   }
 
   #bottomwrapper {
@@ -378,6 +382,7 @@
   #main {
     margin: 0 auto;
     padding: 0; //Override responsive-sidebars.scss
+    width: 90%; //Expand for 381 - 680px
 
     #content {
       min-height: none;
@@ -503,7 +508,7 @@
   }
 
   th {
-    display: block;
+    display: inherit; /* Display table head as table row instead of block for better formatting */
     font: {
       weight: normal;
       style: italic;
@@ -521,15 +526,22 @@
     }
   }
 
+  /* TinyMCE: Do not change table display while editing */
+  table.mceItemTable {
+    th, td {
+      display: table-cell !important;
+    }
+  }
+
 
 } //End Media Query: 0px to 959px
 
 /**
- * Media Query: 0px to 319px
+ * Media Query: 0px to 380px
  */
 
-@media only screen and (max-width: 319px) {
-//@media only screen and (max-width: -ucb-pem(319)) {
+@media only screen and (max-width: 380px) {
+//@media only screen and (max-width: -ucb-pem(380)) {
 
   #header {
     #menu-and-search-mobile {
@@ -541,7 +553,11 @@
       }
   }
 
-} //End Media Query: 0px to 319px
+  #main {
+    width: 100%; //Maximize width for <380px
+  }
+
+} //End Media Query: 0px to 380px
 
 
 /**

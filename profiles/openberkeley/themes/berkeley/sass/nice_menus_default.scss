@@ -24,6 +24,7 @@ ul.nice-menu {
     margin: 0;
     top: 2.8em;
     width: 12.5em;
+    border-top: none; /* Override nice_menus_default.css in module */
 
     li {
       width: 12.5em;
@@ -67,7 +68,7 @@ ul.nice-menu-down {
     }
 
     li {
-      border-top: none;
+      border-top: $border-solid-thin-blue;
       border-left: $border-solid-thin-blue;
 
       &.menuparent {

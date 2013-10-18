@@ -35,9 +35,9 @@ projects[ucb_openberkeley][download][url] = git://github.com/ucbdrupal/ucb_openb
 projects[berkeley][type] = theme
 projects[berkeley][download][type] = git
 projects[berkeley][download][url] = git://github.com/ucbdrupal/berkeley.git
-;projects[berkeley][download][tag] = 7.x-1.0-alpha7
 projects[berkeley][download][branch] = 7.x-1.x
-projects[berkeley][download][revision] = ba15b44c35
+;projects[berkeley][download][tag] = 7.x-1.0-alpha8
+projects[berkeley][download][revision] = cf624c2
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; UCB-Selected Contrib ;;;
@@ -62,11 +62,18 @@ projects[diff][subdir] = contrib
 projects[email][version] = 1.2
 projects[email][subdir] = contrib
 
+projects[entity][version] = 1.2
+projects[entity][subdir] = contrib
+
 projects[entity_view_mode][version] = 1.0-rc1
 projects[entity_view_mode][subdir] = contrib
 
 projects[extlink][version] = 1.13
 projects[extlink][subdir] = contrib
+
+projects[file_entity][version] = 2.0-alpha2
+projects[file_entity][subdir] = contrib
+projects[file_entity][patch][2073001] = https://drupal.org/files/2073001-11-file-displays-weight.patch
 
 projects[faq][version] = 1.0-rc2
 projects[faq][subdir] = contrib
@@ -80,10 +87,13 @@ projects[google_analytics][subdir] = contrib
 projects[linkchecker][version] = 1.1
 projects[linkchecker][subdir] = contrib
 
+projects[media][version] = 2.0-alpha2
+projects[media][subdir] = contrib
+
 projects[navigation404][version] = 1.0
 projects[navigation404][subdir] = contrib
 
-projects[nice_menus][version] = 2.3
+projects[nice_menus][version] = 2.5
 projects[nice_menus][subdir] = contrib
 
 projects[pathologic][version] = 2.11
@@ -101,9 +111,8 @@ projects[smtp][subdir] = contrib
 projects[total_control][version] = 2.4
 projects[total_control][subdir] = contrib
 
-; TODO: Upgrade to latest zen and remove patch: https://jira.berkeley.edu/browse/OPENUCB-116
-projects[zen][version] = 5.1
+projects[zen][version] = 5.4
 projects[zen][type] = theme
-projects[zen][patch][1601000] = https://drupal.org/files/zen-1601000-5.patch
+
 
 
