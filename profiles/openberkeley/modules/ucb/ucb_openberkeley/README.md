@@ -9,7 +9,3 @@ General purpose module for Open Berkeley customizations. Including Panopoly WYSI
 Author
 ======
 Kathleen Lu
-
-Testing
-=======
-Trivial commits
