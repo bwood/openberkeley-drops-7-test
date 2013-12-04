@@ -74,6 +74,12 @@ projects[entity_view_mode][subdir] = contrib
 projects[extlink][version] = 1.13
 projects[extlink][subdir] = contrib
 
+projects[features][version] = 2.0
+projects[features][subdir] = contrib
+
+projects[features_override][version] = 2.0-rc1
+projects[features_override][subdir] = contrib
+
 projects[file_entity][version] = 2.0-alpha2
 projects[file_entity][subdir] = contrib
 projects[file_entity][patch][2073001] = https://drupal.org/files/2073001-11-file-displays-weight.patch
