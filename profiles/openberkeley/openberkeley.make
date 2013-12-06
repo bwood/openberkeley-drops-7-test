@@ -65,6 +65,7 @@ projects[email][subdir] = contrib
 projects[entity][version] = 1.2
 projects[entity][subdir] = contrib
 
+; OPENUCB-214 - Security update 
 projects[entityreference][version] = 1.1
 projects[entityreference][subdir] = contrib
 
@@ -74,15 +75,17 @@ projects[entity_view_mode][subdir] = contrib
 projects[extlink][version] = 1.13
 projects[extlink][subdir] = contrib
 
+; OPENUCB-217 - Update Features and add Features Override
 projects[features][version] = 2.0
 projects[features][subdir] = contrib
 
+; OPENUCB-217 - Update Features and add Features Override
 projects[features_override][version] = 2.0-rc1
 projects[features_override][subdir] = contrib
 
-projects[file_entity][version] = 2.0-alpha2
+; OPENUCB-225 - Media module Wysiwyg integration (File Entity should be updated with Media)
+projects[file_entity][version] = 2.0-alpha3
 projects[file_entity][subdir] = contrib
-projects[file_entity][patch][2073001] = https://drupal.org/files/2073001-11-file-displays-weight.patch
 
 projects[faq][version] = 1.0-rc2
 projects[faq][subdir] = contrib
@@ -96,8 +99,14 @@ projects[google_analytics][subdir] = contrib
 projects[linkchecker][version] = 1.1
 projects[linkchecker][subdir] = contrib
 
-projects[media][version] = 2.0-alpha2
+; OPENUCB-225 - Media module Wysiwyg integration (media-7.x-2.0-alpha3+26-dev on 12/3/13)
+projects[media][version] = 2.x-dev
 projects[media][subdir] = contrib
+projects[media][type] = module
+projects[media][download][type] = git
+projects[media][download][revision] = 8fe0f7d
+projects[media][download][branch] = 7.x-2.x
+projects[media][patch][2126755] = https://drupal.org/files/issues/media-improved-macro-handling-2126755-19.patch
 
 projects[navigation404][version] = 1.0
 projects[navigation404][subdir] = contrib

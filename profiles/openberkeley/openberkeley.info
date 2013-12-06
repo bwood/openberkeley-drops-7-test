@@ -1,7 +1,7 @@
 name = Open Berkeley
 distribution_name = Open Berkeley
 description = A general purpose distribution for UC Berkeley based on Panopoly
-version = 7.x-1.x
+version = 7.x-0.0.x-dev
 core = 7.x
 exclusive = 1
 
