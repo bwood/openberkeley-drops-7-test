@@ -51,27 +51,31 @@ dependencies[] = uuid
 dependencies[] = defaultcontent
 dependencies[] = apps
 
-;;;;;;;;;;;
-;;; UCB ;;;
-;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; UCB Custom Modules ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; UCB Custom
-; enabling ucb_cas breaks install, but if you let ucb_envconf enable it (dependency), it works.
+; UCB - Custom
+; enabling ucb_cas breaks install, but if you let ucb_envconf enable it (dependency), it works
 ;dependencies[] = ucb_cas
 dependencies[] = ucb_envconf
 dependencies[] = ucb_openberkeley
 
-; UCB - Contrib
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; UCB Contrib Modules ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; ***** OB not in Panopoly *****
+dependencies[] = backup_migrate
 dependencies[] = bundle_copy
-;dependencies[] = config_perms
+dependencies[] = config_perms
 dependencies[] = diff
 dependencies[] = email
 dependencies[] = entity_view_mode
 dependencies[] = extlink
 dependencies[] = faq
-; dependencies[] = google_analytics
-;linkchecker need patch for CB fix
-;dependencies[] = linkchecker
+dependencies[] = google_analytics
+dependencies[] = linkchecker
 dependencies[] = navigation404
 dependencies[] = nice_menus
 dependencies[] = pathologic
@@ -79,5 +83,9 @@ dependencies[] = redirect
 dependencies[] = smtp
 dependencies[] = total_control
 
-; UCB Recommended (not enabled by default)
+; UCB - Recommended (not enabled by default)
 ; dependencies[] = security_review
+
+
+; ***** Contrib Modules from Panopoly *****
+; See https://wikihub.berkeley.edu/display/drupal/Panopoly+Features

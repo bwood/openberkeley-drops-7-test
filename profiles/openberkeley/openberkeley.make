@@ -1,9 +1,9 @@
 api = 2
 core = 7.x
 
-;;;;;;;;;;;;;;;;;;;
-;;; UCB Modules ;;;
-;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; UCB Custom Modules ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 projects[ucb_envconf][type] = module
 projects[ucb_envconf][subdir] = ucb
@@ -12,6 +12,7 @@ projects[ucb_envconf][download][url] = git://github.com/ucbdrupal/ucb_envconf.gi
 projects[ucb_envconf][download][tag] = 7.x-1.1-beta2
 projects[ucb_envconf][download][branch] = 7.x-1.x
 
+; NOTE: enabling ucb_cas breaks install, but if you let ucb_envconf enable it (dependency), it works
 ; projects[ucb_cas][type] = module
 ; projects[ucb_cas][subdir] = ucb
 ; projects[ucb_cas][download][type] = git
@@ -39,9 +40,9 @@ projects[berkeley][download][branch] = 7.x-1.x
 ;projects[berkeley][download][tag] = 7.x-1.0-alpha8
 projects[berkeley][download][revision] = cf624c2
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; UCB-Selected Contrib ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; UCB Contrib Modules ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; ******************************
 ; ***** OB not in Panopoly *****
@@ -123,6 +124,10 @@ projects[total_control][subdir] = contrib
 projects[zen][version] = 5.4
 projects[zen][type] = theme
 
+; ***** End OB not in Panopoly *****
+; **********************************
+
+
 ; *******************************************
 ; ***** Updates Different from Panopoly *****
 
@@ -155,7 +160,49 @@ projects[media][download][revision] = 8fe0f7d
 projects[media][download][branch] = 7.x-2.x
 projects[media][patch][2126755] = https://drupal.org/files/issues/media-improved-macro-handling-2126755-19.patch
 
+; ***** End Updates Different from Panopoly *****
+; ***********************************************
 
 
+; ****************************
+; *****Panopoly Features *****
 
+; Note that makefiles are parsed bottom-up, and that in Drush concurrency might
+; interfere with recursion.
+; Therefore PANOPOLY needs to be listed AT THE BOTTOM of this makefile,
+; so we can patch or update certain projects fetched by Panopoly's makefiles.
+
+; The Panopoly Foundation
+
+projects[panopoly_core][version] = 1.0-rc5
+projects[panopoly_core][subdir] = panopoly
+
+projects[panopoly_images][version] = 1.0-rc5
+projects[panopoly_images][subdir] = panopoly
+
+projects[panopoly_theme][version] = 1.0-rc5
+projects[panopoly_theme][subdir] = panopoly
+
+projects[panopoly_magic][version] = 1.0-rc5
+projects[panopoly_magic][subdir] = panopoly
+
+projects[panopoly_widgets][version] = 1.0-rc5
+projects[panopoly_widgets][subdir] = panopoly
+
+projects[panopoly_admin][version] = 1.0-rc5
+projects[panopoly_admin][subdir] = panopoly
+
+projects[panopoly_users][version] = 1.0-rc5
+projects[panopoly_users][subdir] = panopoly
+
+; The Panopoly Toolset
+
+projects[panopoly_pages][version] = 1.0-rc5
+projects[panopoly_pages][subdir] = panopoly
+
+projects[panopoly_wysiwyg][version] = 1.0-r5
+projects[panopoly_wysiwyg][subdir] = panopoly
+
+projects[panopoly_search][version] = 1.0-rc5
+projects[panopoly_search][subdir] = panopoly
 
