@@ -85,7 +85,7 @@ projects[faq][patch][1828758] = https://drupal.org/files/1828758-1-category-desc
 projects[faq][patch][1572414] = https://drupal.org/files/faq-view_question-1572414-2.patch
 
 ; Google Analytics
-projects[google_analytics][version] = 1.3
+projects[google_analytics][version] = 1.4
 projects[google_analytics][subdir] = contrib
 
 ; Link Checker
