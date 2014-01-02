@@ -85,7 +85,7 @@ projects[faq][patch][1828758] = https://drupal.org/files/1828758-1-category-desc
 projects[faq][patch][1572414] = https://drupal.org/files/faq-view_question-1572414-2.patch
 
 ; Google Analytics
-projects[google_analytics][version] = 1.3
+projects[google_analytics][version] = 1.4
 projects[google_analytics][subdir] = contrib
 
 ; Link Checker
@@ -167,7 +167,9 @@ projects[media][patch][2126755] = https://drupal.org/files/issues/media-improved
 ; ****************************
 ; *****Panopoly Features *****
 
-; Note that makefiles are parsed bottom-up, and that in Drush concurrency might
+; Use Drush 6 to run make file. See https://github.com/drush-ops/drush/issues/15
+
+; Previously, makefiles were parsed bottom-up, and that in Drush concurrency might
 ; interfere with recursion.
 ; Therefore PANOPOLY needs to be listed AT THE BOTTOM of this makefile,
 ; so we can patch or update certain projects fetched by Panopoly's makefiles.
@@ -200,7 +202,7 @@ projects[panopoly_users][subdir] = panopoly
 projects[panopoly_pages][version] = 1.0-rc5
 projects[panopoly_pages][subdir] = panopoly
 
-projects[panopoly_wysiwyg][version] = 1.0-r5
+projects[panopoly_wysiwyg][version] = 1.0-rc5
 projects[panopoly_wysiwyg][subdir] = panopoly
 
 projects[panopoly_search][version] = 1.0-rc5
