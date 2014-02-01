@@ -131,19 +131,7 @@ projects[zen][type] = theme
 ; *******************************************
 ; ***** Updates Different from Panopoly *****
 
-; OPENUCB-227 - Security update for Entity API
-projects[entity][version] = 1.2
-projects[entity][subdir] = contrib
-
-; OPENUCB-214 - Security update for Entity Reference	
-projects[entityreference][version] = 1.1
-projects[entityreference][subdir] = contrib
-
-; OPENUCB-217 - Update Features and add Features Override
-projects[features][version] = 2.0
-projects[features][subdir] = contrib
-
-; OPENUCB-217 - Update Features and add Features Override
+; OPENUCB-217 - Add Features Override
 projects[features_override][version] = 2.0-rc1
 projects[features_override][subdir] = contrib
 
