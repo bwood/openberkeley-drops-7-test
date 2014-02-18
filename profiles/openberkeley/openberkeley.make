@@ -131,19 +131,7 @@ projects[zen][type] = theme
 ; *******************************************
 ; ***** Updates Different from Panopoly *****
 
-; OPENUCB-227 - Security update for Entity API
-projects[entity][version] = 1.2
-projects[entity][subdir] = contrib
-
-; OPENUCB-214 - Security update for Entity Reference	
-projects[entityreference][version] = 1.1
-projects[entityreference][subdir] = contrib
-
-; OPENUCB-217 - Update Features and add Features Override
-projects[features][version] = 2.0
-projects[features][subdir] = contrib
-
-; OPENUCB-217 - Update Features and add Features Override
+; OPENUCB-217 - Add Features Override
 projects[features_override][version] = 2.0-rc1
 projects[features_override][subdir] = contrib
 
@@ -176,35 +164,35 @@ projects[media][patch][2126755] = https://drupal.org/files/issues/media-improved
 
 ; The Panopoly Foundation
 
-projects[panopoly_core][version] = 1.0-rc5
+projects[panopoly_core][version] = 1.1
 projects[panopoly_core][subdir] = panopoly
 
-projects[panopoly_images][version] = 1.0-rc5
+projects[panopoly_images][version] = 1.1
 projects[panopoly_images][subdir] = panopoly
 
-projects[panopoly_theme][version] = 1.0-rc5
+projects[panopoly_theme][version] = 1.1
 projects[panopoly_theme][subdir] = panopoly
 
-projects[panopoly_magic][version] = 1.0-rc5
+projects[panopoly_magic][version] = 1.1
 projects[panopoly_magic][subdir] = panopoly
 
-projects[panopoly_widgets][version] = 1.0-rc5
+projects[panopoly_widgets][version] = 1.1
 projects[panopoly_widgets][subdir] = panopoly
 
-projects[panopoly_admin][version] = 1.0-rc5
+projects[panopoly_admin][version] = 1.1
 projects[panopoly_admin][subdir] = panopoly
 
-projects[panopoly_users][version] = 1.0-rc5
+projects[panopoly_users][version] = 1.1
 projects[panopoly_users][subdir] = panopoly
 
 ; The Panopoly Toolset
 
-projects[panopoly_pages][version] = 1.0-rc5
+projects[panopoly_pages][version] = 1.1
 projects[panopoly_pages][subdir] = panopoly
 
-projects[panopoly_wysiwyg][version] = 1.0-rc5
+projects[panopoly_wysiwyg][version] = 1.1
 projects[panopoly_wysiwyg][subdir] = panopoly
 
-projects[panopoly_search][version] = 1.0-rc5
+projects[panopoly_search][version] = 1.1
 projects[panopoly_search][subdir] = panopoly
 
