@@ -6,15 +6,9 @@ function openberkeley_install_tasks(&$install_state) {
   $tasks = array();
 
   // Add our custom CSS file for the installation process
-  drupal_add_css(drupal_get_path('profile', 'panopoly') . '/panopoly.css');
-
-  // Add the Panopoly app selection to the installation process
-  require_once(drupal_get_path('module', 'apps') . '/apps.profile.inc');
-  $tasks = $tasks + apps_profile_install_tasks($install_state, array(
-      'machine name' => 'panopoly',
-      'default apps' => array('panopoly_demo')
-    ));
-
+  // drupal_add_css(drupal_get_path('profile', 'panopoly') . '/panopoly.css');
+  // Should we want to style the installer, we'd alter the above
+  
   // Add the Panopoly theme selection to the installation process
   require_once(drupal_get_path('module', 'panopoly_theme') . '/panopoly_theme.profile.inc');
   $tasks = $tasks + panopoly_theme_profile_theme_selection_install_task($install_state);
