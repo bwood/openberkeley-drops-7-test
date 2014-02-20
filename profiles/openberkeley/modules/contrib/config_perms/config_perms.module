@@ -23,6 +23,11 @@ function config_perms_perms($machine_name = NULL, $rebuild = FALSE) {
     $perms = config_perms_cache_rebuild();
   }
 
+  // When the cache is cleared perms will be an object containing the desired array
+  if (is_object($perms)) {
+    $perms = $perms->data;
+  }
+
   return ($machine_name) ? $perms[$machine_name] : $perms;
 }
 
