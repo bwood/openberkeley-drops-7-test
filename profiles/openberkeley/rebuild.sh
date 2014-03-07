@@ -1,6 +1,6 @@
 #!/bin/sh
 # Script to rebuild the Open Berkeley installation profile
-# This command expects to be run within the Open Berkeley profile.
+# This command expects to be run within the Open Berkeley profile (./rebuild.sh from profiles/openberkeley)
 # To use this command you must have `drush make` and `git` installed.
 
 if [ -f openberkeley.make ]; then
