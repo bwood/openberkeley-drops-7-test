@@ -26,5 +26,5 @@ files[] = plugins/views/fieldable_panels_panes_handler_field_make_current.inc
 version = "7.x-1.5+0-dev"
 core = "7.x"
 project = "fieldable_panels_panes"
-datestamp = "1394211231"
+datestamp = "1394232355"
 
