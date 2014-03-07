@@ -36,6 +36,12 @@ function ucb_openberkeley_form_alter(&$form, &$form_state, $form_id) {
         }
       }
       break;
+    case "panopoly_page_node_form":
+      //Temporary Form Alter since Panopoly 1.1 adds new fields. Revisit when assessing feature.
+      //Hide Feature Content checkbox and Categories label on node/add/panopoly-page
+      $form['field_featured_status']['#access'] = FALSE;
+      $form['field_featured_categories']['#access'] = FALSE;
+      break;
   }
 }
 

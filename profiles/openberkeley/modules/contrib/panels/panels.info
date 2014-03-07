@@ -11,9 +11,9 @@ files[] = includes/plugins.inc
 files[] = plugins/views/panels_views_plugin_row_fields.inc
 
 
-; Information added by drush on 2013-12-27
+; Information added by drush on 2014-03-07
 version = "7.x-3.3+41-dev"
 core = "7.x"
 project = "panels"
-datestamp = "1388108921"
+datestamp = "1394211230"
 
