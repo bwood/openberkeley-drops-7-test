@@ -12,11 +12,42 @@ Setup
 
     php composer.phar install
 
- 3. Copy behat.yml.example to behat.yml and modify
+ 3. Copy behat.template.yml to behat.yml
 
     mv behat.template.yml behat.yml
  
- 4. Run Behat and examine test results!
- 
-    bin/behat
+ 4. Edit behat.yml: change base_url and drush alias parameters to your local values
 
+ 5. Download the latest version of Selenium Server from http://docs.seleniumhq.org/download/ to /usr/local/lib
+
+ 6. Install PhantomJS:
+
+    brew install phantomjs
+
+
+Browsers
+---------------------
+
+To run Selenium (required for @javascript tests):
+
+java -jar /usr/local/lib/selenium-server-standalone-2.40.0.jar
+
+To run PhantomJS (required for @headless tests):
+
+phantomjs --webdriver=8643
+
+
+Running tests
+-------------
+
+To run all tests (except headless):
+
+bin/behat
+
+To run all tests except javascript (and headless):
+
+bin/behat --tags=~@javascript
+
+To run headless tests:
+
+bin/behat -p headless
