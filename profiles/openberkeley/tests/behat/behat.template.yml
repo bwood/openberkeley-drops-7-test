@@ -33,6 +33,7 @@ default:
         Header: "#header"
         Content: "#content"
         Footer: "#footerwrapper"
+        Main menu: '#main-menu'
         # Regions for Panopoly Layouts
         Bryant Content: ".bryant-content"
         Bryant Sidebar: ".bryant-sidebar"
