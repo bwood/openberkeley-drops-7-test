@@ -16,11 +16,33 @@ Feature: Use rich text editor
     Then I should see "Testing WYSIWYG" in the "Page title" region
       And I should see the link "Edit" in the "Tabs" region
 
-  @api @javascript @headless
-  Scenario: Make some text bold
-    Given I click "Edit" in the "Tabs" region  
-    When I "Italic" the text "Testing body" in the "body" field WYSIWYG editor
+  @api @headless
+  Scenario: Format text in the editor
+    When I click "Edit" in the "Tabs" region
+      And I select the text in the WYSIWYG editor
+      And I click the "Italic" button in the WYSIWYG editor
       And I press "Save"
       And I wait 1 seconds
-      And I reload the page
-    Then I should see "Testing body" in the "em" element 
+    Then I should see "Testing body" in the "em" element in the "Boxton body" region
+
+  @api @javascript
+  Scenario: Add an image with format and alt text
+    Given I click "Edit" in the "Tabs" region
+      And I click in the WYSIWYG editor
+    When I click the "Add media" button in the WYSIWYG editor
+      And I switch to the frame "mediaBrowser"
+      And I attach the file "panopoly.png" to "files[upload]"
+      And I press "Next"
+      And I press "Next"
+    Then I should see a "#edit-submit" element
+    When I wait 2 seconds
+      And I press "Save"
+      And I switch to the frame "mediaStyleSelector"
+      And I select "Width 100" from "format"
+      And I fill in "edit-field-file-image-alt-text-und-0-value" with "Sample alt text"
+      And I click the fake "Submit" button
+      And I switch out of all frames
+      And I press "Save"
+      And I wait 1 seconds
+    Then I should see the "img" element in the "Boxton body" region
+    

@@ -24,7 +24,7 @@ class FeatureContext extends DrupalContext
 {
   /**
    * Initializes context.
-   * Every scenario gets it's own context object.
+   * Every scenario gets its own context object.
    *
    * @param array $parameters context parameters (set them up through behat.yml)
    */
@@ -33,7 +33,8 @@ class FeatureContext extends DrupalContext
   public function __construct(array $parameters) {
     // Initialize your context here
     $this->useContext('panels', new PanelsSubContext());
-    // $this->useContext('calnet', new CalnetSubContext());
+    $this->useContext('media', new MediaSubContext());
+    $this->useContext('wysiwyg', new WysiwygSubContext());
     $this->params = $parameters;
   }
   
@@ -65,50 +66,89 @@ class FeatureContext extends DrupalContext
     }
   }
 
-//
-// Place your definition and hook methods here:
-//
-//    /**
-//     * @Given /^I have done something with "([^"]*)"$/
-//     */
-//    public function iHaveDoneSomethingWith($argument)
-//    {
-//        doSomethingWith($argument);
-//    }
-//
+  /**
+   * @Given /^I switch to the frame "([^"]*)"$/
+   */
+  public function iSwitchToTheFrame($frame) {
+    $this->getSession()->switchToIFrame($frame);
+  }
 
   /**
-   * @Given /^I "([^"]*)" the text "([^"]*)" in the "([^"]*)" field WYSIWYG editor$/
+   * @Given /^I switch out of all frames$/
    */
-  public function iHighlightTheTextInTheEditor($action, $text, $element, $frame=true) {
-    //set up editor, text, and buttons
-    $editorFrame = $this->params['wysiwyg_iframe'] ? $this->params['wysiwyg_iframe'] : 'edit-fieldname-und-0-value_ifr';
-    $editorType = $this->params['editor'] ? $this->params['editor'] : 'tinymce';
-    $editorId = preg_replace('/fieldname/', $element, $editorFrame);
-    $selector = "document.getElementById('$editorId').contentDocument.getElementById('$editorType')";
+  public function iSwitchOutOfAllFrames() {
+    $this->getSession()->switchToIFrame();
+  }
 
-    //inject javascript
-    $javascript  = "selection = window.getSelection();";
-    $javascript .= "range = document.createRange();";
-    $javascript .= "range.selectNodeContents($selector);";
-    $javascript .= "selection.removeAllRanges();";
-    $javascript .= "selection.addRange(range);";
+  /**
+   * @Then /^I should see the "([^"]*)" element in the "([^"]*)" region$/
+   */
+  public function assertRegionElement($tag, $region) {
+    $regionObj = $this->getRegion($region);
+    $elements = $regionObj->findAll('css', $tag);
+    if (!empty($elements)) {
+      foreach ($elements as $element) {
+        if (trim($element->getText()) === $heading) {
+          return;
+        }
+      }
+    }
+    throw new \Exception(sprintf('The element "%s" was not found in the "%s" region on the page %s', $tag, $region, $this->getSession()->getCurrentUrl()));
+  }
 
-    $this->getSession()->executeScript($javascript);
-
-    //click button using selenium webdriver function
-    $driver = $this->getSession()->getDriver();
-    $button = $driver->find("//a[starts-with(@title, '$action')]");
-    $button[0]->click();
-    $driver->wait(1000,true);
+  /**
+   * @Then /^I should not see the "([^"]*)" element in the "([^"]*)" region$/
+   */
+  public function assertNotRegionElement($tag, $region) {
+    $regionObj = $this->getRegion($region);
+    $result = $regionObj->findAll('css', $tag);
+    if (!empty($result)) {
+      throw new \Exception(sprintf('The element "%s" was found in the "%s" region on the page %s', $tag, $region, $this->getSession()->getCurrentUrl()));
+    }
   }
 
     /**
-* @Given /^I resize the window to "(\d+)" by "(\d+)"$/
-*/
+   * @Then /^I should see "([^"]*)" in the "([^"]*)" element in the "([^"]*)" region$/
+   */
+  public function assertRegionElementText($text, $tag, $region) {
+    $regionObj = $this->getRegion($region);
+    $results = $regionObj->findAll('css', $tag);
+    if (!empty($results)) {
+      foreach ($results as $result) {
+        if ($result->getText() == $text) {
+          return;
+        }
+      }
+    }
+    throw new \Exception(sprintf('The text "%s" was not found in the "%s" element in the "%s" region on the page %s', $text, $tag, $region, $this->getSession()->getCurrentUrl()));
+  }
+  
+  /**
+   * @Then /^I should not see "([^"]*)" in the "([^"]*)" element in the "([^"]*)" region$/
+   */
+  public function assertNotRegionElementText($text, $tag, $region) {
+    $regionObj = $this->getRegion($region);
+    $results = $regionObj->findAll('css', $tag);
+    if (!empty($results)) {
+      foreach ($results as $result) {
+        if ($result->getText() == $text) {
+          throw new \Exception(sprintf('The text "%s" was found in the "%s" element in the "%s" region on the page %s', $text, $tag, $region, $this->getSession()->getCurrentUrl()));
+        }
+      }
+    }
+  }
+
+  /**
+  * @Given /^I resize the window to "(\d+)" by "(\d+)"$/
+  */
   public function iResizeWindow($width, $height) {
       $this->getSession()->resizeWindow((int) $width, (int) $height);
   }
+
+  /**
+   * Everything below this line comes from Panopoly. Only change is to iWaitForAJAX,
+   * in the vain hope that Selenium won't hang.
+   */
 
   /**
    * @AfterStep @javascript
@@ -164,7 +204,7 @@ class FeatureContext extends DrupalContext
    * Wait for the jQuery AJAX loading to finish. ONLY USE FOR DEBUGGING!
    */
   public function iWaitForAJAX() {
-    $this->getSession()->wait(5000, 'jQuery.active === 0');
+    $this->getSession()->wait(20000, 'jQuery != undefined && jQuery.active === 0');
   }
 
   /**
