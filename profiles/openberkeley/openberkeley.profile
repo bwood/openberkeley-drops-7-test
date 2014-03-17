@@ -42,6 +42,7 @@ function openberkeley_form_install_configure_form_alter(&$form, $form_state) {
 
   // Set reasonable defaults for site configuration form
   $form['admin_account']['account']['name']['#default_value'] = 'ucbadmin';
+  $form['admin_account']['account']['name']['#description'] = "<strong><font color=\"red\">For security reasons, do not use a name like 'admin' or 'root' here.</font></strong> (UC Berkeley IST suggests using 'ucbadmin'). " . $form['admin_account']['account']['name']['#description'];
   $form['server_settings']['site_default_country']['#default_value'] = 'US';
   $form['server_settings']['date_default_timezone']['#default_value'] = 'America/Los_Angeles'; // West coast, best coast
 
