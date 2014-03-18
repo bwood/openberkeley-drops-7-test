@@ -133,6 +133,10 @@ projects[zen][type] = theme
 ; *******************************************
 ; ***** Updates Different from Panopoly *****
 
+; OPENUCB-261 - Security update for Image Resize Filter (remove when updated by Panopoly)
+projects[image_resize_filter][version] = 1.14
+projects[image_resize_filter][subdir] = contrib
+
 ; OPENUCB-217 - Add Features Override
 projects[features_override][version] = 2.0-rc1
 projects[features_override][subdir] = contrib
