@@ -59,7 +59,7 @@ dependencies[] = apps
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; UCB - Custom
-; These will be added to openberkeley when they are merged to develop branch
+; These disabled lines will be added to openberkeley when the features are merged to develop branch
 ; dependencies[] = ucberkeley_envconf
 ; dependencies[] = ucberkeley_cas
 dependencies[] = ucb_openberkeley
@@ -83,7 +83,8 @@ dependencies[] = navigation404
 dependencies[] = nice_menus
 dependencies[] = pathologic
 dependencies[] = redirect
-dependencies[] = smtp
+; These disabled lines will be added to openberkeley when the features are merged to develop branch
+; dependencies[] = smtp
 dependencies[] = total_control
 
 ; UCB - Recommended (not enabled by default)
