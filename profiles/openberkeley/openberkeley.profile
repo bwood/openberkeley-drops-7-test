@@ -57,9 +57,17 @@ function openberkeley_form_panopoly_theme_selection_form_alter(&$form, $form_sta
   $themes = array();
   foreach (system_rebuild_theme_data() as $theme) {
     if (!in_array($theme->name, array('test_theme', 'update_test_basetheme', 'update_test_subtheme', 'block_test_theme', 'stark', 'seven'))) {
-      $themes[$theme->name] = theme('image', array('path' => $theme->info['screenshot'])) . '<strong>' . $theme->info['name'] . '</strong><br><p><em>' . $theme->info['description'] . '</em></p><p class="clearfix"></p>';
+      if ($theme->name == 'berkeley') {
+        $berkeley = theme('image', array('path' => $theme->info['screenshot'])) . '<strong>' . $theme->info['name'] . '</strong><br><p><em>' . $theme->info['description'] . '</em></p><p class="clearfix"></p>';
+      }
+      else {
+        $themes[$theme->name] = theme('image', array('path' => $theme->info['screenshot'])) . '<strong>' . $theme->info['name'] . '</strong><br><p><em>' . $theme->info['description'] . '</em></p><p class="clearfix"></p>';
+      }
     }
   }
+
+  // Berkeley theme comes first!
+  openberkeley_array_unshift_assoc($themes, 'berkeley', $berkeley);
 
   $form['theme_wrapper']['theme'] = array(
     '#type' => 'radios',
@@ -67,4 +75,12 @@ function openberkeley_form_panopoly_theme_selection_form_alter(&$form, $form_sta
     '#default_value' => 'berkeley',
   );
 
+}
+
+function openberkeley_array_unshift_assoc(&$arr, $key, $val)
+{
+  $arr = array_reverse($arr, true);
+  $arr[$key] = $val;
+  $arr = array_reverse($arr, true);
+  return $arr;
 }
