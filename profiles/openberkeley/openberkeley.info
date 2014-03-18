@@ -27,16 +27,19 @@ dependencies[] = panopoly_images
 dependencies[] = panopoly_theme
 dependencies[] = panopoly_magic
 dependencies[] = panopoly_widgets
-dependencies[] = panopoly_admin
-dependencies[] = panopoly_users
+; These commented items might not be used by openberkeley
+; dependencies[] = panopoly_admin
+; dependencies[] = panopoly_users
 
 ; Panopoly Toolset
-dependencies[] = panopoly_pages
-dependencies[] = panopoly_search
+; These commented items might not be used by openberkeley
+; dependencies[] = panopoly_pages
+; dependencies[] = panopoly_search
 dependencies[] = panopoly_wysiwyg
 
 ; Panopoly Recommended - Admin & UI
-dependencies[] = navbar
+; These commented items might not be used by openberkeley
+; dependencies[] = navbar
 dependencies[] = breakpoints
 dependencies[] = backports
 dependencies[] = simplified_menu_admin
@@ -56,9 +59,9 @@ dependencies[] = apps
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; UCB - Custom
-; enabling ucb_cas breaks install, but if you let ucb_envconf enable it (dependency), it works
-;dependencies[] = ucb_cas
-dependencies[] = ucb_envconf
+; These will be added to openberkeley when they are merged to develop branch
+; dependencies[] = ucberkeley_envconf
+; dependencies[] = ucberkeley_cas
 dependencies[] = ucb_openberkeley
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
