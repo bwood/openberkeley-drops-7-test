@@ -28,23 +28,6 @@ class WysiwygSubContext extends BehatContext implements DrupalSubContextInterfac
   }
 
   /**
-   * @Given /^I click in the WYSIWYG editor$/
-   */
-  public function iClickInTheWysiwygEditor($editorFrame='edit-body-und-0-value_ifr') {
-    /*
-     * @todo : This does not actually work when using Selenium with Firefox
-     * Needs a different approach
-     * PhantomJS can interact with the WYSIWYG programmatically,
-     * but it crashes on selecting an image style in the Media browser
-     */
-    $this->getSession()->switchToIFrame($editorFrame);
-    $driver = $this->getSession()->getDriver();
-    $editor = $driver->find("//body[@id='tinymce']");
-    $editor[0]->click();
-    $this->getSession()->switchToIFrame();
-  }
-
-  /**
    * @Given /^I select the text in the WYSIWYG editor$/
    */
   public function iSelectTheTextInTheEditor($editorFrame='edit-body-und-0-value_ifr', $editorType='tinymce') {
@@ -101,5 +84,4 @@ class WysiwygSubContext extends BehatContext implements DrupalSubContextInterfac
     $button[0]->click();
     $driver->wait(1000,true);
   }
-
 }

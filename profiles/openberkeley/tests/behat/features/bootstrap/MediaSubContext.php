@@ -34,8 +34,19 @@ class MediaSubContext extends BehatContext implements DrupalSubContextInterface 
   public function iClickTheFakeButton($text) {
     //Media style selector "buttons" are A tags with no href, so not findable by normal steps.
     //@todo: what if more than one link with the text?
-    $driver = $this->getSession()->getDriver();
-    $fakebutton = $driver->find("//a[contains(text(),$text)]");
-    $fakebutton[0]->click();
+
+    $javascript  = <<<EOT
+    var aTags = document.getElementsByTagName("a");
+    var searchText = "$text";
+    var found;
+    for (var i = 0; i < aTags.length; i++) {
+      if (aTags[i].textContent == searchText) {
+      found = aTags[i];
+      break;
+      }
+    }
+    found.click();
+EOT;
+    $this->getSession()->executeScript($javascript);
   }
 }

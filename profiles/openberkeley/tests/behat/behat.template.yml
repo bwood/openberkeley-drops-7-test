@@ -19,6 +19,8 @@ default:
           curl.options:
             CURLOPT_PORT: 8082
       files_path: ../../
+      # required for wysiwyg tests - firefox can't do contenteditable
+      browser_name: chrome
     Drupal\DrupalExtension\Extension:
       blackbox: ~
       api_driver: 'drush'
@@ -28,7 +30,7 @@ default:
       region_map:
         #OB regions
         Page title: "#page-title"
-        Boxton body: ".boxton-content"
+        Boxton Content: ".boxton-content"
         Tabs: ".tabs-primary"
         Header: "#header"
         Content: "#content"

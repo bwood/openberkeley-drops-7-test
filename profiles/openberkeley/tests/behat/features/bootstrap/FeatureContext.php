@@ -87,11 +87,7 @@ class FeatureContext extends DrupalContext
     $regionObj = $this->getRegion($region);
     $elements = $regionObj->findAll('css', $tag);
     if (!empty($elements)) {
-      foreach ($elements as $element) {
-        if (trim($element->getText()) === $heading) {
-          return;
-        }
-      }
+      return;
     }
     throw new \Exception(sprintf('The element "%s" was not found in the "%s" region on the page %s', $tag, $region, $this->getSession()->getCurrentUrl()));
   }
@@ -135,6 +131,24 @@ class FeatureContext extends DrupalContext
           throw new \Exception(sprintf('The text "%s" was found in the "%s" element in the "%s" region on the page %s', $text, $tag, $region, $this->getSession()->getCurrentUrl()));
         }
       }
+    }
+  }
+
+  /**
+   * @Then /^I should see the image alt "(?P<link>[^"]*)" in the "(?P<region>[^"]*)"(?:| region)$/
+   *
+   * @throws \Exception
+   * If region or alt text within it cannot be found.
+  */
+  public function assertAltRegion($alt, $region) {
+    $regionObj = $this->getRegion($region);
+    $element = $regionObj->find('css', 'img');
+    $tmp = $element->getAttribute('alt');
+    if ($alt == $tmp) {
+      $result = $alt;
+    }
+    if (empty($result)) {
+      throw new \Exception(sprintf('No alt text matching "%s" in the "%s" region on the page %s', $alt, $region, $this->getSession()->getCurrentUrl()));
     }
   }
 

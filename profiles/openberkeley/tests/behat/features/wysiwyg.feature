@@ -16,19 +16,19 @@ Feature: Use rich text editor
     Then I should see "Testing WYSIWYG" in the "Page title" region
       And I should see the link "Edit" in the "Tabs" region
 
-  @api @headless
+  @api @javascript @chrome
   Scenario: Format text in the editor
     When I click "Edit" in the "Tabs" region
       And I select the text in the WYSIWYG editor
       And I click the "Italic" button in the WYSIWYG editor
       And I press "Save"
       And I wait 1 seconds
-    Then I should see "Testing body" in the "em" element in the "Boxton body" region
+    Then I should see "Testing body" in the "em" element in the "Boxton Content" region
 
-  @api @javascript
+  @api @javascript @chrome
   Scenario: Add an image with format and alt text
     Given I click "Edit" in the "Tabs" region
-      And I click in the WYSIWYG editor
+      And I select the text in the WYSIWYG editor
     When I click the "Add media" button in the WYSIWYG editor
       And I switch to the frame "mediaBrowser"
       And I attach the file "panopoly.png" to "files[upload]"
@@ -44,5 +44,8 @@ Feature: Use rich text editor
       And I switch out of all frames
       And I press "Save"
       And I wait 1 seconds
-    Then I should see the "img" element in the "Boxton body" region
+    Then I should see the "img" element in the "Boxton Content" region
+      And I should see the image alt "Sample alt text" in the "Boxton Content" region
+
+    # TODO: add test to verify alt text
     
