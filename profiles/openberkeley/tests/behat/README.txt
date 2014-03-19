@@ -32,6 +32,9 @@ To run Selenium (required for @javascript tests):
 
 java -jar /usr/local/lib/selenium-server-standalone-2.40.0.jar
 
+Since Firefox bombs out on tests involving contenteditable regions,
+  we set the default browser to Chrome
+
 To run PhantomJS (required for @headless tests):
 
 phantomjs --webdriver=8643
@@ -51,3 +54,5 @@ bin/behat --tags=~@javascript
 To run headless tests:
 
 bin/behat -p headless
+
+Currently there are no tests tagged @headless.
