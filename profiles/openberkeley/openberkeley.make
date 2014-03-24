@@ -38,7 +38,7 @@ projects[berkeley][download][type] = git
 projects[berkeley][download][url] = git://github.com/ucbdrupal/berkeley.git
 projects[berkeley][download][branch] = 7.x-1.x
 ;projects[berkeley][download][tag] = 7.x-1.0-alpha8
-projects[berkeley][download][revision] = cf624c2
+projects[berkeley][download][revision] = c996f8a
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; UCB Contrib Modules ;;;
