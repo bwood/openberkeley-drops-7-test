@@ -61,7 +61,7 @@ dependencies[] = apps
 ; UCB - Custom
 ; These disabled lines will be added to openberkeley when the features are merged to develop branch
 ; dependencies[] = ucberkeley_envconf
-; dependencies[] = ucberkeley_cas
+dependencies[] = ucberkeley_cas
 dependencies[] = ucb_openberkeley
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
