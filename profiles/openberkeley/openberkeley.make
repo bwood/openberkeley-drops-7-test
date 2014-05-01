@@ -121,7 +121,7 @@ projects[total_control][version] = 2.4
 projects[total_control][subdir] = contrib
 
 ; Zen - Base theme for Berkeley Theme
-projects[zen][version] = 5.4
+projects[zen][version] = 5.5
 projects[zen][type] = theme
 
 ; ***** End OB not in Panopoly *****
@@ -130,6 +130,10 @@ projects[zen][type] = theme
 
 ; *******************************************
 ; ***** Updates Different from Panopoly *****
+
+; OPENUCB-288 - Security update for Field API Pane Editor (FAPE) -- remove when Panopoly 1.5 applied
+projects[fape][version] = 1.2
+projects[fape][subdir] = contrib
 
 ; OPENUCB-217 - Add Features Override
 projects[features_override][version] = 2.0-rc1
