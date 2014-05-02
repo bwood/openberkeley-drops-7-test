@@ -8,7 +8,7 @@ core = 7.x
 projects[ucb_envconf][type] = module
 projects[ucb_envconf][subdir] = ucb
 projects[ucb_envconf][download][type] = git
-projects[ucb_envconf][download][url] = git://github.com/ucbdrupal/ucb_envconf.git
+projects[ucb_envconf][download][url] = git://github.com/ucb-ist-drupal/ucb_envconf.git
 projects[ucb_envconf][download][tag] = 7.x-1.1-beta2
 projects[ucb_envconf][download][branch] = 7.x-1.x
 
@@ -16,7 +16,7 @@ projects[ucb_envconf][download][branch] = 7.x-1.x
 ; projects[ucb_cas][type] = module
 ; projects[ucb_cas][subdir] = ucb
 ; projects[ucb_cas][download][type] = git
-; projects[ucb_cas][download][url] = git://github.com/ucbdrupal/ucb_cas.git
+; projects[ucb_cas][download][url] = git://github.com/ucb-ist-drupal/ucb_cas.git
 ; projects[ucb_cas][download][tag] = 7.x-1.3-beta2
 ; projects[ucb_cas][download][branch] = 7.x-1.x
 ;; TODO - Update CAS to prevent hook_requirements from firing during install
@@ -24,10 +24,14 @@ projects[ucb_envconf][download][branch] = 7.x-1.x
 projects[ucb_openberkeley][type] = module
 projects[ucb_openberkeley][subdir] = ucb
 projects[ucb_openberkeley][download][type] = git
-projects[ucb_openberkeley][download][url] = git://github.com/ucbdrupal/ucb_openberkeley.git
+projects[ucb_openberkeley][download][url] = git://github.com/ucb-ist-drupal/ucb_openberkeley.git
 ; head ;projects[ucb_openberkeley][download][tag] =
 ; master ;projects[ucb_openberkeley][download][branch] = 7.x-1.x
 
+projects[openberkeley_update][type] = module
+projects[openberkeley_update][subdir] = openberkeley
+projects[openberkeley_update][download][type] = git
+projects[openberkeley_update][download][url] = git://github.com/ucb-ist-drupal/openberkeley_update.git
 
 ;;;;;;;;;;;;;;;;;
 ;;; UCB Theme ;;;
@@ -35,10 +39,10 @@ projects[ucb_openberkeley][download][url] = git://github.com/ucbdrupal/ucb_openb
 
 projects[berkeley][type] = theme
 projects[berkeley][download][type] = git
-projects[berkeley][download][url] = git://github.com/ucbdrupal/berkeley.git
+projects[berkeley][download][url] = git://github.com/ucb-ist-drupal/berkeley.git
 projects[berkeley][download][branch] = 7.x-1.x
-;projects[berkeley][download][tag] = 7.x-1.0-alpha8
-projects[berkeley][download][revision] = cf624c2
+projects[berkeley][download][tag] = 7.x-1.0-alpha9
+;projects[berkeley][download][revision] = e2abab1
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; UCB Contrib Modules ;;;
