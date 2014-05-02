@@ -14,5 +14,5 @@ files[] = media_wysiwyg_view_mode.test
 version = "7.x-2.0-alpha3+26-dev"
 core = "7.x"
 project = "media"
-datestamp = "1399042966"
+datestamp = "1399047842"
 
