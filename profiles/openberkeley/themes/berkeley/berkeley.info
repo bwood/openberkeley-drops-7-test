@@ -2,7 +2,7 @@ name        = Berkeley
 description = Berkeley Theme (a Zen sub-theme)
 screenshot  = screenshot.png
 core        = 7.x
-version     = 7.x-1.0-alpha8
+version     = 7.x-1.0-alpha9
 base theme  = zen
 
 ; This section controls the CSS files for your theme. There are 3 different

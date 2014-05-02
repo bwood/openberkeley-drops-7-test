@@ -1,5 +1,10 @@
 Berkeley Theme - CHANGELOG.md
 
+Berkeley 7.x-1.0-alpha9, 2014-05-01
+------------------------------------
+- Accessibility update: Change "Go" to "Submit Search"
+- Accessibility update: Remove h1 from Site Name and h2 from Parent Organization (remove hgroup)
+
 Berkeley 7.x-1.0-alpha8, 2013-08-23
 ------------------------------------
 - Zen 5.4 update: Fix skiplink behavior for Opera and Webkit browsers: https://drupal.org/node/2052729

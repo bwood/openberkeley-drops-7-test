@@ -109,14 +109,14 @@ a#logo { /* Wrapping link for logo */
   margin: $name-and-slogan-margin;
 
   /* Keep Site Name and Site Slogan as typed by User - Not overridden by theme settings */
-  h1#site-name, h2#site-slogan {
+  div#site-name, div#site-slogan {
     text-transform: none !important;
 
     //see _base.scss and fonts directory for font-face fonts
     font-family: $helvetica-neue !important;
   }
 
-  h2#site-slogan {
+  div#site-slogan {
     margin-bottom: 1.15em;
     margin-top: 1.15em;
     min-width: 30em; //Fix for scrunched text if Parent Org is longer than Site Name; allow for long names
@@ -246,11 +246,37 @@ h2.comment-form { /* Comment form heading */
 .image-left {float: left; margin-right: 10px !important;}
 .image-center {display: block !important; margin: auto !important;}
 
+/* DRUPALOPS-148: IE has issues with quoted style attribute selectors
+ * http://www.w3schools.com/cssref/css_selectors.asp
+ * Per http://www.codingforums.com/showthread.php?t=184370:
+ * "It appears Internet Explorer can match the "style" attribute with the basic Attribute Selector,
+ * but it cannot seem to match anything using any Value Selectors for the "style" attribute,
+ * but it CAN match with Value Selectors for the "class" (or other non-style) attribute(s)."
+ * Per http://stackoverflow.com/questions/17097652/css-contains-attribute-selector-not-working-in-ie8,
+ * "img[style*=left]" should work, so it appears that IE's problem is with the quoted value ("float:left")
+ * when targeting the style attribute.
+ */
+
+/* The following works on everything but IE
+
+    img {
+      &[style="float:left"] {
+        margin-right: 10px;
+      }
+      &[style="float:right"] {
+        margin-left: 10px;
+      }
+    }
+
+*/
+
+/* Use the following instead because of IE misbehaving */
+
 img {
-  &[style="float:left"] {
+  &[style*=left] {
     margin-right: 10px;
   }
-  &[style="float:right"] {
+  &[style*=right] {
     margin-left: 10px;
   }
 }
