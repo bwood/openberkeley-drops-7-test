@@ -1,0 +1,43 @@
+name = Open Berkeley
+distribution_name = Open Berkeley
+description = A general purpose distribution for UC Berkeley based on Panopoly
+version = 7.x-0.0.x-dev
+core = 7.x
+exclusive = 1
+
+; Drupal Core
+dependencies[] = menu
+dependencies[] = image
+dependencies[] = list
+dependencies[] = number
+dependencies[] = options
+dependencies[] = path
+dependencies[] = taxonomy
+dependencies[] = search
+dependencies[] = shortcut
+dependencies[] = field
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = dblog
+dependencies[] = update
+
+; Panopoly Foundation
+dependencies[] = panopoly_core
+
+dependencies[] = panopoly_theme
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; UCB Contrib Modules ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; ***** OB not in Panopoly *****
+dependencies[] = config_perms
+
+; UCB - Recommended (not enabled by default)
+; dependencies[] = security_review
+
+
+; ***** Contrib Modules from Panopoly *****
+; See https://wikihub.berkeley.edu/display/drupal/Panopoly+Features
