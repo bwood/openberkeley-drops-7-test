@@ -158,6 +158,8 @@ settings[include_social_media]     = 0
 ;settings[berkeley_lowercase_headings] = 0
 settings[sharing_addthis]          = 0
 settings[main_menu_nice_menus]     = 0
+settings[openberkeley_newsarchive] = 1
+settings[openberkeley_faq]         = 1
 
 ; To make this sub-theme an admin theme with shortcut links next to titles,
 ; uncomment the line below.
