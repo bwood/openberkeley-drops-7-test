@@ -54,32 +54,32 @@
   <?php endif; ?>
 
   <?php if ($site_name && $site_slogan): ?>
-    <hgroup id="name-and-slogan" class="clearfix with-slogan">
+    <div id="name-and-slogan" class="clearfix with-slogan">
 
       <!-- site slogan is being used for parent organization (optional) -->
-      <h2 id="site-slogan"><?php print $site_slogan; ?></h2>
+      <div id="site-slogan"><?php print $site_slogan; ?></div>
 
-      <h1 id="site-name" class="with-slogan">
+      <div id="site-name" class="with-slogan">
         <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-      </h1>
+      </div>
 
-    </hgroup>
+    </div>
 
   <?php elseif ($site_name || $site_slogan): ?>
-    <hgroup id="name-and-slogan" class="clearfix no-slogan">
+    <div id="name-and-slogan" class="clearfix no-slogan">
 
       <!-- site slogan is being used for parent organization (optional) -->
       <?php if ($site_slogan): ?>
-        <h2 id="site-slogan"><?php print $site_slogan; ?></h2>
+        <div id="site-slogan"><?php print $site_slogan; ?></div>
       <?php endif; ?>
 
       <?php if ($site_name): ?>
-        <h1 id="site-name" class="no-slogan">
+        <div id="site-name" class="no-slogan">
           <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-        </h1>
+        </div>
       <?php endif; ?>
 
-    </hgroup>
+    </div>
 
   <?php endif; ?><!-- /#name-and-slogan -->
 
