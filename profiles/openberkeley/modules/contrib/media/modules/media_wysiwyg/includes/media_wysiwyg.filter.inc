@@ -12,9 +12,19 @@ define('MEDIA_WYSIWYG_TOKEN_REGEX', '/\[\[.*?\]\]/s');
  *
  * @TODO check for security probably pass text through filter_xss
  */
-function media_wysiwyg_filter($text) {
-  $text = preg_replace_callback(MEDIA_WYSIWYG_TOKEN_REGEX, 'media_wysiwyg_token_to_markup', $text);
-  return $text;
+function media_wysiwyg_filter($text, $filter, $format, $langcode, $cache, $cache_id) {
+  $replacements = array();
+  $patterns = array();
+  $rendered_text = $text;
+  $count = 1;
+  preg_match_all(MEDIA_WYSIWYG_TOKEN_REGEX, $text, $matches);
+  if (!empty($matches[0])) {
+    foreach ($matches[0] as $match) {
+      $replacement = media_wysiwyg_token_to_markup(array($match), FALSE, $langcode);
+      $rendered_text = str_replace($match, $replacement, $rendered_text, $count);
+    }
+  }
+  return $rendered_text;
 }
 
 /**
@@ -55,7 +65,7 @@ function media_wysiwyg_parse_css_declarations($declarations) {
  * @see media_wysiwyg_get_file_without_label()
  * @see hook_media_wysiwyg_token_to_markup_alter()
  */
-function media_wysiwyg_token_to_markup($match, $wysiwyg = FALSE) {
+function media_wysiwyg_token_to_markup($match, $wysiwyg = FALSE, $langcode = NULL) {
   $settings = array();
   $match = str_replace("[[", "", $match);
   $match = str_replace("]]", "", $match);
@@ -166,24 +176,24 @@ function media_wysiwyg_token_to_markup($match, $wysiwyg = FALSE) {
   if ($wysiwyg) {
     $settings['wysiwyg'] = $wysiwyg;
     // If sending markup to a WYSIWYG, we need to pass the file infomation so
-    // that a inline macro can be generated when the WYSIWYG is detached.
-    // The WYSIWYG plugin is expecting this information in the format of a
-    // urlencoded JSON string stored in the data-file_info attribute of the
-    // element.
-    $element = media_wysiwyg_get_file_without_label($file, $tag_info['view_mode'], $settings);
-    $data = drupal_json_encode(array(
+    // that an inline macro can be generated when the WYSIWYG is detached.
+    // The WYSIWYG plugin is expecting this information in the
+    // Drupal.settings.mediaDataMap variable.
+    $element = media_wysiwyg_get_file_without_label($file, $tag_info['view_mode'], $settings, $langcode);
+    $data = array(
       'type' => 'media',
-      'fid' => $file->fid,
+      'fid'  => $file->fid,
       'view_mode' => $tag_info['view_mode'],
       'link_text' => $tag_info['link_text'],
-    ));
-    $element['#attributes']['data-file_info'] = urlencode($data);
+    );
+    drupal_add_js(array('mediaDataMap' => array($file->fid => $data)), 'setting');
+    $element['#attributes']['data-fid'] = $file->fid;
     $element['#attributes']['class'][] = 'media-element';
   }
   else {
     // Display the field elements.
     $element = array();
-    $element['content']['file'] = media_wysiwyg_get_file_without_label($file, $tag_info['view_mode'], $settings);
+    $element['content']['file'] = media_wysiwyg_get_file_without_label($file, $tag_info['view_mode'], $settings, $langcode);
     // Overwrite or set the file #alt attribute if it has been set in this
     // instance.
     if (!empty($element['content']['file']['#attributes']['alt'])) {
@@ -194,9 +204,9 @@ function media_wysiwyg_token_to_markup($match, $wysiwyg = FALSE) {
     if (!empty($element['content']['file']['#attributes']['title'])) {
       $element['content']['file']['#title'] = $element['content']['file']['#attributes']['title'];
     }
-    field_attach_prepare_view('file', array($file->fid => $file), $tag_info['view_mode']);
-    entity_prepare_view('file', array($file->fid => $file));
-    $element['content'] += field_attach_view('file', $file, $tag_info['view_mode']);
+    field_attach_prepare_view('file', array($file->fid => $file), $tag_info['view_mode'], $langcode);
+    entity_prepare_view('file', array($file->fid => $file), $langcode);
+    $element['content'] += field_attach_view('file', $file, $tag_info['view_mode'], $langcode);
     if (count(element_children($element['content'])) > 1) {
       // Add surrounding divs to group them together.
       // We dont want divs when there are no additional fields to allow files
@@ -353,110 +363,4 @@ function media_wysiwyg_get_wysiwyg_allowed_view_modes($file) {
   $view_modes = $enabled_view_modes[$file->type];
   drupal_alter('media_wysiwyg_wysiwyg_allowed_view_modes', $view_modes, $file);
   return $view_modes;
-}
-
-/**
- * Form callback used when embedding media.
- *
- * Allows the user to pick a format for their media file.
- * Can also have additional params depending on the media type.
- */
-function media_wysiwyg_format_form($form, $form_state, $file) {
-  $form = array();
-  $form['#media'] = $file;
-
-  // Allow for overrides to the fields.
-  $query_fields = isset($_GET['fields']) ? drupal_json_decode($_GET['fields']) : array();
-  $fields = media_wysiwyg_filter_field_parser(array('fields' => $query_fields), $file);
-
-  $view_modes = media_wysiwyg_get_wysiwyg_allowed_view_modes($file);
-  $formats = $options = array();
-  foreach ($view_modes as $view_mode => $view_mode_info) {
-    // @TODO: Display more verbose information about which formatter and what it
-    // does.
-    $options[$view_mode] = $view_mode_info['label'];
-    $element = media_wysiwyg_get_file_without_label($file, $view_mode, array('wysiwyg' => TRUE));
-
-    // Make a pretty name out of this.
-    $formats[$view_mode] = drupal_render($element);
-  }
-
-  // Add the previews back into the form array so they can be altered.
-  $form['#formats'] = &$formats;
-
-  if (!count($formats)) {
-    throw new Exception('Unable to continue, no available formats for displaying media.');
-    return;
-  }
-
-  // Allow for overrides to the display format.
-  $default_view_mode = is_array($query_fields) && isset($query_fields['format']) ? $query_fields['format'] : variable_get('media_wysiwyg_wysiwyg_default_view_mode', 'full');
-  if (!isset($formats[$default_view_mode])) {
-    $default_view_mode = key($formats);
-  }
-
-  // Add the previews by reference so that they can easily be altered by
-  // changing $form['#formats'].
-  $settings['media']['formatFormFormats'] = &$formats;
-  $form['#attached']['js'][] = array('data' => $settings, 'type' => 'setting');
-
-  // Add the required libraries, JavaScript and CSS for the form.
-  $form['#attached']['library'][] = array('media', 'media_base');
-  $form['#attached']['library'][] = array('system', 'form');
-  $form['#attached']['css'][] = drupal_get_path('module', 'media_wysiwyg') . '/css/media_wysiwyg.css';
-  $form['#attached']['js'][] = drupal_get_path('module', 'media_wysiwyg') . '/js/media_wysiwyg.format_form.js';
-
-  $form['title'] = array(
-    '#markup' => t('Embedding %filename', array('%filename' => $file->filename)),
-  );
-
-  $preview = media_get_thumbnail_preview($file);
-
-  $form['preview'] = array(
-    '#type' => 'markup',
-    '#title' => check_plain(basename($file->uri)),
-    '#markup' => drupal_render($preview),
-  );
-
-  // These will get passed on to WYSIWYG.
-  $form['options'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('options'),
-  );
-
-  $form['options']['format'] = array(
-    '#type' => 'select',
-    '#title' => t('Display as'),
-    '#options' => $options,
-    '#default_value' => $default_view_mode,
-    '#description' => t('Choose the type of display you would like for this
-      file. Please be aware that files may display differently than they do when
-      they are inserted into an editor.')
-  );
-
-  // Add fields from the file, so that we can override them if neccesary.
-  $form['options']['fields'] = array();
-  foreach ($fields as $field_name => $field_value) {
-    $file->{$field_name} = $field_value;
-  }
-  field_attach_form('file', $file, $form['options']['fields'], $form_state);
-  $instance = field_info_instances('file', $file->type);
-  foreach ($instance as $field_name => $field_value) {
-    if (isset($instance[$field_name]['settings']) && isset($instance[$field_name]['settings']['wysiwyg_override']) && !$instance[$field_name]['settings']['wysiwyg_override']) {
-      unset($form['options']['fields'][$field_name]);
-    }
-  }
-
-  // Similar to a form_alter, but we want this to run first so that
-  // media.types.inc can add the fields specific to a given type (like alt tags
-  // on media). If implemented as an alter, this might not happen, making other
-  // alters not be able to work on those fields.
-  // @todo: We need to pass in existing values for those attributes.
-  drupal_alter('media_wysiwyg_format_form_prepare', $form, $form_state, $file);
-
-  if (!element_children($form['options'])) {
-    $form['options']['#attributes'] = array('style' => 'display:none');
-  }
-
-  return $form;
 }
