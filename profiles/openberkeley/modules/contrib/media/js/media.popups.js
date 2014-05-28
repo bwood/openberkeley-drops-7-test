@@ -63,10 +63,12 @@ Drupal.media.popups.mediaBrowser = function (onSelect, globalOptions, pluginOpti
    */
 
   var ok = 'OK';
+  var cancel = 'Cancel';
   var notSelected = 'You have not selected anything!';
 
   if (Drupal && Drupal.t) {
     ok = Drupal.t(ok);
+    cancel = Drupal.t(cancel);
     notSelected = Drupal.t(notSelected);
   }
 
@@ -83,7 +85,14 @@ Drupal.media.popups.mediaBrowser = function (onSelect, globalOptions, pluginOpti
     $(this).dialog("close");
   };
 
+  dialogOptions.buttons[cancel] = function () {
+    $(this).dialog("close");
+  };
+
   var dialog = mediaIframe.dialog(dialogOptions);
+
+  // Remove the title bar.
+  dialog.parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
 
   Drupal.media.popups.sizeDialog(dialog);
   Drupal.media.popups.resizeDialog(dialog);
@@ -95,7 +104,7 @@ Drupal.media.popups.mediaBrowser = function (onSelect, globalOptions, pluginOpti
 
 Drupal.media.popups.mediaBrowser.mediaBrowserOnLoad = function (e) {
   var options = e.data;
-  if (this.contentWindow.Drupal.media === undefined) return;
+  if (this.contentWindow.Drupal.media == undefined) return;
 
   if (this.contentWindow.Drupal.media.browser.selectedMedia.length > 0) {
     var ok = (Drupal && Drupal.t) ? Drupal.t('OK') : 'OK';
@@ -127,7 +136,7 @@ Drupal.media.popups.mediaBrowser.finalizeSelection = function () {
   }
   onSelect(selected);
   $(this).dialog("close");
-};
+}
 
 /**
  * Style chooser Popup. Creates a dialog for a user to choose a media style.
@@ -146,14 +155,7 @@ Drupal.media.popups.mediaBrowser.finalizeSelection = function () {
 Drupal.media.popups.mediaStyleSelector = function (mediaFile, onSelect, options) {
   var defaults = Drupal.media.popups.mediaStyleSelector.getDefaults();
   // @todo: remove this awful hack :(
-  if (typeof defaults.src === 'string' ) {
-    defaults.src = defaults.src.replace('-media_id-', mediaFile.fid) + '&fields=' + JSON.stringify(mediaFile.fields);
-  }
-  else {
-    var src = defaults.src.shift();
-    defaults.src.unshift(src);
-    defaults.src = src.replace('-media_id-', mediaFile.fid) + '&fields=' + JSON.stringify(mediaFile.fields);
-  }
+  defaults.src = defaults.src.replace('-media_id-', mediaFile.fid) + '&fields=' + JSON.stringify(mediaFile.fields);
   options = $.extend({}, defaults, options);
   // Create it as a modal window.
   var mediaIframe = Drupal.media.popups.getPopupIframe(options.src, 'mediaStyleSelector');
@@ -164,10 +166,12 @@ Drupal.media.popups.mediaStyleSelector = function (mediaFile, onSelect, options)
    * Set up the button text
    */
   var ok = 'OK';
+  var cancel = 'Cancel';
   var notSelected = 'Very sorry, there was an unknown error embedding media.';
 
   if (Drupal && Drupal.t) {
     ok = Drupal.t(ok);
+    cancel = Drupal.t(cancel);
     notSelected = Drupal.t(notSelected);
   }
 
@@ -185,7 +189,14 @@ Drupal.media.popups.mediaStyleSelector = function (mediaFile, onSelect, options)
     $(this).dialog("close");
   };
 
+  dialogOptions.buttons[cancel] = function () {
+    $(this).dialog("close");
+  };
+
   var dialog = mediaIframe.dialog(dialogOptions);
+
+  // Remove the title bar.
+  dialog.parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
 
   Drupal.media.popups.sizeDialog(dialog);
   Drupal.media.popups.resizeDialog(dialog);
@@ -236,10 +247,12 @@ Drupal.media.popups.mediaFieldEditor = function (fid, onSelect, options) {
    * Set up the button text
    */
   var ok = 'OK';
+  var cancel = 'Cancel';
   var notSelected = 'Very sorry, there was an unknown error embedding media.';
 
   if (Drupal && Drupal.t) {
     ok = Drupal.t(ok);
+    cancel = Drupal.t(cancel);
     notSelected = Drupal.t(notSelected);
   }
 
@@ -256,7 +269,14 @@ Drupal.media.popups.mediaFieldEditor = function (fid, onSelect, options) {
     $(this).dialog("close");
   };
 
+  dialogOptions.buttons[cancel] = function () {
+    $(this).dialog("close");
+  };
+
   var dialog = mediaIframe.dialog(dialogOptions);
+
+  // Remove the title bar.
+  dialog.parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
 
   Drupal.media.popups.sizeDialog(dialog);
   Drupal.media.popups.resizeDialog(dialog);
@@ -288,7 +308,6 @@ Drupal.media.popups.mediaFieldEditor.getDefaults = function () {
  */
 Drupal.media.popups.getDialogOptions = function () {
   return {
-    title: Drupal.t('Media browser'),
     buttons: {},
     dialogClass: 'media-wrapper',
     modal: true,
@@ -309,7 +328,7 @@ Drupal.media.popups.getDialogOptions = function () {
  */
 Drupal.media.popups.getPopupIframe = function (src, id, options) {
   var defaults = {width: '100%', scrolling: 'auto'};
-  options = $.extend({}, defaults, options);
+  var options = $.extend({}, defaults, options);
 
   return $('<iframe class="media-modal-frame"/>')
   .attr('src', src)
@@ -325,7 +344,7 @@ Drupal.media.popups.overlayDisplace = function (dialog) {
       dialog.css('top', overlayDisplace);
     }
   }
-};
+}
 
 /**
  * Size the dialog when it is first loaded and keep it centered when scrolling.
@@ -344,7 +363,7 @@ Drupal.media.popups.sizeDialog = function (dialogElement) {
   dialogElement.dialog("option", "position", 'center');
 
   $('.media-modal-frame').width('100%');
-};
+}
 
 /**
  * Resize the dialog when the window changes.
@@ -356,7 +375,7 @@ Drupal.media.popups.resizeDialog = function (dialogElement) {
   $(window).resize(function() {
     Drupal.media.popups.sizeDialog(dialogElement);
   });
-};
+}
 
 /**
  * Keeps the dialog centered when the window is scrolled.
@@ -369,6 +388,6 @@ Drupal.media.popups.scrollDialog = function (dialogElement) {
   $(window).scroll(function() {
     dialogElement.dialog("option", "position", 'center');
   });
-};
+}
 
 })(jQuery);

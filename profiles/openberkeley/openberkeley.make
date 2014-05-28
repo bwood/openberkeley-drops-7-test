@@ -141,25 +141,7 @@ projects[zen][type] = theme
 projects[features_override][version] = 2.0-rc1
 projects[features_override][subdir] = contrib
 
-; OPENUCB-278 - File Entity - Media module Wysiwyg integration - Borrowed from wetkit-1.4, remove when Panopoly updated (1.6)
-; File Entity should be updated with Media
-projects[file_entity][version] = 2.x-dev
-projects[file_entity][subdir] = contrib
-projects[file_entity][download][type] = git
-projects[file_entity][download][revision] = 13fa2b0
-projects[file_entity][download][branch] = 7.x-2.x
-projects[file_entity][patch][2198973] = http://drupal.org/files/issues/file_entity_override_widgets-2198973-01.patch
 
-; OPENUCB-278 - Media module Wysiwyg integration - Borrowed from wetkit-1.4, remove when Panopoly updated (1.6)
-projects[media][version] = 2.x-dev
-projects[media][subdir] = contrib
-projects[media][download][type] = git
-projects[media][download][revision] = b2c2d78
-projects[media][download][branch] = 7.x-2.x
-projects[media][patch][2187771] = http://drupal.org/files/issues/media_macro_handler_interface-2187771-08.patch
-projects[media][patch][2223455] = http://drupal.org/files/issues/media-brokenwysiwyg-2223455.patch
-;projects[media][patch][2126755] = http://drupal.org/files/issues/media-wysiwyg-improve-our-macro-handling-2126755-83.patch
-;projects[media][patch][2129273] = http://drupal.org/files/issues/media_alt_attributes_et-2129273-18.patch
 
 ; ***** End Updates Different from Panopoly *****
 ; ***********************************************

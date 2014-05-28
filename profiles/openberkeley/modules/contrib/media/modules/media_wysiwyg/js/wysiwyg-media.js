@@ -22,7 +22,6 @@ Drupal.wysiwyg.plugins.media = {
   isNode: function(node) {
     return $(node).is('img.media-element');
   },
-
   /**
    * Execute the button.
    *
