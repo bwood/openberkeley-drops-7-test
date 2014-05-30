@@ -49,8 +49,7 @@
           var element = Drupal.media.filter.create_element(media, media_definition);
           var markup  = Drupal.media.filter.outerHTML(element);
 
-          // Use split and join to replace all instances of macro with markup.
-          content = content.split(match).join(markup);
+          content = content.replace(match, markup);
         }
       }
 
@@ -58,36 +57,41 @@
     },
 
     /**
-     * Replaces media elements with tokens.
-     *
-     * @param content (string)
-     *   The markup within the wysiwyg instance.
+     * Replaces the placeholders for html editing with the media tokens to store.
+     * @param content
      */
     replacePlaceholderWithToken: function(content) {
       Drupal.media.filter.ensure_tagmap();
+      var markup = document.createElement('div');
+      $(markup).html(content);
+
+      var matches = markup.querySelectorAll('.media-element');
+
+      var placeholders = [];
 
       // Rewrite the tagmap in case any of the macros have changed.
       Drupal.settings.tagmap = {};
 
-      // Wrap the content to be able to use replaceWith() and html().
-      content = $('<div>').append(content);
-      var media = $('.media-element', content);
+      for (var i = 0; i < matches.length; i++) {
+        var macro = Drupal.media.filter.create_macro($(matches[i]));
 
-      if (media.length) {
-        // Replace all media elements with their respective macros.
-        media.replaceWith(function() {
-          var el = $(this),
-            macro = Drupal.media.filter.create_macro(el);
+        // Store the macro => html for more efficient rendering in
+        // replaceTokenWithPlaceholder().
+        Drupal.settings.tagmap[macro] = matches[i];
 
-          // Store the markup for more efficient rendering later.
-          // @see replaceTokenWidthPlaceholder()
-          Drupal.settings.tagmap[macro] = Drupal.media.filter.outerHTML(el);
-
-          return macro;
-        });
+        placeholders[i] = {
+          match: matches[i],
+          node: document.createTextNode(macro)
+        }
       }
 
-      return content.html();
+      // We have to loop through the placeholders separately because
+      // replaceChild will shift off the replacement from the NodeList.
+      for (i in placeholders) {
+        placeholders[i].match.parentNode.replaceChild(placeholders[i].node, placeholders[i].match);
+      }
+
+      return $(markup).html();
     },
 
     /**
@@ -100,7 +104,7 @@
      *    A object containing the media file information (fid, view_mode, etc).
      */
     create_element: function (html, info) {
-      if ($('<div>').append(html).text().length === html.length) {
+      if ($('<div></div>').append(html).text().length === html.length) {
         // Element is not an html tag. Surround it in a span element so we can
         // pass the file attributes.
         html = '<span>' + html + '</span>';
@@ -130,19 +134,15 @@
         }
       }
 
+      // Important to url-encode the file information as it is being stored in an
+      // html data attribute.
       info.type = info.type || "media";
-
-      // Store the data in the data map.
-      Drupal.media.filter.ensureDataMap();
-      Drupal.settings.mediaDataMap[info.fid] = info;
-
-      // Store the fid in the DOM to retrieve the data from the info map.
-      element.attr('data-fid', info.fid);
+      element.attr('data-file_info', encodeURI(JSON.stringify(info)));
 
       // Add media-element class so we can find markup element later.
       var classes = ['media-element'];
 
-      if (info.view_mode) {
+      if(info.view_mode){
         classes.push('file-' + info.view_mode.replace(/_/g, '-'));
       }
       element.addClass(classes.join(' '));
@@ -168,28 +168,32 @@
      * Extract the file info from a WYSIWYG placeholder element as JSON.
      *
      * @param element (jQuery object)
-     *    A media element with associated file info via a file id (fid).
+     *    A media element with attached serialized file info.
      */
     extract_file_info: function (element) {
-      var fid, file_info, value;
+      var file_json = $.data(element, 'file_info') || element.data('file_info'),
+        file_info,
+        value;
 
-      if (fid = element.data('fid')) {
-        Drupal.media.filter.ensureDataMap();
-
-        if (file_info = Drupal.settings.mediaDataMap[fid]) {
-          file_info.attributes = {};
-
-          $.each(Drupal.settings.media.wysiwyg_allowed_attributes, function(i, a) {
-            if (value = element.attr(a)) {
-              // Replace &quot; by \" to avoid error with JSON format.
-              if (typeof value == 'string') {
-                value = value.replace('&quot;', '\\"');
-              }
-              file_info.attributes[a] = value;
-            }
-          });
-        }
+      try {
+        file_info = JSON.parse(decodeURIComponent(file_json));
       }
+      catch (err) {
+        file_info = null;
+      }
+
+      if (file_info) {
+        file_info.attributes = {};
+
+        // Extract whitelisted attributes.
+        $.each(Drupal.settings.media.wysiwyg_allowed_attributes, function(i, a) {
+          if (value = element.attr(a)) {
+            file_info.attributes[a] = value;
+          }
+        });
+        delete(file_info.attributes['data-file_info']);
+      }
+
       return file_info;
     },
 
@@ -219,6 +223,10 @@
 
       // Store macro/markup in the tagmap.
       Drupal.media.filter.ensure_tagmap();
+      var i = 1;
+      for (var key in Drupal.settings.tagmap) {
+        i++;
+      }
       Drupal.settings.tagmap[macro] = markup;
 
       // Return the html code to insert in an editor and use it with
@@ -232,14 +240,6 @@
     ensureSourceMap: function() {
       Drupal.settings.mediaSourceMap = Drupal.settings.mediaSourceMap || {};
       return Drupal.settings.mediaSourceMap;
-    },
-
-    /**
-     * Ensures the data tracking has been initialized and returns it.
-     */
-    ensureDataMap: function() {
-      Drupal.settings.mediaDataMap = Drupal.settings.mediaDataMap || {};
-      return Drupal.settings.mediaDataMap;
     },
 
     /**
