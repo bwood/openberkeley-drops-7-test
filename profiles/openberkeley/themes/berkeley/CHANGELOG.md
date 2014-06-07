@@ -1,5 +1,11 @@
 Berkeley Theme - CHANGELOG.md
 
+Berkeley 7.x-1.0-alpha11, 2014-06-06
+------------------------------------
+- Add invisible label to search form for accessibility (OPENUCB-297)
+- Increase color contrast to meet WCAG 2.00AA (OPENUCB-296)
+- Add focus indicator for search box (OPENUCB-304)
+
 Berkeley 7.x-1.0-alpha10, 2014-05-08
 ------------------------------------
 - Sanitize to prevent cross site scripting (OPENUCB-290: see SA-CONTRIB-2014-047 - Zen - Cross Site Scripting: https://drupal.org/node/2254925)

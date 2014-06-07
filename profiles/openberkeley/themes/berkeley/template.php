@@ -326,7 +326,10 @@ function berkeley_preprocess_page(&$variables, $hook) {
 
   // Set up the search box functionality (adapted from OpenAcademy)
   $search_box_form = drupal_get_form('search_form');
-  $search_box_form['basic']['keys']['#title'] = '';
+  // Add label for accessibility. See http://webaim.org/techniques/css/invisiblecontent, http://zufelt.ca/blog/drupal-7-two-new-system-classes-improve-accessibility,
+  // https://api.drupal.org/api/drupal/modules%21search%21search.module/function/search_form/7 and https://drupal.org/node/154137
+  $search_box_form['basic']['keys']['#title'] = 'Search Terms';
+  $search_box_form['basic']['keys']['#title_display'] = 'invisible';
   $search_box_form['basic']['keys']['#attributes'] = array('placeholder' => 'Search');
   $search_box_form['basic']['submit']['#value'] = t('Submit Search');
   $search_box = drupal_render($search_box_form);
