@@ -33,6 +33,11 @@ projects[openberkeley_update][subdir] = openberkeley
 projects[openberkeley_update][download][type] = git
 projects[openberkeley_update][download][url] = git://github.com/ucb-ist-drupal/openberkeley_update.git
 
+projects[openberkeley_wysiwyg_override][type] = module
+projects[openberkeley_wysiwyg_override][subdir] = openberkeley
+projects[openberkeley_wysiwyg_override][download][type] = git
+projects[openberkeley_wysiwyg_override][download][url] = git://github.com/ucb-ist-drupal/openberkeley_wysiwyg_override.git
+
 ;;;;;;;;;;;;;;;;;
 ;;; UCB Theme ;;;
 ;;;;;;;;;;;;;;;;;
@@ -90,6 +95,10 @@ projects[faq][patch][1828758] = https://drupal.org/files/1828758-1-category-desc
 ; 1572414: later patch available
 projects[faq][patch][1572414] = https://drupal.org/files/faq-view_question-1572414-2.patch
 
+; Features Override
+projects[features_override][version] = 2.0-rc1
+projects[features_override][subdir] = contrib
+
 ; Google Analytics
 projects[google_analytics][version] = 1.4
 projects[google_analytics][subdir] = contrib
@@ -137,10 +146,8 @@ projects[zen][type] = theme
 ; *******************************************
 ; ***** Updates Different from Panopoly *****
 
-; OPENUCB-217 - Add Features Override
-projects[features_override][version] = 2.0-rc1
-projects[features_override][subdir] = contrib
 
+; Add versions different from Panopoly here
 
 
 ; ***** End Updates Different from Panopoly *****

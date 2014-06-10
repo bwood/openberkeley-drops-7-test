@@ -27,15 +27,15 @@ dependencies[] = panopoly_images
 dependencies[] = panopoly_theme
 dependencies[] = panopoly_magic
 dependencies[] = panopoly_widgets
+dependencies[] = panopoly_users
 ; These commented items might not be used by openberkeley
 ; dependencies[] = panopoly_admin
-; dependencies[] = panopoly_users
 
 ; Panopoly Toolset
-; These commented items might not be used by openberkeley
-; dependencies[] = panopoly_pages
-; dependencies[] = panopoly_search
+dependencies[] = panopoly_pages
 dependencies[] = panopoly_wysiwyg
+; These commented items might not be used by openberkeley
+; dependencies[] = panopoly_search
 
 ; Panopoly Recommended - Admin & UI
 ; These commented items might not be used by openberkeley
@@ -54,6 +54,9 @@ dependencies[] = uuid
 dependencies[] = defaultcontent
 dependencies[] = apps
 
+; Panopoly - Included in makefile but not enabled by default
+dependencies[] = admin_menu
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; UCB Custom Modules ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -63,6 +66,8 @@ dependencies[] = apps
 ; dependencies[] = ucberkeley_envconf
 ; dependencies[] = ucberkeley_cas
 dependencies[] = ucb_openberkeley
+dependencies[] = openberkeley_update
+dependencies[] = openberkeley_wysiwyg_override
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; UCB Contrib Modules ;;;
@@ -77,6 +82,7 @@ dependencies[] = email
 dependencies[] = entity_view_mode
 dependencies[] = extlink
 dependencies[] = faq
+dependencies[] = features_override
 dependencies[] = googleanalytics
 dependencies[] = linkchecker
 dependencies[] = navigation404
