@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the OpenBerkeley Wysiwyg Override feature.
+ */
+
+include_once 'openberkeley_wysiwyg_override.features.inc';
