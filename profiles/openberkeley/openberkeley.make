@@ -192,8 +192,12 @@ projects[panopoly_users][subdir] = panopoly
 projects[panopoly_pages][version] = 1.5
 projects[panopoly_pages][subdir] = panopoly
 
-projects[panopoly_wysiwyg][version] = 1.5
+projects[panopoly_wysiwyg][version] = 1.x-dev
 projects[panopoly_wysiwyg][subdir] = panopoly
+projects[panopoly_wysiwyg][type] = module
+projects[panopoly_wysiwyg][download][type] = git
+projects[panopoly_wysiwyg][download][revision] = f406569
+projects[panopoly_wysiwyg][download][branch] = 7.x-1.x
 
 projects[panopoly_search][version] = 1.5
 projects[panopoly_search][subdir] = panopoly
