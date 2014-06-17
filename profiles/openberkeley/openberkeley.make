@@ -41,8 +41,8 @@ projects[berkeley][type] = theme
 projects[berkeley][download][type] = git
 projects[berkeley][download][url] = git://github.com/ucb-ist-drupal/berkeley.git
 projects[berkeley][download][branch] = 7.x-1.x
-projects[berkeley][download][tag] = 7.x-1.0-alpha10
-;projects[berkeley][download][revision] = 6abc682
+projects[berkeley][download][tag] = 7.x-1.0-alpha11
+;projects[berkeley][download][revision] = 6c3173a
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; UCB Contrib Modules ;;;

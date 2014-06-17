@@ -123,6 +123,11 @@ a#logo { /* Wrapping link for logo */
   }
 }
 
+#search {
+  #edit-keys:focus {
+    outline: 4px solid #427AAB; /* Match Chrome/Webkit default style */
+  }
+}
 
 // See mobilesearch.css for 480 version
 @media all and (min-width: 481px) {
