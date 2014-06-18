@@ -38,6 +38,11 @@ projects[openberkeley_wysiwyg_override][subdir] = openberkeley
 projects[openberkeley_wysiwyg_override][download][type] = git
 projects[openberkeley_wysiwyg_override][download][url] = git://github.com/ucb-ist-drupal/openberkeley_wysiwyg_override.git
 
+projects[openberkeley_core_override][type] = module
+projects[openberkeley_core_override][subdir] = openberkeley
+projects[openberkeley_core_override][download][type] = git
+projects[openberkeley_core_override][download][url] = git://github.com/ucb-ist-drupal/openberkeley_core_override.git
+
 ;;;;;;;;;;;;;;;;;
 ;;; UCB Theme ;;;
 ;;;;;;;;;;;;;;;;;
