@@ -23,7 +23,9 @@ default:
       browser_name: chrome
     Drupal\DrupalExtension\Extension:
       blackbox: ~
-      api_driver: 'drush'
+      api_driver: 'drupal'
+      drupal:
+        drupal_root: '/path/to/drupal/root'
       drush:
         # change this:
         alias: 'local'
@@ -36,6 +38,7 @@ default:
         Content: "#content"
         Footer: "#footerwrapper"
         Main menu: '#main-menu'
+        Linkit Modal: "#linkit-modal"
         # Regions for Panopoly Layouts
         Bryant Content: ".bryant-content"
         Bryant Sidebar: ".bryant-sidebar"
