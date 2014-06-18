@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Code for the OpenBerkeley Core Override feature.
+ */
+
+include_once 'openberkeley_core_override.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function openberkeley_core_override_form_taxonomy_form_term_alter(&$form, &$form_state, $form_id) {
+  if ($form['#vocabulary']->machine_name == 'panopoly_categories') {
+    // We don't use 'field_featured_image' anywhere, including on taxonomy.
+    if (!empty($form['field_featured_image'])) {
+      $form['field_featured_image']['#access'] = FALSE;
+    }
+  }
+}
