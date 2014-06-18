@@ -34,8 +34,9 @@ function openberkeley_wysiwyg_override_get_pathologic_paths() {
           $paths_array[] = "http://{$environment_name}-{$project_name}.pantheon.berkeley.edu/";
         }
 
-        // Add one final example for the live site.
+        // Add examples for the live site and local site.
         $paths_array[] = 'http://EXAMPLE.berkeley.edu';
+        $paths_array[] = 'http://EXAMPLE.localhost';
       }
     }
 
@@ -346,6 +347,14 @@ function openberkeley_wysiwyg_override_wysiwyg_default_profiles_alter(&$data) {
     );
     unset($data['panopoly_wysiwyg_text']['settings']['buttons']['captionfilter']);
     unset($data['panopoly_wysiwyg_text']['settings']['buttons']['default']['underline']);
-    unset($data['panopoly_wysiwyg_text']['settings']['buttons']['linkit']);
+  }
+}
+
+/**
+ * Implements hook_default_linkit_profiles_alter().
+ */
+function openberkeley_wysiwyg_override_default_linkit_profiles_alter(&$data) {
+  if (isset($data['content_editors'])) {
+    $data['content_editors']->data['plugins']['entity:file']['enabled'] = 1; /* WAS: 0 */
   }
 }

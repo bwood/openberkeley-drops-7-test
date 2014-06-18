@@ -193,10 +193,10 @@ function openberkeley_wysiwyg_override_filter_default_formats() {
         'status' => 1,
         'settings' => array(
           'local_paths' => 'http://dev-EXAMPLE.pantheon.berkeley.edu/
-http://test-EXAMPLE.pantheon.berkeley.edu/
-http://live-EXAMPLE.pantheon.berkeley.edu/
-http://EXAMPLE.localhost/
-http://EXAMPLE.berkeley.edu/',
+            http://test-EXAMPLE.pantheon.berkeley.edu/
+            http://live-EXAMPLE.pantheon.berkeley.edu/
+            http://EXAMPLE.localhost/
+            http://EXAMPLE.berkeley.edu/',
           'protocol_style' => 'full',
         ),
       ),
