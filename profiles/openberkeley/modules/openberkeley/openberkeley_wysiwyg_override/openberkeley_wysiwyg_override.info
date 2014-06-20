@@ -1,0 +1,16 @@
+name = OpenBerkeley Wysiwyg Override
+description = Open Berkeley Wysiwyg Override Feature
+core = 7.x
+package = Open Berkeley
+version = 7.x-0.1
+project = openberkeley_wysiwyg_override
+dependencies[] = features
+dependencies[] = filter
+dependencies[] = media_wysiwyg
+dependencies[] = panopoly_wysiwyg
+dependencies[] = pathologic
+dependencies[] = wysiwyg
+dependencies[] = wysiwyg_filter
+features[features_api][] = api:2
+features[filter][] = editor
+features[wysiwyg][] = editor
