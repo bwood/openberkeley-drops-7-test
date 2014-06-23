@@ -13,14 +13,6 @@ sites/*.localhost/*
 security_review/IGNOREME.txt
 security_review/file_write_test*
 
-# UCB Drupal apps
-# Since these are installed and updated via Apps in the install profile,
-# we don't want to version control them here
-/sites/all/modules/ucb_cas
-/sites/all/modules/ucb_envconf
-profiles/openberkeley/modules/ucb/ucb_cas
-
-
 # Packages #
 ############
 *.7z
