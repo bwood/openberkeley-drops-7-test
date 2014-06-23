@@ -12,14 +12,10 @@ projects[ucb_envconf][download][url] = git://github.com/ucb-ist-drupal/ucb_envco
 projects[ucb_envconf][download][tag] = 7.x-1.1-beta2
 projects[ucb_envconf][download][branch] = 7.x-1.x
 
-; NOTE: enabling ucb_cas breaks install, but if you let ucb_envconf enable it (dependency), it works
-; projects[ucb_cas][type] = module
-; projects[ucb_cas][subdir] = ucb
-; projects[ucb_cas][download][type] = git
-; projects[ucb_cas][download][url] = git://github.com/ucb-ist-drupal/ucb_cas.git
-; projects[ucb_cas][download][tag] = 7.x-1.3-beta2
-; projects[ucb_cas][download][branch] = 7.x-1.x
-;; TODO - Update CAS to prevent hook_requirements from firing during install
+projects[ucberkeley_cas][type] = module
+projects[ucberkeley_cas][subdir] = ucb
+projects[ucberkeley_cas][download][type] = file
+projects[ucberkeley_cas][download][url] = https://github.com/ucb-ist-drupal/ucberkeley_cas-7/releases/download/7.x-2.1-beta2/ucberkeley_cas-7.x-2.1-beta2.tar.gz
 
 projects[ucb_openberkeley][type] = module
 projects[ucb_openberkeley][subdir] = ucb
