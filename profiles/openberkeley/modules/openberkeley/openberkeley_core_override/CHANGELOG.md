@@ -1,6 +1,6 @@
-Open Berkeley Wysiwyg Override - CHANGELOG
+Open Berkeley Core Override - CHANGELOG
 ==============================
 
-ucb_openberkeley-7.x-1.0-dev
+openberkeley_core_override-7.x-0.1
 ------------------------------
 * OPENUCB-317: 	Initial override to remove field_featured_image

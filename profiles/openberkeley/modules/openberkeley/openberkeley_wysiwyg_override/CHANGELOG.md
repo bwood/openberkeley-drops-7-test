@@ -1,7 +1,7 @@
 Open Berkeley Wysiwyg Override - CHANGELOG
 ==============================
 
-ucb_openberkeley-7.x-1.0-dev
+openberkeley_wysiwyg_override-7.x-0.1
 ------------------------------
 * OPENUCB-310: 	Override Panopoly Linkit profile to enable linking to 'Managed files'.
 * OPENUCB-310: 	Allow linkit button for panopoly_wysiwyg_text, add localhost pathologic example.
