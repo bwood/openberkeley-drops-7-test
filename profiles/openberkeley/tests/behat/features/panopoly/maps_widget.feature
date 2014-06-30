@@ -1,30 +1,24 @@
 Feature: Add map widget
   In order to put a map on a page
-  As a site builder
+  As a site administrator
   I need to be able to use the map widget
  
-  @api @javascript
+  @api @javascript @panopoly_widgets
   Scenario: Add map to a page
-    Given I am logged in as a user with the "builder" role
+    Given I am logged in as a user with the "administrator" role
       And Panopoly magic live previews are disabled
-    When I visit "/node/add/panopoly-page"
-      And I fill in the following:
-        | Title               | Testing text title |
-        | Editor              | plain_text         |
-        | body[und][0][value] | Testing text body  |
-      And I press "Save"
-    Then the "#page-title" element should contain "Testing text title"
+      And I am viewing a landing page
     When I customize this page with the Panels IPE
       And I click "Add new pane"
-      And I click "Add map"
+      And I click "Add map" in the "CTools modal" region
     Then I should see "Configure new Add map"
     When I fill in the following:
       | Title       | Widget title            |
       | Editor      | plain_text              |
       | Information | Testing text body field |
       | Address     | Ørnebjergvej 28, Vejle  |
-      And I press "edit-return"
-      And I press "Save as custom"
+      And I press "Save" in the "CTools modal" region
+      And I press "Save"
       And I wait for the Panels IPE to deactivate
     Then I should see "Widget title"
       And I should see "Testing text body field"

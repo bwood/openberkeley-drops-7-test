@@ -3,7 +3,7 @@
  * @file
  * Provide Behat step-definitions for WYSIWYG editor.
  *
- * @todo This should move to the WYSIWYG feature folder eventually
+ * @todo This should move to the WYSIWYG module eventually
  */
 
 use Drupal\DrupalExtension\Context\DrupalSubContextInterface;
@@ -27,41 +27,6 @@ class WysiwygSubContext extends BehatContext implements DrupalSubContextInterfac
     return $this->getMainContext()->getSession();
   }
 
-  /**
-   * @Given /^I select the text in the WYSIWYG editor$/
-   */
-  public function iSelectTheTextInTheEditor($editorFrame='edit-body-und-0-value_ifr', $editorType='tinymce') {
-    /*
-     * @todo : 
-     * Figure out how to run non-headless;
-     * Allow for more than one WYSIWYG field on a page;
-     * Allow for only a subset of the text to be selected;
-     * Allow for different WYSYWYG editor types;
-     * Parameterize;
-     * Test results with more buttons than just Bold and Italic!
-     */
-
-    //verify presence of field
-    $driver = $this->getSession()->getDriver();
-    $editor = $driver->find("//iframe[@id='$editorFrame']");
-
-    if (empty($editor)) {
-      throw new \Exception(sprintf('The editor "%s" was not found on the page %s', $editorFrame, $this->getSession()->getCurrentUrl()));
-    }
-
-    $selector = "document.getElementById('$editorFrame').contentDocument.getElementById('$editorType')";
-
-    //create and inject javascript
-    $javascript  = "selection = window.getSelection();";
-    $javascript .= "range = document.createRange();";
-    $javascript .= "range.selectNodeContents($selector);";
-    $javascript .= "selection.removeAllRanges();";
-    $javascript .= "selection.addRange(range);";
-
-    $this->getSession()->executeScript($javascript);
-  }
-
-  
   /**
    * Get the instance variable to use in Javascript.
    *
@@ -140,6 +105,9 @@ class WysiwygSubContext extends BehatContext implements DrupalSubContextInterfac
 
     // Click the action button.
     $button = $toolbarElement->find("xpath", "//a[starts-with(@title, '$action')]");
+    if (!$button) {
+      throw new \Exception(sprintf('Button "%s" was not found on the page %s', $action, $this->getSession()->getCurrentUrl()));
+    }
     $button->click();
     $driver->wait(1000, TRUE);
   }
@@ -160,6 +128,9 @@ class WysiwygSubContext extends BehatContext implements DrupalSubContextInterfac
 
     // Expand wysiwyg toolbar.
     $button = $toolbarElement->find("xpath", "//a[starts-with(@title, '$action')]");
+    if (!$button) {
+      throw new \Exception(sprintf('Button "%s" was not found on the page %s', $action, $this->getSession()->getCurrentUrl()));
+    }
     if (strpos($button->getAttribute('class'), 'mceButtonActive') !== FALSE) {
       $button->click();
     }

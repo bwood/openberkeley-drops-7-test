@@ -1,10 +1,9 @@
 <?php
 /**
  * @file
- * Provide Behat step-definitions for WYSIWYG editor.
+ * Provide Behat step-definitions for the Media module.
  *
- * @todo This should move to the WYSIWYG feature folder eventually
- * Also, add a cleanup function to delete files uploaded into WYSIWYG fields
+ * @todo Also, add a cleanup function to delete files uploaded.
  */
 
 use Drupal\DrupalExtension\Context\DrupalSubContextInterface;
@@ -28,7 +27,7 @@ class MediaSubContext extends BehatContext implements DrupalSubContextInterface 
     return $this->getMainContext()->getSession();
   }
 
-/**
+  /**
    * @Given /^I click the fake "([^"]*)" button$/
    */
   public function iClickTheFakeButton($text) {

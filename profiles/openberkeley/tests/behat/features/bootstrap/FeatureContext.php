@@ -4,6 +4,7 @@ use Behat\Behat\Context\ClosuredContextInterface,
     Behat\Behat\Context\TranslatedContextInterface,
     Behat\Behat\Context\BehatContext,
     Behat\Behat\Event\StepEvent,
+    Behat\Behat\Event\ScenarioEvent,
     Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
@@ -22,6 +23,8 @@ use Drupal\Component\Utility\Random;
  */
 class FeatureContext extends DrupalContext
 {
+  protected $bootstrapped = FALSE;
+  protected $landing_pages = array();
   /**
    * Initializes context.
    * Every scenario gets its own context object.
@@ -141,7 +144,7 @@ class FeatureContext extends DrupalContext
     }
   }
 
-    /**
+  /**
    * @Then /^I should see "([^"]*)" in the "([^"]*)" element in the "([^"]*)" region$/
    */
   public function assertRegionElementText($text, $tag, $region) {
@@ -155,21 +158,6 @@ class FeatureContext extends DrupalContext
       }
     }
     throw new \Exception(sprintf('The text "%s" was not found in the "%s" element in the "%s" region on the page %s', $text, $tag, $region, $this->getSession()->getCurrentUrl()));
-  }
-  
-  /**
-   * @Then /^I should not see "([^"]*)" in the "([^"]*)" element in the "([^"]*)" region$/
-   */
-  public function assertNotRegionElementText($text, $tag, $region) {
-    $regionObj = $this->getRegion($region);
-    $results = $regionObj->findAll('css', $tag);
-    if (!empty($results)) {
-      foreach ($results as $result) {
-        if ($result->getText() == $text) {
-          throw new \Exception(sprintf('The text "%s" was found in the "%s" element in the "%s" region on the page %s', $text, $tag, $region, $this->getSession()->getCurrentUrl()));
-        }
-      }
-    }
   }
 
   /**
@@ -234,6 +222,21 @@ class FeatureContext extends DrupalContext
   }
 
   /**
+   * @Then /^I should not see "([^"]*)" in the "([^"]*)" element in the "([^"]*)" region$/
+   */
+  public function assertNotRegionElementText($text, $tag, $region) {
+    $regionObj = $this->getRegion($region);
+    $results = $regionObj->findAll('css', $tag);
+    if (!empty($results)) {
+      foreach ($results as $result) {
+        if ($result->getText() == $text) {
+          throw new \Exception(sprintf('The text "%s" was found in the "%s" element in the "%s" region on the page %s', $text, $tag, $region, $this->getSession()->getCurrentUrl()));
+        }
+      }
+    }
+  }
+
+  /**
    * @Then /^I should see the image alt "(?P<link>[^"]*)" in the "(?P<region>[^"]*)"(?:| region)$/
    *
    * @throws \Exception
@@ -248,6 +251,32 @@ class FeatureContext extends DrupalContext
     }
     if (empty($result)) {
       throw new \Exception(sprintf('No alt text matching "%s" in the "%s" region on the page %s', $alt, $region, $this->getSession()->getCurrentUrl()));
+    }
+  }
+
+  /**
+   * @BeforeScenario @api
+   *
+   * Bootstrap Drupal so that all Drupal API functions work.
+   */
+  public function bootstrapDrupal($event) {
+    if (!$this->bootstrapped) {
+      $drupal = $this->getDriver('drupal');
+
+      // We are experiencing a weird issue where the CTools plugin cache gets
+      // corrupted and none of our Panels pages work because their layout
+      // plugins can't be found. It appears that clearing the cache, and then
+      // bootstrapping Drupal again will fix it! I suspect the CTools plugin
+      // cache is being built too early, ie. before we change to the Drupal
+      // directory - but I haven't been able to confirm that.
+      $drupal->clearCache();
+      $drupal->bootstrap();
+
+      // We occasionally get errors about not finding the ctools_get_export_ui()
+      // function, so we force it to be loaded. No idea what's causing this.
+      ctools_include('export-ui');
+
+      $this->bootstrapped = TRUE;
     }
   }
 
@@ -281,7 +310,8 @@ class FeatureContext extends DrupalContext
    * Disable live previews via Panopoly Magic.
    */
   public function disablePanopolyMagicLivePreview() {
-    $this->getDriver('drush')->vset('panopoly_magic_live_preview 0 --yes');
+    //$this->getDriver('drush')->vset('panopoly_magic_live_preview 0 --yes');
+    variable_set('panopoly_magic_live_preview', 0);
   }
 
   /**
@@ -290,7 +320,8 @@ class FeatureContext extends DrupalContext
    * Enable live previews via Panopoly Magic.
    */
   public function enableAutomaticPanopolyMagicLivePreview() {
-    $this->getDriver('drush')->vset('panopoly_magic_live_preview 1 --yes');
+    //$this->getDriver('drush')->vset('panopoly_magic_live_preview 1 --yes');
+    variable_set('panopoly_magic_live_preview', 1);
   }
 
   /**
@@ -299,7 +330,8 @@ class FeatureContext extends DrupalContext
    * Enable live previews via Panopoly Magic.
    */
   public function enableManualPanopolyMagicLivePreview() {
-    $this->getDriver('drush')->vset('panopoly_magic_live_preview 2 --yes');
+    //$this->getDriver('drush')->vset('panopoly_magic_live_preview 2 --yes');
+    variable_set('panopoly_magic_live_preview', 2);
   }
 
   /**
@@ -317,7 +349,7 @@ class FeatureContext extends DrupalContext
    * Wait for the jQuery AJAX loading to finish. ONLY USE FOR DEBUGGING!
    */
   public function iWaitForAJAX() {
-    $this->getSession()->wait(20000, 'jQuery != undefined && jQuery.active === 0');
+    $this->getSession()->wait(5000, 'jQuery != undefined && jQuery.active === 0');
   }
 
   /**
@@ -336,9 +368,10 @@ class FeatureContext extends DrupalContext
       if ($end === FALSE) {
         break;
       }
+      $random_generator = new Random;
       $name = substr($argument, $start + 1, $end - $start - 1);
       if ($name == 'random') {
-        $this->vars[$name] = Random::name(8);
+        $this->vars[$name] = $random_generator->name(8);
         $random[] = $this->vars[$name];
       }
       // In order to test previous random values stored in the form,
@@ -360,5 +393,113 @@ class FeatureContext extends DrupalContext
     }
 
     return $argument;
+  }
+
+  /**
+   * @Given /^I log in with the One Time Login Url$/
+   */
+  public function iLogInWithTheOneTimeLoginUrl() {
+    if ($this->loggedIn()) {
+      $this->logOut();
+    }
+
+    $random = new Random;
+
+    // Create user (and project)
+    $user = (object) array(
+      'name' => $random->name(8),
+      'pass' => $random->name(16),
+      'role' => 'authenticated user',
+    );
+    $user->mail = "{$user->name}@example.com";
+
+    // Create a new user.
+    $this->getDriver()->userCreate($user);
+
+    $this->users[$user->name] = $this->user = $user;
+
+    $base_url = rtrim($this->locatePath('/'), '/');
+    $login_link = $this->getMainContext()->getDriver('drush')->drush('uli', array(
+      "'$user->name'",
+      '--browser=0',
+      "--uri=${base_url}",
+    ));
+    // Trim EOL characters. Required or else visiting the link won't work.
+    $login_link = trim($login_link);
+    $login_link = str_replace("/login", '', $login_link);
+    $this->getSession()->visit($this->locatePath($login_link));
+    return TRUE;
+  }
+
+  /**
+   * Create a new Landing Page.
+   *
+   * @param string $name
+   *   The internal machine name for the new Page.
+   * @param string $path
+   *   The path for the new Page.
+   * @param string $title
+   *   The title for the new Page.
+   */
+  protected function createPage($name, $path, $title) {
+    $page_task = page_manager_get_task('page');
+
+    $subtask = page_manager_page_new();
+    $subtask->name = $name;
+    $subtask->path = $path;
+    $subtask->admin_title = $title;
+    $subtask->admin_description = '';
+    $subtask->menu = array(
+      'type' => 'none',
+    );
+
+    $display = new stdClass();
+    $display->layout = 'boxton';
+    $display->title = $title;
+    $display->panels = array();
+    $display->content = array();
+
+    $plugin = page_manager_get_task_handler('panel_context');
+    $handler = page_manager_new_task_handler($plugin);
+    $handler->conf['title'] = t('Landing page');
+    $handler->conf['display'] = $display;
+    $handler->conf['pipeline'] = 'ipe';
+
+    // Assemble a new $page cache and assign it to our page subtask and task
+    // handler.
+    $page = new stdClass();
+    page_manager_page_new_page_cache($subtask, $page);
+    page_manager_handler_add_to_page($page, $handler);
+    page_manager_save_page_cache($page);
+
+    // Mark this page for deletion at the end of the scenario.
+    $this->landing_pages[] = $name;
+  }
+
+  /**
+   * @AfterScenario @api
+   *
+   * Delete landing pages after a Scenario has finished.
+   */
+  public function cleanupPages() {
+    foreach ($this->landing_pages as $name) {
+      if ($page = page_manager_page_load($name)) {
+        page_manager_page_delete($page);
+      }
+    }
+    $this->landing_pages = array();
+  }
+
+  /**
+   * @Given /^I am viewing a landing page$/
+   */
+  public function iAmViewingALandingPage() {
+    $random = new Random();
+    $name = $random->name(8);
+    $path = $random->name(8);
+
+    $this->createPage($name, $path, 'Testing Landing Page');
+
+    $this->getSession()->visit($this->locatePath($path));
   }
 }
