@@ -150,6 +150,11 @@ projects[zen][type] = theme
 
 ; Add versions different from Panopoly here
 
+; Migrate
+projects[migrate][version] = 2.5
+projects[migrate][subdir] = contrib
+; Include Dave Reid's patch for Block support.
+projects[migrate][patch][2224297] = http://drupal.org/files/issues/2224297-destination-block-custom_0.patch
 
 ; ***** End Updates Different from Panopoly *****
 ; ***********************************************
