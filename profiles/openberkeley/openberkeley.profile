@@ -52,6 +52,8 @@ function openberkeley_form_install_configure_form_alter(&$form, $form_state) {
   $form['server_settings']['site_default_country']['#default_value'] = 'US';
   $form['server_settings']['date_default_timezone']['#default_value'] = 'America/Los_Angeles'; // West coast, best coast
 
+  // Add the Pathologic paths stuff from openberkeley_wysiwyg_override.
+  openberkeley_wysiwyg_override_form_system_site_information_settings_alter($form, $form_state);
 }
 
 /*
@@ -140,6 +142,7 @@ function openberkeley_array_unshift_assoc(&$arr, $key, $val) {
   $arr = array_reverse($arr, TRUE);
   return $arr;
 }
+<<<<<<< HEAD
 
 function openberkeley_finished($install_state) {
   global $user;
@@ -169,3 +172,5 @@ function openberkeley_finished($install_state) {
   }
   return $out;
 }
+=======
+>>>>>>> master

@@ -10,3 +10,11 @@ files[] = apps.module
 files[] = apps.updater.inc
 files[] = apps.installer.inc
 files[] = apps.test
+
+
+; Information added by drush on 2014-06-25
+version = "7.x-1.0-beta7+15-dev"
+core = "7.x"
+project = "apps"
+datestamp = "1403718088"
+

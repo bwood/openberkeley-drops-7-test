@@ -8,26 +8,36 @@ core = 7.x
 projects[ucb_envconf][type] = module
 projects[ucb_envconf][subdir] = ucb
 projects[ucb_envconf][download][type] = git
-projects[ucb_envconf][download][url] = git://github.com/ucbdrupal/ucb_envconf.git
+projects[ucb_envconf][download][url] = git://github.com/ucb-ist-drupal/ucb_envconf.git
 projects[ucb_envconf][download][tag] = 7.x-1.1-beta2
 projects[ucb_envconf][download][branch] = 7.x-1.x
 
-; NOTE: enabling ucb_cas breaks install, but if you let ucb_envconf enable it (dependency), it works
-; projects[ucb_cas][type] = module
-; projects[ucb_cas][subdir] = ucb
-; projects[ucb_cas][download][type] = git
-; projects[ucb_cas][download][url] = git://github.com/ucbdrupal/ucb_cas.git
-; projects[ucb_cas][download][tag] = 7.x-1.3-beta2
-; projects[ucb_cas][download][branch] = 7.x-1.x
-;; TODO - Update CAS to prevent hook_requirements from firing during install
+projects[ucberkeley_cas][type] = module
+projects[ucberkeley_cas][subdir] = ucb
+projects[ucberkeley_cas][download][type] = file
+projects[ucberkeley_cas][download][url] = https://github.com/ucb-ist-drupal/ucberkeley_cas-7/releases/download/7.x-2.1-beta2/ucberkeley_cas-7.x-2.1-beta2.tar.gz
 
 projects[ucb_openberkeley][type] = module
 projects[ucb_openberkeley][subdir] = ucb
 projects[ucb_openberkeley][download][type] = git
-projects[ucb_openberkeley][download][url] = git://github.com/ucbdrupal/ucb_openberkeley.git
+projects[ucb_openberkeley][download][url] = git://github.com/ucb-ist-drupal/ucb_openberkeley.git
 ; head ;projects[ucb_openberkeley][download][tag] =
 ; master ;projects[ucb_openberkeley][download][branch] = 7.x-1.x
 
+projects[openberkeley_update][type] = module
+projects[openberkeley_update][subdir] = openberkeley
+projects[openberkeley_update][download][type] = git
+projects[openberkeley_update][download][url] = git://github.com/ucb-ist-drupal/openberkeley_update.git
+
+projects[openberkeley_wysiwyg_override][type] = module
+projects[openberkeley_wysiwyg_override][subdir] = openberkeley
+projects[openberkeley_wysiwyg_override][download][type] = git
+projects[openberkeley_wysiwyg_override][download][url] = git://github.com/ucb-ist-drupal/openberkeley_wysiwyg_override.git
+
+projects[openberkeley_core_override][type] = module
+projects[openberkeley_core_override][subdir] = openberkeley
+projects[openberkeley_core_override][download][type] = git
+projects[openberkeley_core_override][download][url] = git://github.com/ucb-ist-drupal/openberkeley_core_override.git
 
 ;;;;;;;;;;;;;;;;;
 ;;; UCB Theme ;;;
@@ -35,10 +45,10 @@ projects[ucb_openberkeley][download][url] = git://github.com/ucbdrupal/ucb_openb
 
 projects[berkeley][type] = theme
 projects[berkeley][download][type] = git
-projects[berkeley][download][url] = git://github.com/ucbdrupal/berkeley.git
+projects[berkeley][download][url] = git://github.com/ucb-ist-drupal/berkeley.git
 projects[berkeley][download][branch] = 7.x-1.x
-;projects[berkeley][download][tag] = 7.x-1.0-alpha8
-projects[berkeley][download][revision] = c996f8a
+projects[berkeley][download][tag] = 7.x-1.0-alpha11
+;projects[berkeley][download][revision] = 6c3173a
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; UCB Contrib Modules ;;;
@@ -86,6 +96,10 @@ projects[faq][patch][1828758] = https://drupal.org/files/1828758-1-category-desc
 ; 1572414: later patch available
 projects[faq][patch][1572414] = https://drupal.org/files/faq-view_question-1572414-2.patch
 
+; Features Override
+projects[features_override][version] = 2.0-rc1
+projects[features_override][subdir] = contrib
+
 ; Google Analytics
 projects[google_analytics][version] = 1.4
 projects[google_analytics][subdir] = contrib
@@ -123,7 +137,7 @@ projects[total_control][version] = 2.4
 projects[total_control][subdir] = contrib
 
 ; Zen - Base theme for Berkeley Theme
-projects[zen][version] = 5.4
+projects[zen][version] = 5.5
 projects[zen][type] = theme
 
 ; ***** End OB not in Panopoly *****
@@ -133,26 +147,14 @@ projects[zen][type] = theme
 ; *******************************************
 ; ***** Updates Different from Panopoly *****
 
-; OPENUCB-261 - Security update for Image Resize Filter (remove when updated by Panopoly)
-projects[image_resize_filter][version] = 1.14
-projects[image_resize_filter][subdir] = contrib
 
-; OPENUCB-217 - Add Features Override
-projects[features_override][version] = 2.0-rc1
-projects[features_override][subdir] = contrib
+; Add versions different from Panopoly here
 
-; OPENUCB-225 - Media module Wysiwyg integration (File Entity should be updated with Media)
-projects[file_entity][version] = 2.0-alpha3
-projects[file_entity][subdir] = contrib
-
-; OPENUCB-225 - Media module Wysiwyg integration (media-7.x-2.0-alpha3+26-dev on 12/3/13)
-projects[media][version] = 2.x-dev
-projects[media][subdir] = contrib
-projects[media][type] = module
-projects[media][download][type] = git
-projects[media][download][revision] = 8fe0f7d
-projects[media][download][branch] = 7.x-2.x
-projects[media][patch][2126755] = https://drupal.org/files/issues/media-improved-macro-handling-2126755-19.patch
+; Migrate
+projects[migrate][version] = 2.5
+projects[migrate][subdir] = contrib
+; Include Dave Reid's patch for Block support.
+projects[migrate][patch][2224297] = http://drupal.org/files/issues/2224297-destination-block-custom_0.patch
 
 ; ***** End Updates Different from Panopoly *****
 ; ***********************************************
@@ -170,35 +172,74 @@ projects[media][patch][2126755] = https://drupal.org/files/issues/media-improved
 
 ; The Panopoly Foundation
 
-projects[panopoly_core][version] = 1.1
+projects[panopoly_core][version] = 1.x-dev
 projects[panopoly_core][subdir] = panopoly
+projects[panopoly_core][download][type] = git
+projects[panopoly_core][download][revision] = 761169f
+projects[panopoly_core][download][branch] = 7.x-1.x
 
-projects[panopoly_images][version] = 1.1
+projects[panopoly_images][version] = 1.x-dev
 projects[panopoly_images][subdir] = panopoly
+projects[panopoly_images][download][type] = git
+projects[panopoly_images][download][revision] = d35213a
+projects[panopoly_images][download][branch] = 7.x-1.x
 
-projects[panopoly_theme][version] = 1.1
+projects[panopoly_theme][version] = 1.x-dev
 projects[panopoly_theme][subdir] = panopoly
+projects[panopoly_theme][download][type] = git
+projects[panopoly_theme][download][revision] = 2ce3cdd
+projects[panopoly_theme][download][branch] = 7.x-1.x
 
-projects[panopoly_magic][version] = 1.1
+projects[panopoly_magic][version] = 1.x-dev
 projects[panopoly_magic][subdir] = panopoly
+projects[panopoly_magic][download][type] = git
+projects[panopoly_magic][download][revision] = e432dbe
+projects[panopoly_magic][download][branch] = 7.x-1.x
 
-projects[panopoly_widgets][version] = 1.1
+projects[panopoly_widgets][version] = 1.x-dev
 projects[panopoly_widgets][subdir] = panopoly
+projects[panopoly_widgets][download][type] = git
+projects[panopoly_widgets][download][revision] = 85fd4c8
+projects[panopoly_widgets][download][branch] = 7.x-1.x
 
-projects[panopoly_admin][version] = 1.1
+projects[panopoly_admin][version] = 1.x-dev
 projects[panopoly_admin][subdir] = panopoly
+projects[panopoly_admin][download][type] = git
+projects[panopoly_admin][download][revision] = 0fa3563
+projects[panopoly_admin][download][branch] = 7.x-1.x
 
-projects[panopoly_users][version] = 1.1
+projects[panopoly_users][version] = 1.x-dev
 projects[panopoly_users][subdir] = panopoly
+projects[panopoly_users][download][type] = git
+projects[panopoly_users][download][revision] = 7bdcb69
+projects[panopoly_users][download][branch] = 7.x-1.x
 
 ; The Panopoly Toolset
 
-projects[panopoly_pages][version] = 1.1
+projects[panopoly_pages][version] = 1.x-dev
 projects[panopoly_pages][subdir] = panopoly
+projects[panopoly_pages][download][type] = git
+projects[panopoly_pages][download][revision] = 2abae75
+projects[panopoly_pages][download][branch] = 7.x-1.x
 
-projects[panopoly_wysiwyg][version] = 1.1
+projects[panopoly_wysiwyg][version] = 1.x-dev
 projects[panopoly_wysiwyg][subdir] = panopoly
+projects[panopoly_wysiwyg][download][type] = git
+projects[panopoly_wysiwyg][download][revision] = 53fa602
+projects[panopoly_wysiwyg][download][branch] = 7.x-1.x
 
-projects[panopoly_search][version] = 1.1
+projects[panopoly_search][version] = 1.x-dev
 projects[panopoly_search][subdir] = panopoly
+projects[panopoly_search][download][type] = git
+projects[panopoly_search][download][revision] = 0934f58
+projects[panopoly_search][download][branch] = 7.x-1.x
+
+; For running the automated tests.
+
+projects[panopoly_test][version] = 1.x-dev
+projects[panopoly_test][subdir] = panopoly
+projects[panopoly_test][type] = module
+projects[panopoly_test][download][type] = git
+projects[panopoly_test][download][revision] = 1b0ead2
+projects[panopoly_test][download][branch] = 7.x-1.x
 

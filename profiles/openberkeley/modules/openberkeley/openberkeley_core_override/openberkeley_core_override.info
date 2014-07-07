@@ -1,0 +1,11 @@
+name = OpenBerkeley Core Override
+description = Open Berkeley Core Override Feature
+core = 7.x
+package = Open Berkeley
+version = 7.x-0.1
+project = openberkeley_core_override
+dependencies[] = panopoly_core
+features[features_api][] = api:2
+features[features_override_items][] = views_view.panopoly_taxonomy
+features[features_overrides][] = views_view.panopoly_taxonomy.display|default|display_options|fields|field_featured_image|click_sort_column
+features[features_overrides][] = views_view.panopoly_taxonomy.display|default|display_options|fields|field_featured_image|settings

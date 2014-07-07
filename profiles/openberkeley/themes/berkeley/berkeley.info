@@ -2,7 +2,7 @@ name        = Berkeley
 description = Berkeley Theme (a Zen sub-theme)
 screenshot  = screenshot.png
 core        = 7.x
-version     = 7.x-1.0-alpha8
+version     = 7.x-1.0-alpha11
 base theme  = zen
 
 ; This section controls the CSS files for your theme. There are 3 different
@@ -155,8 +155,8 @@ settings[sharing_addthis]             = 0
 settings[main_menu_nice_menus]        = 1
 settings[nice_menus_depth]            = 1
 settings[extended_menu_items]         = 0
-settings[openberkeley_newsarchive]    = 0
-settings[openberkeley_faq]            = 0
+settings[openberkeley_newsarchive]    = 1
+settings[openberkeley_faq]            = 1
 
 ; To make this sub-theme an admin theme with shortcut links next to titles,
 ; uncomment the line below.

@@ -1,5 +1,21 @@
 Berkeley Theme - CHANGELOG.md
 
+Berkeley 7.x-1.0-alpha11, 2014-06-06
+------------------------------------
+- Add invisible label to search form for accessibility (OPENUCB-297)
+- Increase color contrast to meet WCAG 2.00AA (OPENUCB-296)
+- Add focus indicator for search box (OPENUCB-304)
+
+Berkeley 7.x-1.0-alpha10, 2014-05-08
+------------------------------------
+- Sanitize to prevent cross site scripting (OPENUCB-290: see SA-CONTRIB-2014-047 - Zen - Cross Site Scripting: https://drupal.org/node/2254925)
+- Set theme and subtheme template to apply News Archive and FAQ styling by default (needed for OB sites)
+
+Berkeley 7.x-1.0-alpha9, 2014-05-01
+------------------------------------
+- Accessibility update: Change "Go" to "Submit Search"
+- Accessibility update: Remove h1 from Site Name and h2 from Parent Organization (remove hgroup)
+
 Berkeley 7.x-1.0-alpha8, 2013-08-23
 ------------------------------------
 - Zen 5.4 update: Fix skiplink behavior for Opera and Webkit browsers: https://drupal.org/node/2052729

@@ -11,9 +11,9 @@
 *   [Administrator "back door"](#back_door)
 *   [Upgrading](#upgrading)
     *   [Upgrading from ucb\_cas 1.x to ucberkeley\_cas 2.x](#1.x_2.x)
-			*   [If you are using ucb_envconf 1.x, upgrade to ucberkeley_envconf 2.x](#1.x_2.x_envconf)
-    *   [Upgrading to a new version of ucberkeley_cas 2.x](#to_newver)
-    *   [My site already users CAS, and I want to switch to ucberkeley_cas](#my_sitealready)
+	*   [If you are using ucb\_envconf 1.x, upgrade to ucberkeley\_envconf 2.x](#1.x_2.x_envconf)
+    *   [Upgrading to a new version of ucberkeley\_cas 2.x](#to_newver)
+    *   [My site already users CAS, and I want to switch to ucberkeley\_cas](#my_sitealready)
 *   [Uninstalling](#uninstalling)
     *   [Avoid uninstalling the cas module](#avoid_uninstall)
 *   [Standard Configuration](#standard_configuration) 
@@ -26,6 +26,7 @@
         *  [Logout Behavior](#logout_behavior)
         *  [Initial login destination and Logout destination](#initial_login)
         *  [Automatically create Drupal accounts](#automatically_create)
+        *  [Check with the CAS server to see if the user is already logged in?](#gateway)
         *  [Users cannot change password](#users_cannot)
         *  [Change Password URL](#change_password)
         *  [Drupal Login Invitation](#drupal_login)
@@ -34,12 +35,17 @@
 *  [The UC Berkeley Environment Configurations module](#envconf)
 *  [FAQ/Troubleshooting](#faq)
 	*  [Q. Why isn't ucberkeley\_cas hosted on http://drupal.org](#hosted_do)
-	*  [Q. Why can't I upgrade ucberkeley\_cas using a command like 'drush pm-updatecode' (upc)?](#drush_upc)
+    *  [Q. Lots of user accounts are being created on my site.](#autocreate_gateway)
+    *  [Q. I get a "Not Found" error when I try to visit user/admin\_login?](#admin_login_notfound)
+	*  [Q. I get the error Access Denied when I try to visit user/admin\_login?](#admin_login_denied)
+	*  [Q. Why do I sometimes get incorrectly bounced to the CalNet login page when I visit my site's homepage?](#incorrect_bounce)
+  *  [Q. Why can't I upgrade ucberkeley\_cas using a command like 'drush pm-updatecode' (upc)?](#drush_upc)
 	*  [Q. This module require ldap\_servers, but that doesn't seem to be a module that exists on http://drupal.org.](#ldap_not_exist)
 	*  [Q. When I installed ucberkely\_cas I got the message: _Module ucberkeley\_cas cannot be enabled because it depends on ldap\_servers (7.x-1.0-beta12) but 1.0-beta11 is available_](#ldap_servers_version)
 	*  [Q. When logging in I get the error "user warning: Duplicate entry](#user_dup_entry)
 	*  [Q. When I try to edit a user created by the cas module, I get a validation error on the email address. Why is this?](#validation_email)
 	*  [Q. Why does the command 'drush @somealias vget cas\_server' retrun the wrong information?](#envconf_drush)
+	*  [Q. When trying to use Libraries API with ucberkeley_cas I got a blank white screen.](#libraries_wsod)
 *  [Reporting Bugs](#bugs)
 *  [Authors](#authors)
 
@@ -126,9 +132,6 @@ on a production site.
 
 Pantheon customers can use [this email template with default Pantheon settings](https://wikihub.berkeley.edu/display/drupal/Launch+your+Pantheon+site?src=search#LaunchyourPantheonsite-RegisterforCalNetauthentication).  Non-Pantheon customers can use [this generic template](https://wikihub.berkeley.edu/display/calnet/CAS+Registration).
 
-Answering "Yes" to the "Requires Re-authentication" is considered the best
-practice for UC Berkeley Drupal sites. For more about this see [Logout Behavior](#Logout_Behavior).
-
 ### Localhost Sites Do Not Require Registration ###
 
 Developers working local webserver do not need to register URLs like
@@ -195,7 +198,7 @@ this form unless you really have to.
 </a>
 
 <a name = "1.x_2.x">
-## Upgrading from ucb_cas 1.x to ucberkeley_cas 2.x ##
+## Upgrading from ucb\_cas 1.x to ucberkeley\_cas 2.x ##
 </a>
 
 The module UC Berkeley CAS (ucberkeley\_cas) is a replacement for the older UCB CAS (ucb\_cas) module.  UCB CAS must be removed from your system before UC Berkeley CAS can be installed.
@@ -407,38 +410,31 @@ configurations notes below.
 
 Site path: admin/config/people/cas:
 
-<a name="Logout_Behavior">
+<a name="logout_behavior">
 ### Logout Behavior ###
 </a>
-As mentioned in the CalNet Registration section, requesting that the
-UC Berkeley CAS server "require re-authentication" for your site is
-the most secure way of configuring your Drupal site. With this
-configuration in place, when a logged in user clicks the logout link
-on your site they will not be able to log back into your site until
-they enter their CalNet username and password again. Without this
-configuration in place if a user logs out of your site it is possible
-for them to login again (while their Drupal login session is still
-valid) by simply revisiting the /cas url which (in this situation)
-will not prompt them for their password again. This scenario is
-undesirable especially when the logged in user is at a public computer
-(e.g. in a library) or if they don't lock their screen when they leave
-their computer.
 
-By default UC Berkeley CAS creates a URL Alias that redirects the
-"/user/logout" to "/caslogout." This alias is present to mimic the
-the "require re-authentication" behavior for sites that *did not*
-specify "require re-authentication: yes" in their CAS registration
-form.  Relying on these aliases for security is acceptable, but this
-makes logging back into the site after logout a bit less convenient.
+By default UC Berkeley CAS creates a URL Alias (at
+admin/config/search/path) that redirects the "/user/logout" to
+"/caslogout." With this configuration in place, when a logged in user
+clicks the logout link on your site they will not be able to log back
+into your site until they enter their CalNet username and password
+again. Using this alias is considered a best practice for UC Berkeley
+Drupal sites.
 
-If your site is using "require re-authentication" the presence of the
-above alias will not negatively affect your site. However it will mean
-that users are redirected to a generic CAS Logout page when they
-follow your logout link.  If you have specified "require
-re-authentication" and you want your users to be redirected to, for
-example, your site's home page after logout, you can 1. delete the
-logout alias at /admin/config/search/path and then 2. specify the
-logout destination at /admin/config/people/cas Login/Logout Destinations.
+The above configuration is not compatible with "single sign-on"
+scenarios. Configuring a UC Berkeley Drupal site to participate in
+"single sign-on" is not recommended. However, removing the above alias
+will provide this behavior.
+
+Without this alias in place if a user logs out of your site it is
+possible for them to login again (while their Drupal login session is
+still valid) by simply revisiting the /cas url which will not prompt
+them for their password again. This configuration is considered less
+secure. It opens up the possibility of unauthorized access if users
+login from public computers (e.g. in a library) or if they don't lock
+their screen when they leave their computer.
+
 
 <a name="initial_login">
 ### Initial login destination and Logout destination ###
@@ -455,6 +451,14 @@ attempts to log in to your site, go to admin/config/people/cas, open
 the User Accounts section, and uncheck Automatically create Drupal
 accounts. As an alternative, you can pre-create CAS users at
 /admin/people/cas/create.
+
+<a name="gateway">
+## Check with the CAS server to see if the user is already logged in? ##
+</a>
+
+*Be careful with this setting.*
+
+UC Berkeley CAS disables this feature by default. Enabling it in conjunction with "Automatically create Drupal accounts" will result in the dreaded "Drive-By User Creation" scenario. I.E. if you are logged into site A and you visit site B (B being this site with both of these settings enabled) you will be instantly logged in and an account will be created for you. This can result in lots of acounts being created on a site for people unfamiliar to the site administrators.  By default new users are assigned [the "Authenticated User" role](#authenticated_user) which does not have any more permissions than Anonymous User.
 
 <a name="users_cannot">
 ### Users cannot change password ###
@@ -567,6 +571,46 @@ Live environments. To manage this manually make these changes at:
 </a>
 A. Two reasons: 1. this module bundles phpCAS which cannot be served from drupal.org for licensing reasons. 2. this module is specific to using Druapl at UC Berkeley and is not useful to the wider Drupal community.
 
+<a name="autocreate_gateway">
+## Q. Lots of user accounts are being created on my site. ##
+</a>
+[See this section](#gateway).
+
+<a name = "admin_login_notfound">
+## Q. I get a "Not Found" when I try to login at user/admin_login ##
+</a>
+
+This can happen if your site is not using clean urls.  Try accessing the administrator back door at http://example.com/?q=/user/admin_login. (Consider enabling clean urls at /?q=admin/config/search/clean-urls.)
+
+<a name = "admin_login_denied">
+## Q. I get the error Access denied when I try to login at user/admin_login ##
+</a>
+
+This can happen if you managed to enable ucberkeley\_cas and you still have the older files for ucb\_cas in your site. To fix this:
+
+1. disable ucberkeley_cas
+2. uninstall ucberkeley_cas
+3. locate the folder ucb_cas (probably it's under sites/all/modules or profiles/openberkeley/modules/ucb) and remove it.
+4. enable ucberkeley_cas
+
+[See the section on upgrading](#1.x_2.x).
+
+<a name="incorrect_bounce">
+## Why do I sometimes get incorrectly bounced to the CalNet login page when I visit my site's homepage? ##
+</a>
+
+Steps like these repeat the problem:
+
+1. From Pantehon dashboard of site click "Visit onucb-324" and see the site homepage.
+2. Select all and copy the location bar (url)
+3. Reload the page and see the CAS login page (incorrect)
+4. Cmd-L, Cmd-A, Cmd-V (replace the location bar with the site url) and click enter. See the site homepage
+5. Reload the page and see the CAS login page (incorrect)
+
+The cause of this is a bad cookie in your browser. Here are the steps to fix this in Chrome. (Similar steps should fix other browsers.):
+
+In Chrome goto Settings > Show Advanced > Privacy > Clear Browsing Data and remove all cookies in last 4 weeks (or since beginning of time).
+
 <a name = "drush_upc">
 ## Q. Why can't I upgrade ucberkeley\_cas using a command like 'drush pm-updatecode' (upc)? ##
 </a>
@@ -617,6 +661,14 @@ see the right value.
 Theoretically you could get the correct value with 
 
 drush @somealias php-eval "echo variable\_get('cas\_server', NULL);"
+
+<a name="libraries_wsod">
+## Q. When trying to use Libraries API with ucberkeley_cas I got a blank white screen. ##
+</a>
+
+See https://drupal.org/node/1394666#comment-8886961
+
+("WSOD" = "White Screen of Death")
 
 <a name = "bugs">
 # Reporting Bugs #

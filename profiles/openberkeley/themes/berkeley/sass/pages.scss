@@ -109,20 +109,25 @@ a#logo { /* Wrapping link for logo */
   margin: $name-and-slogan-margin;
 
   /* Keep Site Name and Site Slogan as typed by User - Not overridden by theme settings */
-  h1#site-name, h2#site-slogan {
+  div#site-name, div#site-slogan {
     text-transform: none !important;
 
     //see _base.scss and fonts directory for font-face fonts
     font-family: $helvetica-neue !important;
   }
 
-  h2#site-slogan {
+  div#site-slogan {
     margin-bottom: 1.15em;
     margin-top: 1.15em;
     min-width: 30em; //Fix for scrunched text if Parent Org is longer than Site Name; allow for long names
   }
 }
 
+#search {
+  #edit-keys:focus {
+    outline: 4px solid #427AAB; /* Match Chrome/Webkit default style */
+  }
+}
 
 // See mobilesearch.css for 480 version
 @media all and (min-width: 481px) {

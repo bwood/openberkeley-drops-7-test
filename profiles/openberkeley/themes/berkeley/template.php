@@ -221,41 +221,41 @@ function berkeley_preprocess_page(&$variables, $hook) {
   $social_links = array();
 
   if (theme_get_setting('facebook_link')) {
-    $facebook_link = "http://www.facebook.com/" . theme_get_setting('facebook_link');
+    $facebook_link = "http://www.facebook.com/" . check_plain(theme_get_setting('facebook_link'));
     $social_links[] = l('Facebook', $facebook_link, array('attributes' => array('class' => array('facebook-link'))));
   }
 
   if (theme_get_setting('twitter_link')) {
-    $twitter_link = "http://twitter.com/" . theme_get_setting('twitter_link');
+    $twitter_link = "http://twitter.com/" . check_plain(theme_get_setting('twitter_link'));
     $social_links[] = l('Twitter', $twitter_link, array('attributes' => array('class' => array('twitter-link'))));
   }
 
   if (theme_get_setting('linkedin_link')) {
-    $linkedin_link = theme_get_setting('linkedin_link');
+    $linkedin_link = check_plain(theme_get_setting('linkedin_link'));
     $social_links[] = l('LinkedIn', $linkedin_link, array('attributes' => array('class' => array('linkedin-link'))));
   }
 
   if (theme_get_setting('foursquare_link')) {
-    $foursquare_link = theme_get_setting('foursquare_link');
+    $foursquare_link = check_plain(theme_get_setting('foursquare_link'));
     $social_links[] = l('Foursquare', $foursquare_link, array('attributes' => array('class' => array('foursquare-link'))));
   }
 
   if (theme_get_setting('youtube_link')) {
-    $youtube_link = "http://www.youtube.com/user/" . theme_get_setting('youtube_link');
+    $youtube_link = "http://www.youtube.com/user/" . check_plain(theme_get_setting('youtube_link'));
     $social_links[] = l('YouTube', $youtube_link, array('attributes' => array('class' => array('youtube-link'))));
   }
 
   if (theme_get_setting('googleplus_link')) {
-    $googleplus_link = "https://plus.google.com/" . theme_get_setting('googleplus_link');
+    $googleplus_link = "https://plus.google.com/" . check_plain(theme_get_setting('googleplus_link'));
     $social_links[] = l('GooglePlus', $googleplus_link, array('attributes' => array('class' => array('googleplus-link'))));
   }
 
   if (theme_get_setting('flickr_link')) {
-    $flickr_link = theme_get_setting('flickr_link');
+    $flickr_link = check_plain(theme_get_setting('flickr_link'));
     $social_links[] = l('Flickr', $flickr_link, array('attributes' => array('class' => array('flickr-link'))));
   }
   if (theme_get_setting('rss_link')) {
-    $rss_link = theme_get_setting('rss_link');
+    $rss_link = check_plain(theme_get_setting('rss_link'));
     $social_links[] = l('Rss', $rss_link, array('attributes' => array('class' => array('rss-link'))));
   }
 
@@ -326,9 +326,12 @@ function berkeley_preprocess_page(&$variables, $hook) {
 
   // Set up the search box functionality (adapted from OpenAcademy)
   $search_box_form = drupal_get_form('search_form');
-  $search_box_form['basic']['keys']['#title'] = '';
+  // Add label for accessibility. See http://webaim.org/techniques/css/invisiblecontent, http://zufelt.ca/blog/drupal-7-two-new-system-classes-improve-accessibility,
+  // https://api.drupal.org/api/drupal/modules%21search%21search.module/function/search_form/7 and https://drupal.org/node/154137
+  $search_box_form['basic']['keys']['#title'] = 'Search Terms';
+  $search_box_form['basic']['keys']['#title_display'] = 'invisible';
   $search_box_form['basic']['keys']['#attributes'] = array('placeholder' => 'Search');
-  $search_box_form['basic']['submit']['#value'] = t('Go');
+  $search_box_form['basic']['submit']['#value'] = t('Submit Search');
   $search_box = drupal_render($search_box_form);
   $variables['search_box'] = (user_access('search content')) ? $search_box : NULL;
 
