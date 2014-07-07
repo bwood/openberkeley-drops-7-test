@@ -66,7 +66,6 @@ function openberkeley_add_admin_form() {
 /**
  * Implements hook_form_FORM_ID_alter()
  */
-//function openberkeley_form_openberkeley_add_admin_form_alter(&$form, $form_state) {
 function openberkeley_form_cas_add_user_form_alter(&$form, $form_state) {
   $form['account']['cas_name_txt']['#weight'] = -15;
   $form['account']['cas_name_txt']['#markup'] = "In this step we will setup the administrator account that you will use.  If you don't know your CAS User ID, follow these instructions: <p><em>" . $form['account']['cas_name_txt']['#markup'] . "</em></p>";
@@ -92,20 +91,6 @@ function openberkeley_add_admin_form_submit($form, &$form_state) {
   $x = 1;
 
 }
-
-/*
-function openberkeley_form_alter(&$form, &$form_state, $form_id) {
-  switch ($form_id) {
-    case 'cas_add_user_form':
-      $form['account']['cas_name_txt']['#weight'] = -15;
-      break;
-    case 'openberkeley_add_admin_form':
-      $form['account']['cas_name_txt']['#weight'] = -15;
-      break;
-  }
-}
-*/
-
 
 /**
  * Implements hook_form_FORM_ID_alter()
@@ -142,7 +127,7 @@ function openberkeley_array_unshift_assoc(&$arr, $key, $val) {
   $arr = array_reverse($arr, TRUE);
   return $arr;
 }
-<<<<<<< HEAD
+
 
 function openberkeley_finished($install_state) {
   global $user;
@@ -172,5 +157,3 @@ function openberkeley_finished($install_state) {
   }
   return $out;
 }
-=======
->>>>>>> master
