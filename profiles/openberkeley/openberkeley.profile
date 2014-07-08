@@ -168,11 +168,17 @@ function openberkeley_finished($install_state) {
 
   // If appropriate link user to /cas to login as their cas-authed admin user
   if (variable_get('openberkeley_cas_admin', FALSE)) {
-    if ($user->uid) {
+    if (user_is_logged_in()) {
       //logout of user1
       watchdog('user', 'Open Berkeley installation complete. Session closed for %name.', array('%name' => $user->name));
+      // user_logout(); //does drupal_goto() which we don't want.
       module_invoke_all('user_logout', $user);
-      session_destroy();
+      // if using drush site-install, session_destroy() will complain about no
+      // session, so skip it
+      if (!defined('DRUSH_VERSION')) {
+        // Destroy the current session, and reset $user to the anonymous user.
+        session_destroy();
+      }
     }
     $out = "<p>Congratulations.  You've installed Open Berkeley!</p><p>" . l("Please login as your CalNet-enabled administrator", "cas") . ".</p>";
     variable_del('openberkeley_cas_admin');
