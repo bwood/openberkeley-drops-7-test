@@ -103,10 +103,17 @@ function openberkeley_cas_user_presave(&$edit, $account) {
  */
 function openberkeley_add_admin_form_validate($form, &$form_state) {
   if ($form_state['values']['op'] != 'Skip this step') {
-    if (!is_numeric(trim($form_state['complete form']['account']['cas_name']['#value']))) {
+    if (preg_match('/[^\d,]+/', $form_state['complete form']['account']['cas_name']['#value']) != 0) {
       form_set_error('cas_name', "CAS User ID should be a numeric value.");
     }
-    _cas_name_element_validate($form_state['complete form']['account']['cas_name'], $form_state);
+    $uids = explode(',', $form_state['complete form']['account']['cas_name']['#value']);
+    foreach ($uids as $uid) {
+      if (empty($uid)) {
+        continue;
+      }
+      _cas_name_element_validate($uid, $form_state);
+    }
+
   }
 }
 
@@ -117,7 +124,17 @@ function openberkeley_add_admin_form_validate($form, &$form_state) {
  */
 function openberkeley_add_admin_form_submit($form, &$form_state) {
   if ($form_state['values']['op'] != 'Skip this step') {
-    cas_add_user_form_submit($form, $form_state);
+    // If 111,222,333 submitted, three cas admins will be created.
+    $fs = $form_state;
+    $uids = explode(',', $form_state['values']['cas_name']);
+    foreach ($uids as $uid) {
+      if (empty($uid)) {
+        continue;
+      }
+      $fs['values']['cas_name'] = trim($uid);
+      cas_add_user_form_submit($form, $fs);
+    }
+
   }
 }
 
