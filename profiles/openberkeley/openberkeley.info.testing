@@ -26,14 +26,14 @@ dependencies[] = panopoly_core
 
 dependencies[] = panopoly_theme
 
-
+dependencies[] = panopoly_wysiwyg
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; UCB Contrib Modules ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+dependencies[] = openberkeley_wysiwyg_override
 ; ***** OB not in Panopoly *****
-dependencies[] = config_perms
+dependencies[] = ucberkeley_cas
 
 ; UCB - Recommended (not enabled by default)
 ; dependencies[] = security_review

@@ -6,7 +6,7 @@
 /**
  * Implementation of hook_boot().
  */
-function ucb_envconf_boot() {
+function ucberkeley_envconf_boot() {
 	$env = '';
 	$site_env = '';
 	//if (isset($GLOBALS['_SERVER']['PANTHEON_ENVIRONMENT'])) $env = $GLOBALS['_SERVER']['PANTHEON_ENVIRONMENT'];
@@ -41,19 +41,19 @@ function ucb_envconf_boot() {
 
 	 $list = module_list(TRUE);
 	 // Perform module-specific variable alterations
-	 if (isset($list['cas'])) ucb_envconf_cas($site_env);
-	 if (isset($list['cas_attributes'])) ucb_envconf_cas_attributes($site_env);
+	 if (isset($list['cas'])) ucberkeley_envconf_cas($site_env);
+	 if (isset($list['cas_attributes'])) ucberkeley_envconf_cas_attributes($site_env);
 
 	 */
-	ucb_envconf_cas($site_env);
-	ucb_envconf_cas_attributes($site_env);
+	ucberkeley_envconf_cas($site_env);
+	ucberkeley_envconf_cas_attributes($site_env);
 }
 
 
 /**
  * cas settings
  */
-function ucb_envconf_cas($env) {
+function ucberkeley_envconf_cas($env) {
 	global $conf;
 	switch($env) {
 		case "dev":
@@ -69,7 +69,7 @@ function ucb_envconf_cas($env) {
 /**
  * cas_attributes settings
  */
-function ucb_envconf_cas_attributes($env) {
+function ucberkeley_envconf_cas_attributes($env) {
 	global $conf;
 	switch($env) {
 		case "dev":
@@ -88,26 +88,35 @@ function ucb_envconf_cas_attributes($env) {
  *
  * Let users know that certain admin form values are "locked" by this module
  */
-function ucb_envconf_form_alter(&$form, &$form_state, $form_id) {
+function ucberkeley_envconf_form_alter(&$form, &$form_state, $form_id) {
 	switch ($form_id) {
 		case "cas_admin_settings":
 			$form['server']['cas_server']['#disabled'] = TRUE;
-			$form['server']['cas_server']['#description'] = t('<em><strong>Setting locked by ucb_envconf.module</strong></em><br />') . $form['server']['cas_server']['#description'];
+			$form['server']['cas_server']['#description'] = t('<em><strong>Setting locked by ucberkeley_envconf.module</strong></em><br />') . $form['server']['cas_server']['#description'];
 			break;
 		case "cas_attributes_admin_settings":
-			$form['#after_build'][] = 'ucb_envconf_cas_attributes_after_build';
+			$form['#after_build'][] = 'ucberkeley_envconf_cas_attributes_after_build';
 
 			break;
 		case "ldap_servers_admin_form":
 			$form['server']['sid']['#disabled'] = TRUE;
-			$form['server']['sid']['#description'] = t('<em><strong>Setting locked by ucb_envconf.module</strong></em><br />') . $form['server']['sid']['#description'];
+			$form['server']['sid']['#description'] = t('<em><strong>Setting locked by ucberkeley_envconf.module</strong></em><br />') . $form['server']['sid']['#description'];
 			break;
 	}
 }
 
-function ucb_envconf_cas_attributes_after_build($form, &$form_state) {
-	$form['cas_attributes']['ldap']['server']['#disabled'] = TRUE; //FIXME
-	$form['cas_attributes']['ldap']['server']['#description'] = t('<em><strong>Setting locked by ucb_envconf.module</strong></em><br />') . $form['cas_attributes']['ldap']['server']['#description'];
-	return $form;
+function ucberkeley_envconf_cas_attributes_after_build($form, &$form_state) {
+  if (array_key_exists('cas_attributes', $form)) {
+    // cas_attributes prior to 7.x-1.0 uses this key
+    $form['cas_attributes']['ldap']['server']['#disabled'] = TRUE; //FIXME
+    $form['cas_attributes']['ldap']['server']['#description'] = t('<em><strong>Setting locked by ucberkeley_envconf.module</strong></em><br />') . $form['cas_attributes']['ldap']['server']['#description'];
+  }
+  elseif (array_key_exists('cas_attributes_ldap', $form)) {
+    // cas_attributes 7.x-1.0 uses this key
+    $form['cas_attributes_ldap']['cas_attributes_ldap_server']['#disabled'] = TRUE; //FIXME
+    $form['cas_attributes_ldap']['cas_attributes_ldap_server']['#description'] = t('<em><strong>Setting locked by ucberkeley_envconf.module</strong></em><br />') . $form['cas_attributes_ldap']['cas_attributes_ldap_server']['#description'];
+  }
+  //Don't try to alter the form if it's not one of the two above versions.
+  return $form;
 }
 

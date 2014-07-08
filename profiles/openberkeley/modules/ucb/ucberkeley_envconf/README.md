@@ -1,5 +1,5 @@
-ucb_envconf-7.x-1.x
-===================
+ucberkeley_envconf
+==================
 
 PURPOSE
 -------

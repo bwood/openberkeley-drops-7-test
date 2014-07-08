@@ -1,0 +1,8 @@
+name = UC Berkeley Environments Configurations
+description = Set appropriate configuration for dev/test/live sites.
+machine_name = ucberkeley_envconf
+version = 7.x-2.x-dev
+downloadable = ucberkeley_envconf 7.x-2.x-dev
+author = IST Drupal, Brian Wood 
+author_url = http://drupal-apps.berkeley.edu/
+downloadables[ucberkeley_envconf 7.x-2.x-dev] = http://drupal-apps.berkeley.edu/sites/default/files/ucberkeley_envconf-7.x-2.x-dev.tar.gz

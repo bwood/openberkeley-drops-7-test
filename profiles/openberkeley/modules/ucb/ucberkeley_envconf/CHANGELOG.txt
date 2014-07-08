@@ -1,3 +1,8 @@
+ucb_envconf 7.x-2.0
+=========================
+* Re-namespace module to be consistent with ucberkeley_cas
+* Fix form_alter so it works with with 0.x or 1.x versions of cas_attributes
+
 ucb_envconf 7.x-1.1-beta2
 =========================
 * Fix problems in the .info file
