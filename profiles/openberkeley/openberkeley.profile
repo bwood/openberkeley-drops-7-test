@@ -103,10 +103,10 @@ function openberkeley_cas_user_presave(&$edit, $account) {
  */
 function openberkeley_add_admin_form_validate($form, &$form_state) {
   if ($form_state['values']['op'] != 'Skip this step') {
-    if (preg_match('/[^\d,]+/', $form_state['complete form']['account']['cas_name']['#value']) != 0) {
+    if (preg_match('/[^\d,]+/', $form_state['values']['cas_name']) != 0) {
       form_set_error('cas_name', "CAS User ID should be a numeric value.");
     }
-    $uids = explode(',', $form_state['complete form']['account']['cas_name']['#value']);
+    $uids = explode(',', $form_state['values']['cas_name']);
     foreach ($uids as $uid) {
       if (empty($uid)) {
         continue;
