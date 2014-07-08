@@ -76,6 +76,10 @@ function openberkeley_form_cas_add_user_form_alter(&$form, $form_state) {
     '#type' => "submit",
     '#value' => t('Skip this step'),
   );
+  // Position the two buttons inline
+  $form['#attached']['css']['#edit-skip.form-submit { display:inline; }'] = array( 'type' => 'inline');
+  $form['#attached']['css']['#edit-submit.form-submit { display:inline; }'] = array( 'type' => 'inline');
+
   // Replace the cas validate/submit handlers with ours
   $form['#validate'] = array('openberkeley_add_admin_form_validate');
   $form['#submit'] = array('openberkeley_add_admin_form_submit');
