@@ -67,18 +67,23 @@ function openberkeley_add_admin_form() {
  * Implements hook_form_FORM_ID_alter()
  */
 function openberkeley_form_cas_add_user_form_alter(&$form, $form_state) {
+  $form['account']['cas_name']['#required'] = FALSE;
   $form['account']['cas_name_txt']['#weight'] = -15;
   $form['account']['cas_name_txt']['#markup'] = "In this step we will setup the administrator account that you will use.  If you don't know your CAS User ID, follow these instructions: <p><em>" . $form['account']['cas_name_txt']['#markup'] . "</em></p>";
   $form['account']['cas_name']['#title'] = "Your CAS User ID";
-  $form['actions']['submit']['#value'] = "Create UC Berkeley Administrator";
-  $form['actions']['cancel'] = array(
-    '#markup' => l(t('Skip this step'), ''),
+  $form['actions']['submit']['#value'] = "Create CalNet Administrator";
+  $form['actions']['skip'] = array(
+    '#type' => "submit",
+    '#value' => t('Skip this step'),
   );
-  //$form['#submit'][] = 'openberkeley_add_admin_form_submit';
+  // Replace the cas validate/submit handlers with ours
+  $form['#validate'] = array('openberkeley_add_admin_form_validate');
+  $form['#submit'] = array('openberkeley_add_admin_form_submit');
 }
 
 /**
  * Implementation of hook_cas_user_presave()
+ * Assign the administrator role to the new CAS user.
  */
 function openberkeley_cas_user_presave(&$edit, $account) {
   $role = user_role_load_by_name("administrator");
@@ -87,9 +92,29 @@ function openberkeley_cas_user_presave(&$edit, $account) {
   variable_set('openberkeley_cas_admin', TRUE);
 }
 
-function openberkeley_add_admin_form_submit($form, &$form_state) {
-  $x = 1;
+/**
+ * Validate handler for cas_user_add_form
+ * @param $form
+ * @param $form_state
+ */
+function openberkeley_add_admin_form_validate($form, &$form_state) {
+  if ($form_state['values']['op'] != 'Skip this step') {
+    if (!is_numeric(trim($form_state['complete form']['account']['cas_name']['#value']))) {
+      form_set_error('cas_name', "CAS User ID should be a numeric value.");
+    }
+    _cas_name_element_validate($form_state['complete form']['account']['cas_name'], $form_state);
+  }
+}
 
+/**
+ * Submit handler for cas_user_add_form
+ * @param $form
+ * @param $form_state
+ */
+function openberkeley_add_admin_form_submit($form, &$form_state) {
+  if ($form_state['values']['op'] != 'Skip this step') {
+    cas_add_user_form_submit($form, $form_state);
+  }
 }
 
 /**
