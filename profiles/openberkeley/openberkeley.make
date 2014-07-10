@@ -13,7 +13,7 @@ projects[ucberkeley_envconf][download][url] = https://github.com/ucb-ist-drupal/
 projects[ucberkeley_cas][type] = module
 projects[ucberkeley_cas][subdir] = ucb
 projects[ucberkeley_cas][download][type] = file
-projects[ucberkeley_cas][download][url] = https://github.com/bwood/ucberkeley_cas-7/releases/download/7.x-2.1-beta3/ucberkeley_cas-7.x-2.1-beta3.tar.gz
+projects[ucberkeley_cas][download][url] = https://github.com/ucb-ist-drupal/ucberkeley_cas-7/releases/download/7.x-2.1-beta3/ucberkeley_cas-7.x-2.1-beta3.tar.gz
 
 projects[ucb_openberkeley][type] = module
 projects[ucb_openberkeley][subdir] = ucb
