@@ -24,7 +24,7 @@ if [ -f openberkeley.make ]; then
   if [ $SELECTION = "1" ]; then
 
     echo "Building Open Berkeley install profile in release mode..."
-    drush make --no-core --contrib-destination=. openberkeley.make
+    drush -y -v make --no-core --contrib-destination=. openberkeley.make
 
   elif [ $SELECTION = "2" ]; then
     echo "Cleaning and rebuilding Open Berkeley install profile in release mode..."
@@ -39,7 +39,7 @@ if [ -f openberkeley.make ]; then
         echo "Either not a directory or not writable: $dir"
       fi
     done
-    drush make --no-core --contrib-destination=. openberkeley.make
+    drush -y -v make --no-core --contrib-destination=. openberkeley.make
 
   else
    echo "Invalid selection."
